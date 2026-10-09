@@ -1,72 +1,83 @@
-import { Button, Icon } from '@reef-ui/components';
+import { Icon } from '@reef-ui/components';
 
-const features = [
+const entries = [
   {
-    icon: 'layers',
-    term: '一致性',
-    desc: '统一的视觉、交互与命名规范，所有样式出自同一套 Design Token。',
-  },
-  {
-    icon: 'sliders',
-    term: '可定制',
-    desc: '颜色、间距、圆角全部是 CSS 变量，覆盖变量即可换成品牌主题。',
-  },
-  {
-    icon: 'heart',
-    term: '可访问性',
-    desc: '键盘可达、焦点可见、对比度达标——WCAG AA 是底线，不是加分项。',
-  },
-  {
+    href: '#guide',
     icon: 'package',
-    term: '工程化',
-    desc: 'TypeScript 类型、ESM 按需引入、Tree Shaking，从开发到发布完整闭环。',
+    term: '使用指南',
+    desc: '安装、引入与主题定制，几分钟接入你的应用。',
   },
-] as const;
-
-const compCards = [
   {
     href: '#button',
-    name: 'Button 按钮',
-    desc: '5 种类型 · 3 种尺寸',
-    preview: (
-      <span className="landing__comp-btns">
-        <Button size="small" variant="primary">主要按钮</Button>
-        <Button size="small" variant="secondary">次要按钮</Button>
-        <Button size="small" variant="danger">危险按钮</Button>
-      </span>
-    ),
+    icon: 'layers',
+    term: '组件',
+    desc: '精心打磨的基础组件，类型、尺寸与状态完整。',
   },
   {
     href: '#icon',
-    name: 'Icon 图标',
-    desc: 'SVG 图标 · currentColor 着色',
-    preview: (
-      <span className="landing__comp-icons">
-        {(['search', 'heart', 'sliders', 'moon', 'github'] as const).map((n) => (
-          <Icon key={n} name={n} size={20} />
-        ))}
-      </span>
-    ),
+    icon: 'heart',
+    term: '资源',
+    desc: '图标与排版规范，与组件共享同一套 Design Token。',
   },
-  {
-    href: '#typography',
-    name: 'Typography 排版',
-    desc: '标题层级 · 正文与辅助文本',
-    preview: (
-      <span className="landing__comp-typo">
-        <strong>Aa</strong>
-        <span>
-          <b>标题文本</b>
-          <i>正文与辅助说明文字</i>
-        </span>
-      </span>
-    ),
-  },
+] as const;
+
+const values = [
+  { icon: 'layers', text: '统一 Design Token' },
+  { icon: 'moon', text: '暗色主题' },
+  { icon: 'package', text: '零运行时依赖' },
+  { icon: 'heart', text: 'WCAG AA' },
 ] as const;
 
 interface HomePageProps {
   dark: boolean;
   onToggleDark: () => void;
+}
+
+// 海底氛围：光柱 + 珊瑚海草 + 气泡 + 对游的鱼，纯装饰（aria-hidden）
+function SeaScene() {
+  const coralPath =
+    'M30 80V28M30 46c-10 0-16-7-16-22M30 52c10 0 16-7 16-22';
+  return (
+    <div className="landing__sea" aria-hidden="true">
+      <i className="landing__ray landing__ray--a" />
+      <i className="landing__ray landing__ray--b" />
+      <svg className="landing__coral landing__coral--a" viewBox="0 0 60 80">
+        <path d={coralPath} fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+      </svg>
+      <svg className="landing__coral landing__coral--b" viewBox="0 0 60 80">
+        <path d={coralPath} fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+      </svg>
+      <svg className="landing__coral landing__coral--c" viewBox="0 0 60 80">
+        <path d={coralPath} fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+      </svg>
+      <svg className="landing__coral landing__coral--d" viewBox="0 0 60 80">
+        <path d={coralPath} fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+      </svg>
+      <svg className="landing__weed landing__weed--a" viewBox="0 0 24 90">
+        <path d="M12 88C12 60 4 52 10 26 13 13 8 8 12 2" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+      </svg>
+      <svg className="landing__weed landing__weed--b" viewBox="0 0 24 90">
+        <path d="M12 88C12 64 20 56 14 30 11 17 16 10 12 4" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+      </svg>
+      <svg className="landing__weed landing__weed--c" viewBox="0 0 24 90">
+        <path d="M12 88C12 60 4 52 10 26 13 13 8 8 12 2" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+      </svg>
+      <svg className="landing__fish landing__fish--a" viewBox="0 0 36 20">
+        <path d="M34 10C29 3.5 20 2.5 13 6.5L4 2l3.5 8L4 18l9-4.5C20 17.5 29 16.5 34 10Z" fill="currentColor" />
+        <circle cx="28" cy="9" r="1.4" fill="var(--reef-color-surface)" />
+      </svg>
+      <svg className="landing__fish landing__fish--b" viewBox="0 0 36 20">
+        <path d="M34 10C29 3.5 20 2.5 13 6.5L4 2l3.5 8L4 18l9-4.5C20 17.5 29 16.5 34 10Z" fill="currentColor" />
+        <circle cx="28" cy="9" r="1.4" fill="var(--reef-color-surface)" />
+      </svg>
+      <svg className="landing__wave" viewBox="0 0 1200 40" preserveAspectRatio="none">
+        <path d="M0 20C100 40 200 0 300 16C400 32 500 8 600 18C700 28 800 6 900 16C1000 26 1100 10 1200 20V40H0Z" fill="currentColor" />
+      </svg>
+      {Array.from({ length: 6 }, (_, i) => (
+        <i key={i} className={`landing__bubble landing__bubble--${i + 1}`} />
+      ))}
+    </div>
+  );
 }
 
 export function HomePage({ dark, onToggleDark }: HomePageProps) {
@@ -117,46 +128,42 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
               查看组件
             </a>
           </div>
+          <SeaScene />
         </section>
 
-        <section className="landing__comps" aria-label="组件一览">
-          {compCards.map((c) => (
-            <a key={c.href} className="landing__comp" href={c.href}>
-              <span className="landing__comp-header">
-                <span className="landing__comp-name">{c.name}</span>
-                <span className="landing__comp-desc">{c.desc}</span>
+        <section className="landing__entries" aria-label="探索">
+          {entries.map((e) => (
+            <a key={e.href} className="landing__entry" href={e.href}>
+              <span className="landing__entry-icon">
+                <Icon name={e.icon} size={18} />
               </span>
-              <span className="landing__comp-preview">{c.preview}</span>
+              <h3>{e.term}</h3>
+              <p>{e.desc}</p>
+              <span className="landing__entry-link">查看详情 →</span>
             </a>
           ))}
-          <div className="landing__comp landing__comp--soon">
-            <span className="landing__comp-header">
-              <span className="landing__comp-name">更多组件</span>
-              <span className="landing__comp-desc">开发中</span>
-            </span>
-            <span className="landing__comp-preview">
-              <Icon name="plus" size={20} />
-              Tag · Avatar · Divider · Space…
-            </span>
-          </div>
         </section>
 
-        <section className="landing__features" aria-label="特性">
-          {features.map((f) => (
-            <div key={f.term} className="landing__feature">
-              <span className="landing__feature-icon">
-                <Icon name={f.icon} size={20} />
-              </span>
-              <h3>{f.term}</h3>
-              <p>{f.desc}</p>
-            </div>
+        <section className="landing__values" aria-label="特性">
+          {values.map((v) => (
+            <span key={v.text} className="landing__value">
+              <Icon name={v.icon} size={16} />
+              {v.text}
+            </span>
           ))}
         </section>
       </main>
 
       <footer className="landing__footer">
         <div className="landing__footer-inner">
-          MIT License · Reef UI · 用 TypeScript 与 CSS Variables 构建
+          <span>MIT License · Reef UI · 用 TypeScript 与 CSS Variables 构建</span>
+          <nav className="landing__footer-links" aria-label="页脚导航">
+            <a href="#guide">使用指南</a>
+            <a href="#button">组件</a>
+            <a href="https://github.com/jxzzz/reef-ui" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </nav>
         </div>
       </footer>
     </div>
