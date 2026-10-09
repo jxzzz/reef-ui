@@ -1,0 +1,31 @@
+{
+  "name": "reef-ui",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.11.1",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "lint": "eslint .",
+    "stylelint": "stylelint \"packages/**/src/**/*.css\"",
+    "format": "prettier --write .",
+    "docs": "pnpm --filter docs dev",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.7",
+    "eslint": "^9.11.1",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard": "^36.0.1",
+    "turbo": "^2.1.2",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.8.0"
+  }
+}

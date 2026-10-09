@@ -1,0 +1,43 @@
+.reef-title {
+  margin: 0;
+  color: var(--reef-color-text-primary);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.reef-title--h1 {
+  font-size: 28px;
+}
+
+.reef-title--h2 {
+  font-size: 22px;
+}
+
+.reef-title--h3 {
+  font-size: 18px;
+}
+
+.reef-title--h4 {
+  font-size: var(--reef-font-size-lg);
+}
+
+.reef-text {
+  color: var(--reef-color-text-primary);
+  font-size: var(--reef-font-size-md);
+}
+
+.reef-text--secondary {
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-text--danger {
+  color: var(--reef-color-danger);
+}
+
+.reef-text--success {
+  color: var(--reef-color-success);
+}
+
+.reef-text--warning {
+  color: var(--reef-color-warning);
+}
