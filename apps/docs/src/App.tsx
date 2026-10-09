@@ -54,8 +54,6 @@ export default function App() {
       <aside className="docs__sidebar">
         <a className="docs__logo" href="#home">Reef UI</a>
         <nav>
-          {/* 落地页时整页被 HomePage 替换，文档区内首页永远不处于激活态 */}
-          <a href="#home">首页</a>
           {groups.map((g) => (
             <div key={g.label} className="docs__group">
               <p className="docs__group-label">{g.label}</p>

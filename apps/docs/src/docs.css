@@ -33,6 +33,10 @@ body {
   text-decoration: none;
 }
 
+.docs__logo:hover {
+  color: var(--reef-color-brand);
+}
+
 .docs__sidebar nav {
   display: grid;
   gap: 4px;
