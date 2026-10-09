@@ -1,4 +1,4 @@
-import { Icon } from '@reef-ui/components';
+import { Button, Icon } from '@reef-ui/components';
 
 const features = [
   {
@@ -20,6 +20,47 @@ const features = [
     icon: 'package',
     term: '工程化',
     desc: 'TypeScript 类型、ESM 按需引入、Tree Shaking，从开发到发布完整闭环。',
+  },
+] as const;
+
+const compCards = [
+  {
+    href: '#button',
+    name: 'Button 按钮',
+    desc: '5 种类型 · 3 种尺寸',
+    preview: (
+      <span className="landing__comp-btns">
+        <Button size="small" variant="primary">主要按钮</Button>
+        <Button size="small" variant="secondary">次要按钮</Button>
+        <Button size="small" variant="danger">危险按钮</Button>
+      </span>
+    ),
+  },
+  {
+    href: '#icon',
+    name: 'Icon 图标',
+    desc: 'SVG 图标 · currentColor 着色',
+    preview: (
+      <span className="landing__comp-icons">
+        {(['search', 'heart', 'sliders', 'moon', 'github'] as const).map((n) => (
+          <Icon key={n} name={n} size={20} />
+        ))}
+      </span>
+    ),
+  },
+  {
+    href: '#typography',
+    name: 'Typography 排版',
+    desc: '标题层级 · 正文与辅助文本',
+    preview: (
+      <span className="landing__comp-typo">
+        <strong>Aa</strong>
+        <span>
+          <b>标题文本</b>
+          <i>正文与辅助说明文字</i>
+        </span>
+      </span>
+    ),
   },
 ] as const;
 
@@ -75,6 +116,28 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
             <a className="landing__cta-primary" href="#button">
               查看组件
             </a>
+          </div>
+        </section>
+
+        <section className="landing__comps" aria-label="组件一览">
+          {compCards.map((c) => (
+            <a key={c.href} className="landing__comp" href={c.href}>
+              <span className="landing__comp-header">
+                <span className="landing__comp-name">{c.name}</span>
+                <span className="landing__comp-desc">{c.desc}</span>
+              </span>
+              <span className="landing__comp-preview">{c.preview}</span>
+            </a>
+          ))}
+          <div className="landing__comp landing__comp--soon">
+            <span className="landing__comp-header">
+              <span className="landing__comp-name">更多组件</span>
+              <span className="landing__comp-desc">开发中</span>
+            </span>
+            <span className="landing__comp-preview">
+              <Icon name="plus" size={20} />
+              Tag · Avatar · Divider · Space…
+            </span>
           </div>
         </section>
 

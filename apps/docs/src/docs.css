@@ -324,11 +324,119 @@ body {
   background: color-mix(in srgb, var(--reef-color-text-primary) 6%, transparent);
 }
 
+.landing__comps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 64px;
+}
+
+.landing__comp {
+  display: block;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-lg);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+a.landing__comp:hover {
+  border-color: color-mix(in srgb, var(--reef-color-brand) 45%, transparent);
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--reef-color-brand) 10%, transparent);
+}
+
+.landing__comp-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);
+}
+
+.landing__comp-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--reef-color-text-primary);
+}
+
+.landing__comp-desc {
+  font-size: 12px;
+  color: var(--reef-color-text-secondary);
+}
+
+.landing__comp-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 96px;
+  padding: 20px;
+  font-size: 14px;
+  color: var(--reef-color-text-secondary);
+}
+
+.landing__comp-btns {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.landing__comp-icons {
+  display: inline-flex;
+  gap: 16px;
+  color: var(--reef-color-text-secondary);
+}
+
+.landing__comp-icons svg:first-child {
+  color: var(--reef-color-brand);
+}
+
+.landing__comp-typo {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.landing__comp-typo strong {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--reef-color-brand);
+}
+
+.landing__comp-typo span {
+  display: grid;
+  gap: 4px;
+}
+
+.landing__comp-typo b {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--reef-color-text-primary);
+}
+
+.landing__comp-typo i {
+  font-size: 12px;
+  font-style: normal;
+  color: var(--reef-color-text-secondary);
+}
+
+.landing__comp--soon {
+  border-style: dashed;
+}
+
+.landing__comp--soon .landing__comp-preview {
+  font-size: 13px;
+}
+
+.landing__comp--soon svg {
+  opacity: 0.5;
+}
+
 .landing__features {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin: 64px 0;
+  margin: 40px 0 64px;
 }
 
 .landing__feature {
@@ -467,6 +575,7 @@ body {
     font-size: 34px;
   }
 
+  .landing__comps,
   .landing__features {
     grid-template-columns: 1fr;
   }
