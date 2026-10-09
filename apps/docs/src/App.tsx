@@ -8,6 +8,7 @@ import { GuidePage } from './pages/GuidePage';
 import { HomePage } from './pages/Home';
 import { IconPage } from './pages/IconPage';
 import { InputPage } from './pages/InputPage';
+import { ModalPage } from './pages/ModalPage';
 import { SelectPage } from './pages/SelectPage';
 import { RadioPage } from './pages/RadioPage';
 import { SwitchPage } from './pages/SwitchPage';
@@ -23,6 +24,7 @@ type PageKey =
   | 'checkbox'
   | 'form'
   | 'input'
+  | 'modal'
   | 'radio'
   | 'select'
   | 'switch'
@@ -41,6 +43,7 @@ function currentPage(): PageKey {
     'checkbox',
     'form',
     'input',
+    'modal',
     'radio',
     'select',
     'switch',
@@ -55,7 +58,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'button', 'input', 'select', 'switch', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'button', 'input', 'modal', 'select', 'switch', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -81,6 +84,7 @@ export default function App() {
     { key: 'alert', title: 'Alert 警告提示', node: <AlertPage /> },
     { key: 'button', title: 'Button 按钮', node: <ButtonPage /> },
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
+    { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },
     { key: 'select', title: 'Select 选择器', node: <SelectPage /> },
     { key: 'switch', title: 'Switch 开关', node: <SwitchPage /> },
     { key: 'checkbox', title: 'Checkbox 复选框', node: <CheckboxPage /> },

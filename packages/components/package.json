@@ -13,8 +13,12 @@
     },
     "./style.css": "./dist/index.css"
   },
-  "files": ["dist"],
-  "sideEffects": ["**/*.css"],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
@@ -25,14 +29,17 @@
     "@reef-ui/utils": "workspace:*"
   },
   "peerDependencies": {
-    "react": ">=18"
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.3.8",
+    "@types/react-dom": "^18.3.7",
     "jsdom": "^25.0.0",
     "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tsup": "^8.3.0",
     "vitest": "^2.1.1"
   }
