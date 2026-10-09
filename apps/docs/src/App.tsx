@@ -10,6 +10,7 @@ import { InputPage } from './pages/InputPage';
 import { SelectPage } from './pages/SelectPage';
 import { RadioPage } from './pages/RadioPage';
 import { SwitchPage } from './pages/SwitchPage';
+import { TagPage } from './pages/TagPage';
 import { TypographyPage } from './pages/TypographyPage';
 
 type PageKey =
@@ -22,6 +23,7 @@ type PageKey =
   | 'radio'
   | 'select'
   | 'switch'
+  | 'tag'
   | 'icon'
   | 'typography';
 
@@ -37,6 +39,7 @@ function currentPage(): PageKey {
     'radio',
     'select',
     'switch',
+    'tag',
     'icon',
     'typography',
   ];
@@ -46,7 +49,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['button', 'input', 'select', 'switch', 'checkbox', 'form', 'radio'] },
+  { label: '组件', keys: ['button', 'input', 'select', 'switch', 'checkbox', 'form', 'radio', 'tag'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -76,6 +79,7 @@ export default function App() {
     { key: 'checkbox', title: 'Checkbox 复选框', node: <CheckboxPage /> },
     { key: 'form', title: 'Form 表单', node: <FormPage /> },
     { key: 'radio', title: 'Radio 单选框', node: <RadioPage /> },
+    { key: 'tag', title: 'Tag 标签', node: <TagPage /> },
     { key: 'icon', title: 'Icon 图标', node: <IconPage /> },
     { key: 'typography', title: 'Typography 排版', node: <TypographyPage /> },
   ] as const;

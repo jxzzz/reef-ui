@@ -1,0 +1,46 @@
+.reef-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--reef-radius-sm);
+  font-size: var(--reef-font-size-sm);
+  line-height: 20px;
+  color: var(--reef-color-text-primary);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+}
+
+.reef-tag--brand {
+  color: var(--reef-color-brand);
+  background: color-mix(in srgb, var(--reef-color-brand) 12%, transparent);
+}
+
+.reef-tag--success {
+  color: var(--reef-color-success);
+  background: color-mix(in srgb, var(--reef-color-success) 12%, transparent);
+}
+
+.reef-tag--warning {
+  color: var(--reef-color-warning);
+  background: color-mix(in srgb, var(--reef-color-warning) 15%, transparent);
+}
+
+.reef-tag--danger {
+  color: var(--reef-color-danger);
+  background: color-mix(in srgb, var(--reef-color-danger) 12%, transparent);
+}
+
+.reef-tag__close {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 14px;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.reef-tag__close:hover {
+  opacity: 1;
+}
