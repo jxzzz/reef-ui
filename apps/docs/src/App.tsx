@@ -7,20 +7,43 @@ import { GuidePage } from './pages/GuidePage';
 import { HomePage } from './pages/Home';
 import { IconPage } from './pages/IconPage';
 import { InputPage } from './pages/InputPage';
+import { SelectPage } from './pages/SelectPage';
 import { SwitchPage } from './pages/SwitchPage';
 import { TypographyPage } from './pages/TypographyPage';
 
-type PageKey = 'home' | 'guide' | 'button' | 'checkbox' | 'form' | 'input' | 'switch' | 'icon' | 'typography';
+type PageKey =
+  | 'home'
+  | 'guide'
+  | 'button'
+  | 'checkbox'
+  | 'form'
+  | 'input'
+  | 'select'
+  | 'switch'
+  | 'icon'
+  | 'typography';
 
 function currentPage(): PageKey {
   const key = location.hash.slice(1) as PageKey;
-  return ['home', 'guide', 'button', 'checkbox', 'form', 'input', 'switch', 'icon', 'typography'].includes(key) ? key : 'home';
+  const keys: PageKey[] = [
+    'home',
+    'guide',
+    'button',
+    'checkbox',
+    'form',
+    'input',
+    'select',
+    'switch',
+    'icon',
+    'typography',
+  ];
+  return keys.includes(key) ? key : 'home';
 }
 
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['button', 'input', 'switch', 'checkbox', 'form'] },
+  { label: '组件', keys: ['button', 'input', 'select', 'switch', 'checkbox', 'form'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -45,6 +68,7 @@ export default function App() {
     { key: 'guide', title: '使用指南', node: <GuidePage /> },
     { key: 'button', title: 'Button 按钮', node: <ButtonPage /> },
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
+    { key: 'select', title: 'Select 选择器', node: <SelectPage /> },
     { key: 'switch', title: 'Switch 开关', node: <SwitchPage /> },
     { key: 'checkbox', title: 'Checkbox 复选框', node: <CheckboxPage /> },
     { key: 'form', title: 'Form 表单', node: <FormPage /> },
