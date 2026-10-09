@@ -15,7 +15,7 @@ function currentPage(): PageKey {
 
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
-  { label: '使用指南', keys: ['guide'] },
+  { label: '指南', keys: ['guide'] },
   { label: '组件', keys: ['button'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
