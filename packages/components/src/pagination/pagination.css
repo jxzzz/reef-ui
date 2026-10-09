@@ -1,0 +1,41 @@
+.reef-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--reef-space-xs);
+}
+
+.reef-pagination__btn {
+  box-sizing: border-box;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 var(--reef-space-sm);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 15%, transparent);
+  border-radius: var(--reef-radius-sm);
+  background: var(--reef-color-surface);
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-primary);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.reef-pagination__btn:disabled {
+  color: var(--reef-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.reef-pagination__btn:hover:not(:disabled) {
+  border-color: var(--reef-color-brand);
+  color: var(--reef-color-brand);
+}
+
+.reef-pagination__btn--active {
+  border-color: var(--reef-color-brand);
+  background: var(--reef-color-brand);
+  color: #fff;
+}
+
+.reef-pagination__ellipsis {
+  min-width: 28px;
+  text-align: center;
+  color: var(--reef-color-text-secondary);
+}
