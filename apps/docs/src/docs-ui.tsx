@@ -1,8 +1,9 @@
 import { useState, type ReactNode } from 'react';
 
-/** 可复制的代码块 */
+/** 可复制、可折叠（默认收起）的代码块：操作栏在下方，代码展开时追加在操作栏之后 */
 export function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const copy = async () => {
     await navigator.clipboard.writeText(code);
@@ -12,12 +13,22 @@ export function CodeBlock({ code }: { code: string }) {
 
   return (
     <div className="code-block">
-      <button className="code-block__copy" onClick={copy}>
-        {copied ? '已复制' : '复制'}
-      </button>
-      <pre>
-        <code>{code}</code>
-      </pre>
+      {/* grid 0fr→1fr 过渡实现平滑的高度展开/收起，组件保持挂载 */}
+      <div className={expanded ? 'code-block__reveal code-block__reveal--open' : 'code-block__reveal'}>
+        <div className="code-block__clip">
+          <pre>
+            <code>{code}</code>
+          </pre>
+        </div>
+      </div>
+      <div className="code-block__actions">
+        <button className="code-block__btn" onClick={() => setExpanded(!expanded)}>
+          {expanded ? '收起代码' : '展开代码'}
+        </button>
+        <button className="code-block__btn" onClick={copy}>
+          {copied ? '已复制' : '复制'}
+        </button>
+      </div>
     </div>
   );
 }

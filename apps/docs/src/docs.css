@@ -128,11 +128,34 @@ body {
   padding: 24px;
 }
 
-.code-block {
-  position: relative;
+.demo__preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--reef-space-lg);
+  min-height: 72px;
+  padding: 28px 24px;
+  box-sizing: border-box;
 }
 
-.code-block pre {
+/* 高度展开/收起动画：grid 轨道 0fr→1fr 过渡 */
+.code-block__reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.code-block__reveal--open {
+  grid-template-rows: 1fr;
+}
+
+/* padding 放在内层，由外层 overflow 裁剪，收起时才能完全归零 */
+.code-block__clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.code-block__reveal pre {
   margin: 0;
   padding: 16px 24px;
   background: color-mix(in srgb, var(--reef-color-text-primary) 94%, var(--reef-color-surface));
@@ -142,21 +165,29 @@ body {
   overflow-x: auto;
 }
 
-.code-block__copy {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  padding: 4px 10px;
-  border: none;
-  border-radius: var(--reef-radius-sm);
-  background: color-mix(in srgb, var(--reef-color-surface) 16%, transparent);
-  color: var(--reef-color-surface);
-  font-size: var(--reef-font-size-sm);
-  cursor: pointer;
+/* demo 底部操作栏：展开代码 / 复制 */
+.code-block__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 6px 12px;
+  border-top: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
 }
 
-.code-block__copy:hover {
-  background: color-mix(in srgb, var(--reef-color-surface) 28%, transparent);
+.code-block__btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: var(--reef-radius-sm);
+  background: transparent;
+  color: var(--reef-color-text-secondary);
+  font-size: var(--reef-font-size-sm);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.code-block__btn:hover {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 6%, transparent);
+  color: var(--reef-color-text-primary);
 }
 
 /* ---- 落地页首页 ---- */
