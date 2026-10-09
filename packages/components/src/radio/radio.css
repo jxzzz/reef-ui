@@ -1,0 +1,74 @@
+.reef-radiogroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--reef-space-lg);
+}
+
+.reef-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--reef-space-sm);
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.reef-radio--disabled {
+  color: var(--reef-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.reef-radio__native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.reef-radio__dot {
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--reef-color-text-disabled);
+  border-radius: var(--reef-radius-full);
+  background: var(--reef-color-surface);
+  transition: border-color 0.15s;
+}
+
+.reef-radio__dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: var(--reef-radius-full);
+  background: var(--reef-color-brand);
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.reef-radio--disabled .reef-radio__dot {
+  border-color: var(--reef-color-text-disabled);
+  background: color-mix(in srgb, var(--reef-color-text-disabled) 20%, transparent);
+}
+
+.reef-radio--disabled .reef-radio__dot::after {
+  background: var(--reef-color-text-disabled);
+}
+
+.reef-radio__native:checked + .reef-radio__dot {
+  border-color: var(--reef-color-brand);
+}
+
+.reef-radio__native:checked + .reef-radio__dot::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reef-radio__native:focus-visible + .reef-radio__dot {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
