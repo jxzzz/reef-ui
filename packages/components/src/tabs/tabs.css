@@ -1,0 +1,39 @@
+.reef-tabs__list {
+  display: flex;
+  gap: var(--reef-space-xs);
+  border-bottom: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);
+}
+
+.reef-tabs__tab {
+  padding: var(--reef-space-sm) var(--reef-space-lg);
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-secondary);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.reef-tabs__tab:hover {
+  color: var(--reef-color-text-primary);
+}
+
+.reef-tabs__tab--active {
+  border-bottom-color: var(--reef-color-brand);
+  color: var(--reef-color-brand);
+  font-weight: 600;
+}
+
+.reef-tabs__tab:focus-visible {
+  outline: 2px solid var(--reef-color-brand);
+  outline-offset: -2px;
+  border-radius: var(--reef-radius-sm);
+}
+
+.reef-tabs__panel {
+  padding-top: var(--reef-space-lg);
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+}

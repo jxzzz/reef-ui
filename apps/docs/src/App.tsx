@@ -12,6 +12,7 @@ import { ModalPage } from './pages/ModalPage';
 import { SelectPage } from './pages/SelectPage';
 import { RadioPage } from './pages/RadioPage';
 import { SwitchPage } from './pages/SwitchPage';
+import { TabsPage } from './pages/TabsPage';
 import { TagPage } from './pages/TagPage';
 import { TooltipPage } from './pages/TooltipPage';
 import { TypographyPage } from './pages/TypographyPage';
@@ -28,6 +29,7 @@ type PageKey =
   | 'radio'
   | 'select'
   | 'switch'
+  | 'tabs'
   | 'tag'
   | 'tooltip'
   | 'icon'
@@ -47,6 +49,7 @@ function currentPage(): PageKey {
     'radio',
     'select',
     'switch',
+    'tabs',
     'tag',
     'tooltip',
     'icon',
@@ -58,7 +61,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'button', 'input', 'modal', 'select', 'switch', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'button', 'input', 'modal', 'select', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -87,6 +90,7 @@ export default function App() {
     { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },
     { key: 'select', title: 'Select 选择器', node: <SelectPage /> },
     { key: 'switch', title: 'Switch 开关', node: <SwitchPage /> },
+    { key: 'tabs', title: 'Tabs 标签页', node: <TabsPage /> },
     { key: 'checkbox', title: 'Checkbox 复选框', node: <CheckboxPage /> },
     { key: 'form', title: 'Form 表单', node: <FormPage /> },
     { key: 'radio', title: 'Radio 单选框', node: <RadioPage /> },

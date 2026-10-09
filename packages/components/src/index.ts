@@ -10,6 +10,7 @@ export * from './modal';
 export * from './radio';
 export * from './select';
 export * from './switch';
+export * from './tabs';
 export * from './tag';
 export * from './tooltip';
 export * from './typography';
