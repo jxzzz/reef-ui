@@ -39,6 +39,14 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
           </a>
           <nav className="landing__links" aria-label="站点导航">
             <a href="#button">组件</a>
+            <a
+              href="https://github.com/jxzzz/reef-ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub 仓库"
+            >
+              <Icon name="github" size={18} />
+            </a>
           </nav>
           <button
             type="button"

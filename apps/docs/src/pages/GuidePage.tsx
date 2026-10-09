@@ -1,11 +1,11 @@
 import { CodeBlock } from '../docs-ui';
 
-const installCode = `npm install @reef-ui/components @reef-ui/theme
+const installCode = `npm install @reef-ui/components
 # 或
-pnpm add @reef-ui/components @reef-ui/theme`;
+pnpm add @reef-ui/components`;
 
 const usageCode = `import { Button } from '@reef-ui/components';
-import '@reef-ui/theme/css';
+// 组件样式 + Design Token 已合并在这一个文件里
 import '@reef-ui/components/style.css';
 
 export default function App() {
@@ -26,15 +26,14 @@ export function GuidePage() {
 
       <h2>安装</h2>
       <p>
-        组件包 <code>@reef-ui/components</code> 提供组件，主题包{' '}
-        <code>@reef-ui/theme</code> 提供 Design Token，两者一起安装。
+        组件包 <code>@reef-ui/components</code> 内含组件与全部样式（含主题令牌）。
       </p>
       <CodeBlock code={installCode} />
 
       <h2>在应用中使用</h2>
       <p>
-        组件样式与主题样式需要分别引入：<code>@reef-ui/theme/css</code> 提供 Design
-        Token，<code>@reef-ui/components/style.css</code> 提供组件样式。
+        只需导入一个样式文件：组件样式和 Design Token（包括暗色主题变量）都打包在{' '}
+        <code>@reef-ui/components/style.css</code> 里。
       </p>
       <CodeBlock code={usageCode} />
 

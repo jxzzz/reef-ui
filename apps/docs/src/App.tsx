@@ -74,14 +74,25 @@ export default function App() {
       <div className="docs__main">
         <header className="docs__topbar">
           <h2 className="docs__topbar-title">{active.title}</h2>
-          <button
-            type="button"
-            className="icon-btn"
-            onClick={toggleDark}
-            aria-label={dark ? '切换到浅色模式' : '切换到暗色模式'}
-          >
-            <Icon name={dark ? 'sun' : 'moon'} size={18} />
-          </button>
+          <div className="docs__topbar-actions">
+            <a
+              className="icon-btn"
+              href="https://github.com/jxzzz/reef-ui"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub 仓库"
+            >
+              <Icon name="github" size={18} />
+            </a>
+            <button
+              type="button"
+              className="icon-btn"
+              onClick={toggleDark}
+              aria-label={dark ? '切换到浅色模式' : '切换到暗色模式'}
+            >
+              <Icon name={dark ? 'sun' : 'moon'} size={18} />
+            </button>
+          </div>
         </header>
         <main className="docs__content">{active.node}</main>
       </div>

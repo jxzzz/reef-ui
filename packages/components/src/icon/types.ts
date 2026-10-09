@@ -3,6 +3,7 @@ import type * as React from 'react';
 export type IconName =
   | 'check'
   | 'close'
+  | 'github'
   | 'heart'
   | 'layers'
   | 'moon'

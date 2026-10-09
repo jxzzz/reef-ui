@@ -219,6 +219,12 @@ body {
   background: color-mix(in srgb, var(--reef-color-text-primary) 6%, transparent);
 }
 
+.docs__topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .icon-btn {
   display: grid;
   place-items: center;
@@ -228,6 +234,7 @@ body {
   border-radius: var(--reef-radius-full);
   background: transparent;
   color: var(--reef-color-text-secondary);
+  text-decoration: none;
   cursor: pointer;
 }
 
