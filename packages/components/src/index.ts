@@ -1,5 +1,6 @@
 import './style.css';
 
+export * from './alert';
 export * from './button';
 export * from './checkbox';
 export * from './form';
