@@ -1,0 +1,73 @@
+.reef-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--reef-color-text-primary);
+  font-size: var(--reef-font-size-md);
+  cursor: pointer;
+  user-select: none;
+}
+
+.reef-checkbox--block {
+  display: flex;
+}
+
+.reef-checkbox:has(.reef-checkbox__native:disabled) {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.reef-checkbox__native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.reef-checkbox__box {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 34%, transparent);
+  border-radius: var(--reef-radius-sm);
+  background: var(--reef-color-surface);
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+/* 半选态的短横线，默认隐藏 */
+.reef-checkbox__mark-dash {
+  display: none;
+}
+
+.reef-checkbox__native:checked + .reef-checkbox__box,
+.reef-checkbox__native[data-indeterminate] + .reef-checkbox__box {
+  border-color: var(--reef-color-brand);
+  background: var(--reef-color-brand);
+}
+
+.reef-checkbox__native:checked + .reef-checkbox__box .reef-checkbox__mark-check {
+  display: block;
+}
+
+.reef-checkbox__native[data-indeterminate] + .reef-checkbox__box .reef-checkbox__mark-check {
+  display: none;
+}
+
+.reef-checkbox__native[data-indeterminate] + .reef-checkbox__box .reef-checkbox__mark-dash {
+  display: block;
+}
+
+.reef-checkbox__native:focus-visible + .reef-checkbox__box {
+  outline: 2px solid var(--reef-color-brand);
+  outline-offset: 2px;
+}
+
+.reef-checkbox:hover:not(:has(.reef-checkbox__native:disabled)) .reef-checkbox__box {
+  border-color: var(--reef-color-brand);
+}

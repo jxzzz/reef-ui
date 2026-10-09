@@ -1,0 +1,48 @@
+.reef-switch {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 40px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 26%, transparent);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reef-switch:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
+}
+
+.reef-switch:focus-visible {
+  outline: 2px solid var(--reef-color-brand);
+  outline-offset: 2px;
+}
+
+.reef-switch--on,
+.reef-switch--on:hover:not(:disabled) {
+  background: var(--reef-color-brand);
+}
+
+.reef-switch:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.reef-switch__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--reef-radius-full);
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 25%);
+  transition: transform 0.2s;
+}
+
+.reef-switch--on .reef-switch__thumb {
+  transform: translateX(18px);
+}

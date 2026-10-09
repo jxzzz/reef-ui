@@ -1,0 +1,61 @@
+.reef-input {
+  box-sizing: border-box;
+  padding: 0 var(--reef-space-md);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 22%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  color: var(--reef-color-text-primary);
+  font-family: inherit;
+  font-size: var(--reef-font-size-md);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.reef-input::placeholder {
+  color: var(--reef-color-text-disabled);
+}
+
+.reef-input:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
+}
+
+.reef-input:focus-visible {
+  outline: none;
+  border-color: var(--reef-color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: color-mix(in srgb, var(--reef-color-text-primary) 5%, var(--reef-color-surface));
+}
+
+.reef-input--invalid,
+.reef-input--invalid:hover:not(:disabled),
+/* 原生校验失败（required/type 等）：仅在已输入或失焦后变红，避免空占位字段刚渲染就红 */
+.reef-input:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: var(--reef-color-danger);
+}
+
+.reef-input--invalid:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-danger) 18%, transparent);
+}
+
+.reef-input--small {
+  height: 28px;
+}
+
+.reef-input--medium {
+  height: 36px;
+}
+
+.reef-input--large {
+  height: 42px;
+  font-size: var(--reef-font-size-lg);
+}
+
+.reef-input--block {
+  width: 100%;
+}
