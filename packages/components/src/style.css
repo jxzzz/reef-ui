@@ -1,6 +1,6 @@
 /* 主题令牌 + 全部组件样式，打包后合并进 dist/index.css，使用者只需导入这一个文件。
    用相对路径（而非包名）是让 esbuild 在构建时把 token 内联进产物。 */
-@import '../../theme/src/tokens.css';
-@import './button/button.css';
-@import './icon/icon.css';
-@import './typography/typography.css';
+@import url('../../theme/src/tokens.css');
+@import url('./button/button.css');
+@import url('./icon/icon.css');
+@import url('./typography/typography.css');
