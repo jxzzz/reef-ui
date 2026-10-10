@@ -20,6 +20,7 @@ export * from './pagination';
 export * from './progress';
 export * from './radio';
 export * from './result';
+export * from './scroll';
 export * from './segmented';
 export * from './select';
 export * from './skeleton';

@@ -1,0 +1,39 @@
+.reef-scroll {
+  position: relative;
+}
+
+.reef-scroll__content {
+  height: 100%;
+  overflow: auto;
+  /* 隐藏原生滚动条：Firefox 与 Webkit 双路径 */
+  scrollbar-width: none;
+}
+
+.reef-scroll__content::-webkit-scrollbar {
+  display: none;
+}
+
+.reef-scroll__bar {
+  position: absolute;
+  z-index: 1;
+  border-radius: var(--reef-radius-full);
+}
+
+.reef-scroll__bar--y {
+  top: 4px;
+  right: 2px;
+  bottom: 4px;
+  width: 8px;
+}
+
+.reef-scroll__bar--x {
+  left: 4px;
+  right: 4px;
+  bottom: 2px;
+  height: 8px;
+}
+
+.reef-scroll__thumb {
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 20%, transparent);
+}
