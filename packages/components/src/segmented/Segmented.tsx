@@ -7,7 +7,7 @@ export function Segmented({ options, value, defaultValue, onChange, className }:
   const [inner, setInner] = useState(defaultValue ?? options[0]?.value);
   const current = value !== undefined ? value : inner;
 
-  const select = (val: string | number) => {
+  const select = (val: string) => {
     if (value === undefined) setInner(val);
     onChange?.(val);
   };
