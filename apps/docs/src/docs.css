@@ -815,11 +815,12 @@ body {
   margin: 24px 0;
 }
 
-.docs__sidebar .search-input {
+/* search-input 类在 Input 内层元素上，带 prefix 时布局元素是 wrapper，间距/宽度作用于 wrapper */
+.docs__sidebar .reef-input__wrapper {
   margin-bottom: 16px;
 }
 
-.icon-picker .search-input {
+.icon-picker .reef-input__wrapper {
   max-width: 320px;
 }
 
