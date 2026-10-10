@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react';
-import { Icon } from '@reef-ui/components';
+import { Icon, Input } from '@reef-ui/components';
 
-/** 搜索输入框：放大镜前缀、清空按钮、Esc 清空 */
+/** 搜索输入框：基于库内 Input（prefix 图标 + clearable），Esc 清空 */
 export function SearchInput({
   value,
   onChange,
@@ -12,23 +12,18 @@ export function SearchInput({
   placeholder?: string;
 }) {
   return (
-    <div className="search-input">
-      <Icon name="search" size={14} className="search-input__icon" />
-      <input
-        type="search"
-        value={value}
-        placeholder={placeholder}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === 'Escape') onChange('');
-        }}
-      />
-      {value && (
-        <button type="button" className="search-input__clear" aria-label="清空" onClick={() => onChange('')}>
-          <Icon name="close" size={10} />
-        </button>
-      )}
-    </div>
+    <Input
+      block
+      clearable
+      className="search-input"
+      placeholder={placeholder}
+      value={value}
+      prefix={<Icon name="search" size={14} />}
+      onChange={(e) => onChange(e.currentTarget.value)}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') onChange('');
+      }}
+    />
   );
 }
 

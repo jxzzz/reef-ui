@@ -63,3 +63,107 @@
 .reef-input--block {
   width: 100%;
 }
+
+/* ---- 带前缀/后缀/清空按钮时的包裹层：边框、高度、focus 环都在 wrapper 上 ---- */
+.reef-input__wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 var(--reef-space-md);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 22%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.reef-input__wrapper:focus-within {
+  outline: none;
+  border-color: var(--reef-color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-input__wrapper:hover:not(:focus-within) {
+  border-color: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
+}
+
+.reef-input__wrapper[data-invalid],
+.reef-input__wrapper[data-invalid]:hover {
+  border-color: var(--reef-color-danger);
+}
+
+.reef-input__wrapper[data-invalid]:focus-within {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-danger) 18%, transparent);
+}
+
+.reef-input__wrapper[data-size='small'] {
+  height: 28px;
+}
+
+.reef-input__wrapper[data-size='medium'] {
+  height: 36px;
+}
+
+.reef-input__wrapper[data-size='large'] {
+  height: 42px;
+  font-size: var(--reef-font-size-lg);
+}
+
+.reef-input__wrapper--block {
+  display: flex;
+  width: 100%;
+}
+
+/* wrapper 内的输入框去掉自身边框与高度 */
+.reef-input--bare {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.reef-input--bare:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.reef-input__prefix,
+.reef-input__suffix {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-input__prefix {
+  margin-right: 6px;
+}
+
+.reef-input__suffix {
+  margin-left: 6px;
+}
+
+.reef-input__clear {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-full);
+  background: transparent;
+  color: var(--reef-color-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.reef-input__clear:hover {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  color: var(--reef-color-text-primary);
+}
