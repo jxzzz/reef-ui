@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Icon } from '@reef-ui/components';
+import { Breadcrumb, Icon } from '@reef-ui/components';
 import { SearchInput } from './docs-ui';
 import { AlertPage } from './pages/AlertPage';
 import { AvatarPage } from './pages/AvatarPage';
@@ -211,8 +211,13 @@ export default function App() {
       <div className="docs__main">
         <header className="docs__topbar">
           <h2 className="docs__topbar-title">
-            {activeGroup && page !== 'guide' && <span className="docs__crumb">{activeGroup.label} / </span>}
-            {active.title}
+            {activeGroup && page !== 'guide' ? (
+              <Breadcrumb
+                items={[{ title: activeGroup.label, key: 'group' }, { title: active.title, key: 'page' }]}
+              />
+            ) : (
+              active.title
+            )}
           </h2>
           <div className="docs__topbar-actions">
             <a

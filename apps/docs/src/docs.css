@@ -110,7 +110,14 @@ body {
   color: var(--reef-color-text-primary);
 }
 
-.docs__crumb {
+/* 顶栏面包屑复用库内 Breadcrumb：分组项弱化，当前页保持标题字重 */
+.docs__topbar-title .reef-breadcrumb__item {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--reef-color-text-primary);
+}
+
+.docs__topbar-title .reef-breadcrumb__item:first-child {
   font-weight: 400;
   color: var(--reef-color-text-secondary);
 }
