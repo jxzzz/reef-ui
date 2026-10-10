@@ -12,6 +12,7 @@ export * from './icon';
 export * from './input';
 export * from './modal';
 export * from './pagination';
+export * from './progress';
 export * from './radio';
 export * from './select';
 export * from './steps';

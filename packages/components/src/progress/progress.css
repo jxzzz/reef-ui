@@ -1,0 +1,39 @@
+.reef-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--reef-space-sm);
+}
+
+.reef-progress__track {
+  flex: 1;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);
+}
+
+.reef-progress--small .reef-progress__track {
+  height: 4px;
+}
+
+.reef-progress__fill {
+  height: 100%;
+  border-radius: var(--reef-radius-full);
+  background: var(--reef-color-brand);
+  transition: width 0.3s ease;
+}
+
+.reef-progress__fill--success {
+  background: var(--reef-color-success);
+}
+
+.reef-progress__fill--error {
+  background: var(--reef-color-danger);
+}
+
+.reef-progress__info {
+  min-width: 36px;
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
+  text-align: right;
+}
