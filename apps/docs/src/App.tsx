@@ -17,6 +17,7 @@ import { IconPage } from './pages/IconPage';
 import { InputPage } from './pages/InputPage';
 import { ModalPage } from './pages/ModalPage';
 import { PaginationPage } from './pages/PaginationPage';
+import { SegmentedPage } from './pages/SegmentedPage';
 import { SelectPage } from './pages/SelectPage';
 import { SkeletonPage } from './pages/SkeletonPage';
 import { SpinPage } from './pages/SpinPage';
@@ -48,6 +49,7 @@ type PageKey =
   | 'input'
   | 'modal'
   | 'pagination'
+  | 'segmented'
   | 'progress'
   | 'result'
   | 'radio'
@@ -82,6 +84,7 @@ function currentPage(): PageKey {
     'input',
     'modal',
     'pagination',
+    'segmented',
     'progress',
     'result',
     'radio',
@@ -103,7 +106,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'descriptions', 'divider', 'empty', 'input', 'modal', 'pagination', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'descriptions', 'divider', 'empty', 'input', 'modal', 'pagination', 'segmented', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -138,6 +141,7 @@ export default function App() {
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
     { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },
     { key: 'pagination', title: 'Pagination 分页', node: <PaginationPage /> },
+    { key: 'segmented', title: 'Segmented 分段控制器', node: <SegmentedPage /> },
     { key: 'progress', title: 'Progress 进度条', node: <ProgressPage /> },
     { key: 'result', title: 'Result 结果页', node: <ResultPage /> },
     { key: 'select', title: 'Select 选择器', node: <SelectPage /> },

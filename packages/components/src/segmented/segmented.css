@@ -1,0 +1,28 @@
+.reef-segmented {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: var(--reef-radius-md);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+}
+
+.reef-segmented__option {
+  padding: 4px 16px;
+  border: none;
+  border-radius: calc(var(--reef-radius-md) - 2px);
+  background: none;
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-secondary);
+  cursor: pointer;
+}
+
+.reef-segmented__option:focus-visible {
+  outline: 2px solid var(--reef-color-brand);
+  outline-offset: 1px;
+}
+
+.reef-segmented__option[aria-checked='true'] {
+  background: var(--reef-color-surface);
+  font-weight: 500;
+  color: var(--reef-color-text-primary);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+}
