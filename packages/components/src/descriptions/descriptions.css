@@ -1,0 +1,33 @@
+.reef-descriptions__title {
+  margin-bottom: var(--reef-space-md);
+  font-size: var(--reef-font-size-lg);
+  font-weight: 600;
+  color: var(--reef-color-text-primary);
+}
+
+.reef-descriptions__body {
+  display: grid;
+  gap: var(--reef-space-sm) var(--reef-space-lg);
+  margin: 0;
+}
+
+.reef-descriptions__item {
+  display: flex;
+  gap: var(--reef-space-sm);
+}
+
+.reef-descriptions__label {
+  flex-shrink: 0;
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-descriptions__value {
+  margin: 0;
+  color: var(--reef-color-text-primary);
+}
+
+.reef-descriptions--bordered .reef-descriptions__item {
+  padding: var(--reef-space-sm) var(--reef-space-md);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-sm);
+}

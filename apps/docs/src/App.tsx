@@ -6,6 +6,7 @@ import { BadgePage } from './pages/BadgePage';
 import { BreadcrumbPage } from './pages/BreadcrumbPage';
 import { ButtonPage } from './pages/ButtonPage';
 import { CardPage } from './pages/CardPage';
+import { DescriptionsPage } from './pages/DescriptionsPage';
 import { DividerPage } from './pages/DividerPage';
 import { CheckboxPage } from './pages/CheckboxPage';
 import { EmptyPage } from './pages/EmptyPage';
@@ -39,6 +40,7 @@ type PageKey =
   | 'breadcrumb'
   | 'button'
   | 'card'
+  | 'descriptions'
   | 'divider'
   | 'checkbox'
   | 'empty'
@@ -72,6 +74,7 @@ function currentPage(): PageKey {
     'breadcrumb',
     'button',
     'card',
+    'descriptions',
     'divider',
     'checkbox',
     'empty',
@@ -100,7 +103,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'divider', 'empty', 'input', 'modal', 'pagination', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'descriptions', 'divider', 'empty', 'input', 'modal', 'pagination', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -129,6 +132,7 @@ export default function App() {
     { key: 'breadcrumb', title: 'Breadcrumb 面包屑', node: <BreadcrumbPage /> },
     { key: 'button', title: 'Button 按钮', node: <ButtonPage /> },
     { key: 'card', title: 'Card 卡片', node: <CardPage /> },
+    { key: 'descriptions', title: 'Descriptions 描述列表', node: <DescriptionsPage /> },
     { key: 'divider', title: 'Divider 分割线', node: <DividerPage /> },
     { key: 'empty', title: 'Empty 空状态', node: <EmptyPage /> },
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
