@@ -26,7 +26,7 @@ body {
 
 .docs__logo {
   display: block;
-  margin: 0 0 24px;
+  margin: 0 0 20px;
   padding: 0 12px;
   font-size: 20px;
   color: inherit;
@@ -35,6 +35,30 @@ body {
 
 .docs__logo:hover {
   color: var(--reef-color-brand);
+}
+
+.docs__search {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 7px 12px;
+  box-sizing: border-box;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 14%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 4%, transparent);
+  color: var(--reef-color-text-primary);
+  font-size: var(--reef-font-size-sm);
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.docs__search::placeholder {
+  color: var(--reef-color-text-secondary);
+  opacity: 0.7;
+}
+
+.docs__search:focus {
+  border-color: var(--reef-color-brand);
+  background: var(--reef-color-surface);
 }
 
 .docs__sidebar nav {
@@ -61,15 +85,23 @@ body {
   background: color-mix(in srgb, var(--reef-color-brand) 12%, transparent);
   color: var(--reef-color-brand);
   font-weight: 600;
+  box-shadow: inset 2px 0 0 var(--reef-color-brand);
 }
 
 .docs__group-label {
-  margin: 20px 0 4px;
+  margin: 20px 0 6px;
   padding: 0 12px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--reef-color-text-secondary);
-  opacity: 0.75;
+  opacity: 0.65;
+}
+
+.docs__empty {
+  margin: 16px 12px;
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
 }
 
 .docs__main {
@@ -94,15 +126,44 @@ body {
 }
 
 .docs__topbar-title {
+  display: flex;
+  align-items: baseline;
   margin: 0;
   font-size: 15px;
   font-weight: 600;
   color: var(--reef-color-text-primary);
 }
 
+.docs__crumb {
+  font-weight: 400;
+  color: var(--reef-color-text-secondary);
+}
+
 .docs__content {
-  padding: 32px 48px;
+  padding: 32px 48px 64px;
   max-width: 860px;
+}
+
+/* 组件页大标题 + 品牌色渐变短线 */
+.docs__content > h2 {
+  margin: 0 0 12px;
+  padding-bottom: 16px;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+.docs__content > h2::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin-top: 12px;
+  border-radius: var(--reef-radius-full);
+  background: linear-gradient(to right, var(--reef-color-brand), color-mix(in srgb, var(--reef-color-brand) 30%, transparent));
+}
+
+.docs__content > h3 {
+  margin-top: 40px;
 }
 
 .demo {
@@ -110,6 +171,12 @@ body {
   border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
   border-radius: var(--reef-radius-lg);
   overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.demo:hover {
+  border-color: color-mix(in srgb, var(--reef-color-brand) 28%, transparent);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--reef-color-brand) 8%, transparent);
 }
 
 .demo__title {
@@ -136,6 +203,9 @@ body {
   min-height: 72px;
   padding: 28px 24px;
   box-sizing: border-box;
+  /* 淡淡的点状网格，让预览区有"画布"质感 */
+  background-image: radial-gradient(color-mix(in srgb, var(--reef-color-text-primary) 14%, transparent) 1px, transparent 1px);
+  background-size: 16px 16px;
 }
 
 /* 高度展开/收起动画：grid 轨道 0fr→1fr 过渡 */
@@ -751,14 +821,21 @@ body {
 }
 
 .api th {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 5%, transparent);
   color: var(--reef-color-text-secondary);
   font-weight: 600;
+  font-size: var(--reef-font-size-sm);
+}
+
+.api tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 3%, transparent);
 }
 
 .api code {
   padding: 2px 6px;
   border-radius: var(--reef-radius-sm);
-  background: color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+  background: color-mix(in srgb, var(--reef-color-brand) 10%, transparent);
+  color: color-mix(in srgb, var(--reef-color-brand) 80%, var(--reef-color-text-primary));
   font-size: var(--reef-font-size-sm);
 }
 

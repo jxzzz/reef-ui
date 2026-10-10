@@ -109,16 +109,20 @@ function currentPage(): PageKey {
   return keys.includes(key) ? key : 'home';
 }
 
-// 企业级文档站结构：使用指南 / 组件 / 资源 分组
+// 企业级文档站结构：使用指南 / 组件（按用途分 5 组）/ 资源
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'descriptions', 'divider', 'drawer', 'empty', 'input', 'message', 'modal', 'pagination', 'segmented', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
-  { label: '资源', keys: ['icon', 'typography'] },
+  { label: '通用', keys: ['button', 'divider', 'icon', 'typography'] },
+  { label: '数据录入', keys: ['checkbox', 'form', 'input', 'radio', 'segmented', 'select', 'switch'] },
+  { label: '数据展示', keys: ['avatar', 'badge', 'card', 'descriptions', 'empty', 'tag', 'timeline', 'tooltip'] },
+  { label: '反馈', keys: ['alert', 'drawer', 'message', 'modal', 'progress', 'result', 'skeleton', 'spin'] },
+  { label: '导航', keys: ['breadcrumb', 'pagination', 'steps', 'tabs'] },
 ] as const;
 
 export default function App() {
   const [page, setPage] = useState<PageKey>(currentPage);
   const [dark, setDark] = useState(false);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const onHash = () => setPage(currentPage());
@@ -169,6 +173,13 @@ export default function App() {
   ] as const;
 
   const active = pages.find((p) => p.key === page)!;
+  // 面包屑：当前页所属分组（首页/指南不显示）
+  const activeGroup = groups.find((g) => (g.keys as readonly string[]).includes(page));
+  // 搜索过滤：按标题（含中文名）匹配，空结果组隐藏
+  const q = query.trim().toLowerCase();
+  const visibleGroups = groups
+    .map((g) => ({ ...g, keys: (g.keys as readonly string[]).filter((k) => !q || pages.find((p) => p.key === k)!.title.toLowerCase().includes(q)) }))
+    .filter((g) => g.keys.length > 0);
 
   // 首页是独立落地页，自带顶部导航，不带文档壳（侧栏）
   if (page === 'home') return <HomePage dark={dark} onToggleDark={toggleDark} />;
@@ -177,8 +188,15 @@ export default function App() {
     <div className="docs">
       <aside className="docs__sidebar">
         <a className="docs__logo" href="#home">Reef UI</a>
+        <input
+          className="docs__search"
+          type="search"
+          placeholder="搜索组件…"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
         <nav>
-          {groups.map((g) => (
+          {visibleGroups.map((g) => (
             <div key={g.label} className="docs__group">
               <p className="docs__group-label">{g.label}</p>
               {g.keys.map((k) => {
@@ -191,11 +209,15 @@ export default function App() {
               })}
             </div>
           ))}
+          {visibleGroups.length === 0 && <p className="docs__empty">没有匹配的组件</p>}
         </nav>
       </aside>
       <div className="docs__main">
         <header className="docs__topbar">
-          <h2 className="docs__topbar-title">{active.title}</h2>
+          <h2 className="docs__topbar-title">
+            {activeGroup && page !== 'guide' && <span className="docs__crumb">{activeGroup.label} / </span>}
+            {active.title}
+          </h2>
           <div className="docs__topbar-actions">
             <a
               className="icon-btn"
