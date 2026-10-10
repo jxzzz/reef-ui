@@ -39,3 +39,62 @@
   color: var(--reef-color-text-secondary);
   text-align: right;
 }
+
+/* ---- 圆环变体：SVG 环 + 居中文本，直径由 size 档位决定 ---- */
+.reef-progress--circle {
+  position: relative;
+  display: inline-flex;
+}
+
+.reef-progress--circle .reef-progress__track {
+  flex: none;
+  min-width: 0;
+  /* 条形轨道的底色与圆角作用在 svg 上会画出一个实心圆饼，圆环的
+     灰色轨道由 __ring 的描边提供，svg 本身必须完全透明 */
+  height: auto;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  /* 起点转到 12 点方向 */
+  transform: rotate(-90deg);
+}
+
+.reef-progress--circle-medium .reef-progress__track {
+  width: 96px;
+  height: 96px;
+}
+
+.reef-progress--circle-small .reef-progress__track {
+  width: 64px;
+  height: 64px;
+}
+
+.reef-progress__ring {
+  fill: none;
+  stroke: color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);
+}
+
+/* 圆环的 fill 是描边而非背景，覆盖条形的背景色声明 */
+.reef-progress--circle .reef-progress__fill {
+  fill: none;
+  stroke: var(--reef-color-brand);
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.reef-progress--circle .reef-progress__fill--success {
+  stroke: var(--reef-color-success);
+}
+
+.reef-progress--circle .reef-progress__fill--error {
+  stroke: var(--reef-color-danger);
+}
+
+.reef-progress--circle .reef-progress__info {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  text-align: center;
+}
