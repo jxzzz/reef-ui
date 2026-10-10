@@ -40,4 +40,12 @@ describe('Steps', () => {
     render(<Steps items={items} current={9} />);
     expect(document.querySelector('.reef-steps__item--process')).toBeNull();
   });
+
+  test('可点击项带 button 角色，当前项没有（M-6）', () => {
+    render(<Steps items={items} current={0} onChange={() => {}} />);
+
+    // 可访问名含步骤序号（如 "2 确认订单"），按 li 属性断言而非名称匹配
+    expect(screen.getByText('确认订单').closest('li')!.getAttribute('role')).toBe('button');
+    expect(screen.getByText('填写信息').closest('li')!.getAttribute('role')).toBeNull();
+  });
 });

@@ -22,6 +22,7 @@ export function Steps({ items, current, defaultCurrent = 0, onChange, className 
           <li
             key={item.key}
             className={cn('reef-steps__item', `reef-steps__item--${status}`)}
+            role={clickable ? 'button' : undefined}
             aria-current={status === 'process' ? 'step' : undefined}
             tabIndex={clickable ? 0 : undefined}
             onClick={clickable ? () => select(i) : undefined}

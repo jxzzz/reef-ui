@@ -32,4 +32,11 @@ describe('Progress', () => {
     render(<Progress percent={50} showInfo={false} />);
     expect(screen.queryByText('50%')).toBeNull();
   });
+
+  test('非数值 percent 按 0 处理，不出现 NaN（M-5）', () => {
+    render(<Progress percent={NaN} />);
+
+    expect(screen.getByRole('progressbar').getAttribute('aria-valuenow')).toBe('0');
+    expect(document.body.textContent).not.toContain('NaN');
+  });
 });

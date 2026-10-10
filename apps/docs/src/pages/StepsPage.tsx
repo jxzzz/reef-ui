@@ -13,7 +13,11 @@ const basicCode = `<Steps
 const clickableCode = `<Steps
   defaultCurrent={0}
   onChange={(index) => console.log(index)}
-  items={[/* 同上 */]}
+  items={[
+    { key: 'info', title: '填写信息', description: '基本信息' },
+    { key: 'confirm', title: '确认订单' },
+    { key: 'pay', title: '支付' },
+  ]}
 />`;
 
 const stepsItems = [
@@ -33,7 +37,7 @@ export function StepsPage() {
       </Demo>
 
       <Demo title="可点击" code={clickableCode}>
-        <Steps defaultCurrent={0} onChange={() => {}} items={stepsItems} />
+        <Steps defaultCurrent={0} onChange={(index) => console.log(index)} items={stepsItems} />
       </Demo>
 
       <h3>API</h3>

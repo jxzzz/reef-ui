@@ -2,7 +2,7 @@ import { Avatar } from '@reef-ui/components';
 import { ApiTable, Demo } from '../docs-ui';
 
 const basicCode = `<Avatar>张</Avatar>
-<Avatar src="/avatar.png" alt="头像" />
+<Avatar src="https://i.pravatar.cc/64?img=5" alt="头像" />
 <Avatar shape="square" size={48}>访客</Avatar>`;
 
 export function AvatarPage() {
