@@ -25,6 +25,7 @@ import { SelectPage } from './pages/SelectPage';
 import { SkeletonPage } from './pages/SkeletonPage';
 import { SpinPage } from './pages/SpinPage';
 import { ProgressPage } from './pages/ProgressPage';
+import { ScrollPage } from './pages/ScrollPage';
 import { ResultPage } from './pages/ResultPage';
 import { RadioPage } from './pages/RadioPage';
 import { StepsPage } from './pages/StepsPage';
@@ -56,6 +57,7 @@ type PageKey =
   | 'pagination'
   | 'segmented'
   | 'progress'
+  | 'scroll'
   | 'result'
   | 'radio'
   | 'select'
@@ -94,6 +96,7 @@ function currentPage(): PageKey {
     'segmented',
     'progress',
     'result',
+    'scroll',
     'radio',
     'select',
     'skeleton',
@@ -114,7 +117,7 @@ function currentPage(): PageKey {
 const groups = [
   { label: '指南', keys: ['guide'] },
   { label: '资源', keys: ['icon', 'typography'] },
-  { label: '通用', keys: ['button', 'divider'] },
+  { label: '通用', keys: ['button', 'divider', 'scroll'] },
   { label: '数据录入', keys: ['checkbox', 'form', 'input', 'radio', 'segmented', 'select', 'switch'] },
   { label: '数据展示', keys: ['avatar', 'badge', 'card', 'descriptions', 'empty', 'tag', 'timeline', 'tooltip'] },
   { label: '反馈', keys: ['alert', 'drawer', 'message', 'modal', 'progress', 'result', 'skeleton', 'spin'] },
@@ -157,6 +160,7 @@ export default function App() {
     { key: 'pagination', title: 'Pagination 分页', node: <PaginationPage /> },
     { key: 'segmented', title: 'Segmented 分段控制器', node: <SegmentedPage /> },
     { key: 'progress', title: 'Progress 进度条', node: <ProgressPage /> },
+    { key: 'scroll', title: 'Scroll 滚动条', node: <ScrollPage /> },
     { key: 'result', title: 'Result 结果页', node: <ResultPage /> },
     { key: 'select', title: 'Select 选择器', node: <SelectPage /> },
     { key: 'skeleton', title: 'Skeleton 骨架屏', node: <SkeletonPage /> },
