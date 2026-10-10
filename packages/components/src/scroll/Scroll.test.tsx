@@ -19,6 +19,23 @@ class MockResizeObserver {
 }
 vi.stubGlobal('ResizeObserver', MockResizeObserver);
 
+// jsdom 没有 PointerEvent，fireEvent 会造出裸 Event 丢掉 clientX/clientY：
+// 用把 init 展开到实例上的 polyfill 补齐
+class PointerEventPolyfill extends Event {
+  clientX = 0;
+  clientY = 0;
+  pointerId = 0;
+  constructor(type: string, params: { clientX?: number; clientY?: number; pointerId?: number } = {}) {
+    // pointer 事件默认冒泡，React 根节点委托依赖它
+    super(type, { bubbles: true, cancelable: true });
+    // 只取几何字段：init 里的 bubbles 等是 Event 只读属性，不能 assign
+    this.clientX = params.clientX ?? 0;
+    this.clientY = params.clientY ?? 0;
+    this.pointerId = params.pointerId ?? 0;
+  }
+}
+vi.stubGlobal('PointerEvent', PointerEventPolyfill);
+
 afterEach(() => {
   cleanup();
   roInstances.length = 0;
@@ -106,5 +123,55 @@ describe('Scroll 几何', () => {
     const instance = roInstances[roInstances.length - 1];
     act(() => instance.cb([], {} as ResizeObserver));
     expect(container.querySelector('.reef-scroll__bar--y')).toBeTruthy();
+  });
+});
+
+describe('Scroll 拖拽', () => {
+  function setupOverflow() {
+    const utils = render(
+      <Scroll>
+        <div style={{ height: 400 }} />
+      </Scroll>,
+    );
+    const content = utils.container.querySelector('.reef-scroll__content') as HTMLElement;
+    // scrollTop 用可写 mock：捕获组件写入
+    let scrollTop = 0;
+    Object.defineProperty(content, 'scrollTop', {
+      configurable: true,
+      get: () => scrollTop,
+      set: (v: number) => {
+        scrollTop = v;
+      },
+    });
+    // 注意：不带 scrollTop，保住上面的可写 mock
+    mockBox(content, { clientHeight: 200, scrollHeight: 400 });
+    fireEvent.scroll(content);
+    const thumb = utils.container.querySelector('.reef-scroll__bar--y .reef-scroll__thumb') as HTMLElement;
+    return { ...utils, content, thumb, getScrollTop: () => scrollTop };
+  }
+
+  test('pointer 拖拽把位移按比例换算成 scrollTop', () => {
+    const { thumb, getScrollTop, container } = setupOverflow();
+    thumb.setPointerCapture = vi.fn();
+    // maxScroll 200，trackRange 192-96=96：下移 48px → scrollTop +100
+    fireEvent.pointerDown(thumb, { pointerId: 1, clientY: 0 });
+    expect(container.querySelector('.reef-scroll')!.className).toContain('reef-scroll--dragging');
+    fireEvent.pointerMove(thumb, { pointerId: 1, clientY: 48 });
+    expect(getScrollTop()).toBe(100);
+    fireEvent.pointerUp(thumb, { pointerId: 1 });
+    expect(container.querySelector('.reef-scroll')!.className).not.toContain('reef-scroll--dragging');
+  });
+
+  test('trackRange ≤ 0（滑块下限撑满轨道）时不出 NaN、scrollTop 不变（Review Focus #2）', () => {
+    const { thumb, getScrollTop, content } = setupOverflow();
+    // 让滑块 = 轨道：viewport 32, content 400, track 24 → 滑块 24px，trackRange 0
+    mockBox(content, { clientHeight: 32, scrollHeight: 400 });
+    fireEvent.scroll(content);
+    thumb.setPointerCapture = vi.fn();
+    fireEvent.pointerDown(thumb, { pointerId: 1, clientY: 0 });
+    fireEvent.pointerMove(thumb, { pointerId: 1, clientY: 50 });
+    expect(Number.isFinite(getScrollTop())).toBe(true);
+    expect(getScrollTop()).toBe(0);
+    fireEvent.pointerUp(thumb, { pointerId: 1 });
   });
 });
