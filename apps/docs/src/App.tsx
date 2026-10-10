@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Breadcrumb, Icon } from '@reef-ui/components';
+import { Breadcrumb, Icon, Scroll } from '@reef-ui/components';
 import { SearchInput } from './docs-ui';
 import { AlertPage } from './pages/AlertPage';
 import { AvatarPage } from './pages/AvatarPage';
@@ -195,22 +195,25 @@ export default function App() {
       <aside className="docs__sidebar">
         <a className="docs__logo" href="#home">Reef UI</a>
         <SearchInput value={query} onChange={setQuery} placeholder="搜索组件…" />
-        <nav>
-          {visibleGroups.map((g) => (
-            <div key={g.label} className="docs__group">
-              <p className="docs__group-label">{g.label}</p>
-              {g.keys.map((k) => {
-                const p = pages.find((item) => item.key === k)!;
-                return (
-                  <a key={p.key} href={`#${p.key}`} className={p.key === page ? 'active' : ''}>
-                    {p.title}
-                  </a>
-                );
-              })}
-            </div>
-          ))}
-          {visibleGroups.length === 0 && <p className="docs__empty">没有匹配的组件</p>}
-        </nav>
+        {/* flex:1 + minHeight:0：flex 列里滚动的前提是允许收缩到内容以下 */}
+        <Scroll style={{ flex: 1, minHeight: 0 }}>
+          <nav>
+            {visibleGroups.map((g) => (
+              <div key={g.label} className="docs__group">
+                <p className="docs__group-label">{g.label}</p>
+                {g.keys.map((k) => {
+                  const p = pages.find((item) => item.key === k)!;
+                  return (
+                    <a key={p.key} href={`#${p.key}`} className={p.key === page ? 'active' : ''}>
+                      {p.title}
+                    </a>
+                  );
+                })}
+              </div>
+            ))}
+            {visibleGroups.length === 0 && <p className="docs__empty">没有匹配的组件</p>}
+          </nav>
+        </Scroll>
       </aside>
       <div className="docs__main">
         <header className="docs__topbar">
