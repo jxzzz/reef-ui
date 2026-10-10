@@ -6,6 +6,8 @@
 
 .reef-progress__track {
   flex: 1;
+  /* 轨道是空元素，没有固有宽度；在 flex 收缩上下文里保证可见下限 */
+  min-width: 96px;
   height: 8px;
   overflow: hidden;
   border-radius: var(--reef-radius-full);
