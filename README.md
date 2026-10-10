@@ -9,6 +9,8 @@
 [![CI](https://github.com/jxzzz/reef-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/jxzzz/reef-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
+**[📖 在线文档](https://reef-ui.imxuex.workers.dev)** · [npm 组织](https://www.npmjs.com/org/reef-ui)
+
 </div>
 
 Reef UI 是一套开源的 React 组件库,专注于中后台(admin / dashboard)场景:开箱即用的企业级组件、基于 CSS Variables 的 Design Token 主题系统、暗色模式一键切换,零运行时样式依赖。
@@ -62,7 +64,7 @@ export default function App() {
 | **反馈** | Alert、Drawer、Message、Modal、Progress、Result、Skeleton、Spin |
 | **导航** | Breadcrumb、Pagination、Steps、Tabs |
 
-每个组件的 live demo 与 API 文档见文档站(运行 `pnpm docs` 本地启动,线上地址见下方链接)。
+每个组件的 live demo 与 API 文档见[在线文档](https://reef-ui.imxuex.workers.dev)(或本地运行 `pnpm docs` 启动)。
 
 ## 包结构
 
