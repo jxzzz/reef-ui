@@ -23,6 +23,10 @@
   animation: reef-drawer-slide 0.2s ease;
 }
 
+.reef-drawer__panel[data-placement='left'] {
+  animation-name: reef-drawer-slide-left;
+}
+
 .reef-drawer__head {
   display: flex;
   align-items: center;
@@ -62,6 +66,18 @@
 @keyframes reef-drawer-slide {
   from {
     transform: translateX(24px);
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes reef-drawer-slide-left {
+  from {
+    transform: translateX(-24px);
     opacity: 0;
   }
 

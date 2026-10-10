@@ -6,6 +6,10 @@ import './drawer.css';
 
 const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
+// 叠层时只有最上层响应 Esc（栈顶 = 最后打开的抽屉）
+const escStack: number[] = [];
+let nextEscId = 1;
+
 export function Drawer({
   open,
   onClose,
@@ -20,13 +24,15 @@ export function Drawer({
 
   useEffect(() => {
     if (!open) return;
+    const escId = nextEscId++;
+    escStack.push(escId);
     const previouslyFocused = document.activeElement as HTMLElement | null;
     panelRef.current?.focus();
     // ponytail: 与 Modal 相同的直接置 body overflow，多浮层叠加时需改为计数器
     document.body.style.overflow = 'hidden';
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose?.();
+        if (escStack[escStack.length - 1] === escId) onClose?.();
         return;
       }
       if (e.key !== 'Tab') return;
@@ -47,6 +53,7 @@ export function Drawer({
     return () => {
       document.body.style.overflow = '';
       document.removeEventListener('keydown', onKey);
+      escStack.splice(escStack.indexOf(escId), 1);
       previouslyFocused?.focus();
     };
   }, [open, onClose]);
@@ -64,6 +71,7 @@ export function Drawer({
         aria-modal="true"
         aria-label={typeof title === 'string' ? title : undefined}
         tabIndex={-1}
+        data-placement={placement}
       >
         {title != null && <header className="reef-drawer__head">{title}</header>}
         <div className="reef-drawer__body">{children}</div>

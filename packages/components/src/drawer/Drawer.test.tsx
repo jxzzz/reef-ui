@@ -56,6 +56,34 @@ describe('Drawer', () => {
     expect(panel.style.left).toBe('0px');
   });
 
+  test('面板携带 data-placement 供动画方向区分', () => {
+    render(
+      <Drawer open placement="left" title="左抽屉">
+        内容
+      </Drawer>,
+    );
+    expect(document.querySelector('.reef-drawer__panel')!.getAttribute('data-placement')).toBe('left');
+  });
+
+  test('多层叠加时 Esc 只关闭最上层', async () => {
+    const user = userEvent.setup();
+    const onTop = vi.fn();
+    const onBottom = vi.fn();
+    render(
+      <>
+        <Drawer open onClose={onBottom} title="底层">
+          底层
+        </Drawer>
+        <Drawer open onClose={onTop} title="顶层">
+          顶层
+        </Drawer>
+      </>,
+    );
+    await user.keyboard('{Escape}');
+    expect(onTop).toHaveBeenCalledTimes(1);
+    expect(onBottom).not.toHaveBeenCalled();
+  });
+
   test('open 时焦点移入面板，关闭后还原到触发元素', () => {
     const { rerender } = render(
       <>
