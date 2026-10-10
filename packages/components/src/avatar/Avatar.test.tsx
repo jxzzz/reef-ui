@@ -23,6 +23,23 @@ describe('Avatar', () => {
     expect(screen.queryByRole('img')).toBeNull();
   });
 
+  test('src 变化后失败状态重置，新图片可显示', () => {
+    const { rerender } = render(
+      <Avatar src="/broken.png" alt="头像">
+        <span>张</span>
+      </Avatar>,
+    );
+    fireEvent.error(document.querySelector('.reef-avatar__img')!);
+    expect(screen.queryByRole('img', { name: '头像' })).toBeNull();
+
+    rerender(
+      <Avatar src="/fixed.png" alt="头像">
+        <span>张</span>
+      </Avatar>,
+    );
+    expect(screen.getByRole('img', { name: '头像' }).getAttribute('src')).toBe('/fixed.png');
+  });
+
   test('size 应用到容器，square 用方角', () => {
     const { container } = render(<Avatar size={48} shape="square">Z</Avatar>);
     const el = container.firstElementChild as HTMLElement;
