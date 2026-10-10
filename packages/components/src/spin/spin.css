@@ -1,0 +1,62 @@
+.reef-spin {
+  position: relative;
+  display: inline-block;
+}
+
+.reef-spin--standalone {
+  display: inline-flex;
+}
+
+.reef-spin__circle {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid color-mix(in srgb, var(--reef-color-brand) 20%, transparent);
+  border-top-color: var(--reef-color-brand);
+  border-radius: var(--reef-radius-full);
+  animation: reef-spin-rotate 0.8s linear infinite;
+}
+
+.reef-spin--small .reef-spin__circle {
+  width: 14px;
+  height: 14px;
+}
+
+.reef-spin--medium .reef-spin__circle {
+  width: 20px;
+  height: 20px;
+}
+
+.reef-spin--large .reef-spin__circle {
+  width: 28px;
+  height: 28px;
+  border-width: 3px;
+}
+
+.reef-spin__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--reef-space-sm);
+  background: color-mix(in srgb, var(--reef-color-surface) 65%, transparent);
+}
+
+.reef-spin__tip {
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
+}
+
+@keyframes reef-spin-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reef-spin__circle {
+    animation: none;
+  }
+}

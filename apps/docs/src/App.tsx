@@ -16,6 +16,7 @@ import { InputPage } from './pages/InputPage';
 import { ModalPage } from './pages/ModalPage';
 import { PaginationPage } from './pages/PaginationPage';
 import { SelectPage } from './pages/SelectPage';
+import { SpinPage } from './pages/SpinPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { RadioPage } from './pages/RadioPage';
 import { StepsPage } from './pages/StepsPage';
@@ -43,6 +44,7 @@ type PageKey =
   | 'progress'
   | 'radio'
   | 'select'
+  | 'spin'
   | 'steps'
   | 'switch'
   | 'tabs'
@@ -71,6 +73,7 @@ function currentPage(): PageKey {
     'progress',
     'radio',
     'select',
+    'spin',
     'steps',
     'switch',
     'tabs',
@@ -85,7 +88,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'empty', 'input', 'modal', 'pagination', 'progress', 'select', 'steps', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'empty', 'input', 'modal', 'pagination', 'progress', 'select', 'spin', 'steps', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -120,6 +123,7 @@ export default function App() {
     { key: 'pagination', title: 'Pagination 分页', node: <PaginationPage /> },
     { key: 'progress', title: 'Progress 进度条', node: <ProgressPage /> },
     { key: 'select', title: 'Select 选择器', node: <SelectPage /> },
+    { key: 'spin', title: 'Spin 加载中', node: <SpinPage /> },
     { key: 'steps', title: 'Steps 步骤条', node: <StepsPage /> },
     { key: 'switch', title: 'Switch 开关', node: <SwitchPage /> },
     { key: 'tabs', title: 'Tabs 标签页', node: <TabsPage /> },
