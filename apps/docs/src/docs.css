@@ -839,6 +839,56 @@ body {
   font-size: var(--reef-font-size-sm);
 }
 
+/* ---- 图标库网格：点击复制 ---- */
+.icon-picker {
+  margin: 24px 0;
+}
+
+.icon-picker .docs__search {
+  max-width: 320px;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.icon-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--reef-radius-md);
+  background: transparent;
+  color: var(--reef-color-text-primary);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.icon-cell:hover {
+  border-color: color-mix(in srgb, var(--reef-color-brand) 35%, transparent);
+  background: color-mix(in srgb, var(--reef-color-brand) 6%, transparent);
+  color: var(--reef-color-brand);
+}
+
+.icon-cell:focus-visible {
+  outline: 2px solid var(--reef-color-brand);
+  outline-offset: 2px;
+}
+
+.icon-cell span {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 11px;
+  color: var(--reef-color-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @media (max-width: 768px) {
   .docs {
     flex-direction: column;

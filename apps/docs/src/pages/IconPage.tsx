@@ -1,10 +1,6 @@
-import { Icon } from '@reef-ui/components';
+import { useState } from 'react';
+import { ICON_NAMES, Icon, type IconName } from '@reef-ui/components';
 import { ApiTable, Demo } from '../docs-ui';
-
-const allCode = `<Icon name="check" />
-<Icon name="close" />
-<Icon name="plus" />
-<Icon name="search" />`;
 
 const sizeCode = `<Icon name="check" size={12} />
 <Icon name="check" size={16} />
@@ -15,19 +11,46 @@ const colorCode = `<Icon name="close" size={24} style={{ color: 'var(--reef-colo
 <Icon name="check" size={24} style={{ color: 'var(--reef-color-success)' }} />`;
 
 export function IconPage() {
+  const [query, setQuery] = useState('');
+  const [copied, setCopied] = useState('');
+
+  const names = ICON_NAMES.filter((n) => n.includes(query.trim().toLowerCase()));
+
+  const copy = async (name: string) => {
+    await navigator.clipboard.writeText(`<Icon name="${name}" />`);
+    setCopied(name);
+    setTimeout(() => setCopied(''), 1500);
+  };
+
   return (
     <>
       <h2>Icon 图标</h2>
-      <p>内置 SVG 图标，颜色跟随文字颜色（currentColor），默认对屏幕阅读器隐藏。</p>
+      <p>内置 SVG 图标，颜色跟随文字颜色（currentColor），默认对屏幕阅读器隐藏。点击图标即可复制使用代码。</p>
 
-      <Demo title="全部图标" code={allCode}>
-        <div style={{ display: 'flex', gap: 24, fontSize: 20 }}>
-          <Icon name="check" size={20} />
-          <Icon name="close" size={20} />
-          <Icon name="plus" size={20} />
-          <Icon name="search" size={20} />
+      <div className="icon-picker">
+        <input
+          className="docs__search"
+          type="search"
+          placeholder={`搜索 ${ICON_NAMES.length} 个图标…`}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <div className="icon-grid">
+          {names.map((name) => (
+            <button
+              key={name}
+              type="button"
+              className="icon-cell"
+              title={copied === name ? '已复制' : `<Icon name="${name}" />`}
+              onClick={() => copy(name)}
+            >
+              <Icon name={name as IconName} size={20} />
+              <span>{copied === name ? '已复制' : name}</span>
+            </button>
+          ))}
         </div>
-      </Demo>
+        {names.length === 0 && <p className="docs__empty">没有匹配的图标</p>}
+      </div>
 
       <Demo title="尺寸" code={sizeCode}>
         <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
@@ -48,7 +71,7 @@ export function IconPage() {
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['name', '图标名称', "'check' | 'close' | 'plus' | 'search'", '-'],
+          ['name', '图标名称，共 ' + ICON_NAMES.length + ' 个，见上方图标库', 'IconName', '必填'],
           ['size', '像素尺寸', 'number', '16'],
           ['decorative', '装饰性图标，设为 false 时暴露给屏幕阅读器', 'boolean', 'true'],
         ]}
