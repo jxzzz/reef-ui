@@ -1,0 +1,40 @@
+.reef-divider {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-divider::before,
+.reef-divider::after {
+  flex: 1;
+  height: 1px;
+  content: '';
+  background: color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+}
+
+.reef-divider--dashed::before,
+.reef-divider--dashed::after {
+  height: 0;
+  border-top: 1px dashed color-mix(in srgb, var(--reef-color-text-primary) 20%, transparent);
+  background: none;
+}
+
+.reef-divider--vertical {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin: 0 8px;
+  vertical-align: middle;
+  background: color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+}
+
+.reef-divider--vertical::before,
+.reef-divider--vertical::after {
+  content: none;
+}
+
+.reef-divider__inner {
+  padding: 0 12px;
+}

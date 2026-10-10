@@ -6,6 +6,7 @@ import { BadgePage } from './pages/BadgePage';
 import { BreadcrumbPage } from './pages/BreadcrumbPage';
 import { ButtonPage } from './pages/ButtonPage';
 import { CardPage } from './pages/CardPage';
+import { DividerPage } from './pages/DividerPage';
 import { CheckboxPage } from './pages/CheckboxPage';
 import { EmptyPage } from './pages/EmptyPage';
 import { FormPage } from './pages/FormPage';
@@ -35,6 +36,7 @@ type PageKey =
   | 'breadcrumb'
   | 'button'
   | 'card'
+  | 'divider'
   | 'checkbox'
   | 'empty'
   | 'form'
@@ -64,6 +66,7 @@ function currentPage(): PageKey {
     'breadcrumb',
     'button',
     'card',
+    'divider',
     'checkbox',
     'empty',
     'form',
@@ -88,7 +91,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'empty', 'input', 'modal', 'pagination', 'progress', 'select', 'spin', 'steps', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'divider', 'empty', 'input', 'modal', 'pagination', 'progress', 'select', 'spin', 'steps', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -117,6 +120,7 @@ export default function App() {
     { key: 'breadcrumb', title: 'Breadcrumb 面包屑', node: <BreadcrumbPage /> },
     { key: 'button', title: 'Button 按钮', node: <ButtonPage /> },
     { key: 'card', title: 'Card 卡片', node: <CardPage /> },
+    { key: 'divider', title: 'Divider 分割线', node: <DividerPage /> },
     { key: 'empty', title: 'Empty 空状态', node: <EmptyPage /> },
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
     { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },
