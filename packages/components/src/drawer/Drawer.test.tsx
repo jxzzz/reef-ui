@@ -55,4 +55,26 @@ describe('Drawer', () => {
     expect(panel.style.width).toBe('420px');
     expect(panel.style.left).toBe('0px');
   });
+
+  test('open 时焦点移入面板，关闭后还原到触发元素', () => {
+    const { rerender } = render(
+      <>
+        <button type="button">打开按钮</button>
+        <Drawer open title="详情">
+          内容
+        </Drawer>
+      </>,
+    );
+    expect(document.activeElement).toBe(document.querySelector('.reef-drawer__panel'));
+
+    rerender(
+      <>
+        <button type="button">打开按钮</button>
+        <Drawer open={false} title="详情">
+          内容
+        </Drawer>
+      </>,
+    );
+    expect(document.activeElement!.textContent).toBe('打开按钮');
+  });
 });
