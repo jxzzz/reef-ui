@@ -27,7 +27,7 @@ export * from './spin';
 export * from './steps';
 export * from './switch';
 export * from './tabs';
-export * from './timeline';
 export * from './tag';
+export * from './timeline';
 export * from './tooltip';
 export * from './typography';

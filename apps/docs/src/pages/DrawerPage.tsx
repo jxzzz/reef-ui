@@ -5,7 +5,7 @@ import { ApiTable, Demo } from '../docs-ui';
 const basicCode = `const [open, setOpen] = useState(false);
 <>
   <Button onClick={() => setOpen(true)}>打开抽屉</Button>
-  <Drawer open={open} onClose={() => setOpen(false)} title="详情">
+  <Drawer open={open} onClose={() => setOpen(false)} title="详情" footer={<Button onClick={() => setOpen(false)}>关闭</Button>}>
     <p>抽屉内容</p>
   </Drawer>
 </>`;
