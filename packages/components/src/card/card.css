@@ -1,0 +1,48 @@
+.reef-card {
+  box-sizing: border-box;
+  border-radius: var(--reef-radius-lg);
+  background: var(--reef-color-surface);
+}
+
+.reef-card--bordered {
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+}
+
+.reef-card--hoverable {
+  transition: box-shadow 0.2s ease;
+}
+
+.reef-card--hoverable:hover {
+  box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
+}
+
+.reef-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--reef-space-sm);
+  padding: var(--reef-space-md) var(--reef-space-xl);
+  border-bottom: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+}
+
+.reef-card__title {
+  font-size: var(--reef-font-size-lg);
+  font-weight: 600;
+  color: var(--reef-color-text-primary);
+}
+
+.reef-card__extra {
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-card__body {
+  padding: var(--reef-space-xl);
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+}
+
+.reef-card__footer {
+  padding: var(--reef-space-md) var(--reef-space-xl);
+  border-top: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+}
