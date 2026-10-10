@@ -1,4 +1,4 @@
-import { cleanup, render } from '@testing-library/react';
+import { act, cleanup, fireEvent, render } from '@testing-library/react';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 import { Scroll } from './Scroll';
 
@@ -57,5 +57,54 @@ describe('Scroll', () => {
   test('maxHeight 透传为 style', () => {
     const { container } = render(<Scroll maxHeight={320}>内容</Scroll>);
     expect((container.firstElementChild as HTMLElement).style.maxHeight).toBe('320px');
+  });
+});
+
+describe('Scroll 几何', () => {
+  test('纵向溢出：scroll 事件后渲染 y bar，滑块尺寸与偏移正确', () => {
+    const { container } = render(
+      <Scroll>
+        <div style={{ height: 400 }} />
+      </Scroll>,
+    );
+    const content = container.querySelector('.reef-scroll__content') as HTMLElement;
+    // 视口 200，内容 400，轨道 192 → 滑块 96；scrollTop 100/200 → offset 48
+    mockBox(content, { clientHeight: 200, scrollHeight: 400, scrollTop: 100 });
+    fireEvent.scroll(content);
+
+    const barY = container.querySelector('.reef-scroll__bar--y') as HTMLElement;
+    expect(barY).toBeTruthy();
+    const thumb = barY.querySelector('.reef-scroll__thumb') as HTMLElement;
+    expect(thumb.style.height).toBe('96px');
+    expect(thumb.style.transform).toBe('translateY(48px)');
+  });
+
+  test('双轴独立：仅纵向溢出时不渲染 x bar（Review Focus #3）', () => {
+    const { container } = render(<Scroll>内容</Scroll>);
+    const content = container.querySelector('.reef-scroll__content') as HTMLElement;
+    mockBox(content, { clientHeight: 200, scrollHeight: 400, clientWidth: 300, scrollWidth: 300 });
+    fireEvent.scroll(content);
+
+    expect(container.querySelector('.reef-scroll__bar--y')).toBeTruthy();
+    expect(container.querySelector('.reef-scroll__bar--x')).toBeNull();
+  });
+
+  test('ResizeObserver 同时观察 content 与 inner 两个目标（Review Focus #1）', () => {
+    const { container } = render(<Scroll>内容</Scroll>);
+    const content = container.querySelector('.reef-scroll__content') as HTMLElement;
+    const inner = container.querySelector('.reef-scroll__inner') as HTMLElement;
+    const instance = roInstances[roInstances.length - 1];
+    const observed = instance.observe.mock.calls.map((call) => call[0]);
+    expect(observed).toContain(content);
+    expect(observed).toContain(inner);
+  });
+
+  test('RO 回调触发重新测量（异步内容长高后滑块出现）', () => {
+    const { container } = render(<Scroll>内容</Scroll>);
+    const content = container.querySelector('.reef-scroll__content') as HTMLElement;
+    mockBox(content, { clientHeight: 200, scrollHeight: 400 });
+    const instance = roInstances[roInstances.length - 1];
+    act(() => instance.cb([], {} as ResizeObserver));
+    expect(container.querySelector('.reef-scroll__bar--y')).toBeTruthy();
   });
 });
