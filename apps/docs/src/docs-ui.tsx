@@ -1,5 +1,7 @@
-import { useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Icon, Input } from '@reef-ui/components';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-jsx';
 
 /** 搜索输入框：基于库内 Input（prefix 图标 + clearable），Esc 清空 */
 export function SearchInput({
@@ -32,6 +34,8 @@ export function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
+  const html = useMemo(() => Prism.highlight(code, Prism.languages.jsx, 'jsx'), [code]);
+
   const copy = async () => {
     await navigator.clipboard.writeText(code);
     setCopied(true);
@@ -44,7 +48,8 @@ export function CodeBlock({ code }: { code: string }) {
       <div className={expanded ? 'code-block__reveal code-block__reveal--open' : 'code-block__reveal'}>
         <div className="code-block__clip">
           <pre>
-            <code>{code}</code>
+            {/* Prism 输出的是本组件自己生成的高亮 span，非用户内容 */}
+            <code dangerouslySetInnerHTML={{ __html: html }} />
           </pre>
         </div>
       </div>

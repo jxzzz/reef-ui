@@ -205,11 +205,45 @@ body {
 .code-block__reveal pre {
   margin: 0;
   padding: 16px 24px;
-  background: color-mix(in srgb, var(--reef-color-text-primary) 94%, var(--reef-color-surface));
-  color: var(--reef-color-surface);
+  /* 跟随主题的浅底：高亮 token 用主题色，暗色模式随 token 一起翻转 */
+  background: color-mix(in srgb, var(--reef-color-text-primary) 4%, var(--reef-color-surface));
+  color: var(--reef-color-text-primary);
   font-size: var(--reef-font-size-sm);
   line-height: 1.6;
   overflow-x: auto;
+}
+
+/* Prism token 主题：全部取自主题色，暗色模式自动适配 */
+.code-block__reveal .token.tag,
+.code-block__reveal .token.function {
+  color: var(--reef-color-brand);
+}
+
+.code-block__reveal .token.attr-name,
+.code-block__reveal .token.number,
+.code-block__reveal .token.builtin {
+  color: var(--reef-color-warning);
+}
+
+.code-block__reveal .token.string,
+.code-block__reveal .token.attr-value,
+.code-block__reveal .token.char {
+  color: var(--reef-color-success);
+}
+
+.code-block__reveal .token.keyword,
+.code-block__reveal .token.boolean {
+  color: var(--reef-color-danger);
+}
+
+.code-block__reveal .token.punctuation,
+.code-block__reveal .token.operator {
+  color: var(--reef-color-text-secondary);
+}
+
+.code-block__reveal .token.comment {
+  color: var(--reef-color-text-disabled);
+  font-style: italic;
 }
 
 /* demo 底部操作栏：展开代码 / 复制 */
