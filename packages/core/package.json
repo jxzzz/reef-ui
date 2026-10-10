@@ -17,5 +17,19 @@
   },
   "devDependencies": {
     "tsup": "^8.3.0"
-  }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxzzz/reef-ui.git"
+  },
+  "homepage": "https://github.com/jxzzz/reef-ui#readme",
+  "bugs": {
+    "url": "https://github.com/jxzzz/reef-ui/issues"
+  },
+  "description": "Reef UI 通用 hooks",
+  "keywords": [
+    "react",
+    "hooks"
+  ]
 }
