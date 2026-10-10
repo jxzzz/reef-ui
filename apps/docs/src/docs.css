@@ -18,7 +18,7 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 220px;
+  width: 256px;
   box-sizing: border-box;
   padding: 24px 16px;
   border-right: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
