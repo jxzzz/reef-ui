@@ -2,6 +2,7 @@
    用相对路径（而非包名）是让 esbuild 在构建时把 token 内联进产物。 */
 @import url('../../theme/src/tokens.css');
 @import url('./alert/alert.css');
+@import url('./badge/badge.css');
 @import url('./button/button.css');
 @import url('./checkbox/checkbox.css');
 @import url('./form/form.css');

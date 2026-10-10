@@ -1,0 +1,50 @@
+.reef-badge__wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.reef-badge {
+  box-sizing: border-box;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--reef-radius-full);
+  font-size: var(--reef-font-size-sm);
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  color: var(--reef-color-surface);
+  background: var(--reef-color-danger);
+}
+
+.reef-badge--brand {
+  background: var(--reef-color-brand);
+}
+
+.reef-badge--success {
+  background: var(--reef-color-success);
+}
+
+.reef-badge--warning {
+  background: var(--reef-color-warning);
+}
+
+.reef-badge--dot {
+  min-width: 8px;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+}
+
+.reef-badge--standalone {
+  position: static;
+  display: inline-block;
+}
+
+/* 包裹模式：钉在子元素右上角。放在最后，特异性高于上面的 static */
+.reef-badge__wrapper .reef-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}

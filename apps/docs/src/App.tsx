@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Icon } from '@reef-ui/components';
 import { AlertPage } from './pages/AlertPage';
+import { BadgePage } from './pages/BadgePage';
 import { ButtonPage } from './pages/ButtonPage';
 import { CheckboxPage } from './pages/CheckboxPage';
 import { FormPage } from './pages/FormPage';
@@ -22,6 +23,7 @@ type PageKey =
   | 'home'
   | 'guide'
   | 'alert'
+  | 'badge'
   | 'button'
   | 'checkbox'
   | 'form'
@@ -43,6 +45,7 @@ function currentPage(): PageKey {
     'home',
     'guide',
     'alert',
+    'badge',
     'button',
     'checkbox',
     'form',
@@ -64,7 +67,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'button', 'input', 'modal', 'pagination', 'select', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'badge', 'button', 'input', 'modal', 'pagination', 'select', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -88,6 +91,7 @@ export default function App() {
     { key: 'home', title: '首页', node: <HomePage dark={dark} onToggleDark={toggleDark} /> },
     { key: 'guide', title: '使用指南', node: <GuidePage /> },
     { key: 'alert', title: 'Alert 警告提示', node: <AlertPage /> },
+    { key: 'badge', title: 'Badge 徽标数', node: <BadgePage /> },
     { key: 'button', title: 'Button 按钮', node: <ButtonPage /> },
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
     { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },
