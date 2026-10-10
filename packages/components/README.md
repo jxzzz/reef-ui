@@ -24,8 +24,7 @@ npm install @reef-ui/components @reef-ui/theme
 
 ```tsx
 import { Button, Message } from '@reef-ui/components';
-import '@reef-ui/theme/css';             // Design Token(必需)
-import '@reef-ui/components/style.css';  // 组件样式(必需)
+import '@reef-ui/components/style.css';  // 组件样式(含 Design Token)
 
 <Button variant="primary" onClick={() => Message.success('发布成功')}>
   发布

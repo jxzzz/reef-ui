@@ -37,19 +37,11 @@ npm install @reef-ui/components @reef-ui/theme
 
 ```tsx
 import { Button, Message } from '@reef-ui/components';
-import '@reef-ui/theme/css';             // Design Token(必需)
-import '@reef-ui/components/style.css';  // 组件样式(必需)
+import '@reef-ui/components/style.css';  // 组件样式(含 Design Token)
 
-export default function App() {
-  return (
-    <Button
-      variant="primary"
-      onClick={() => Message.success('发布成功')}
-    >
-      发布
-    </Button>
-  );
-}
+<Button variant="primary" onClick={() => Message.success('发布成功')}>
+  发布
+</Button>
 ```
 
 暗色模式:在 `<html>` 或任意根元素上设置 `data-theme="dark"`。

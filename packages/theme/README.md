@@ -8,10 +8,8 @@ Reef UI 的 Design Token 包:颜色、间距、圆角、阴影统一由 `--reef-
 npm install @reef-ui/theme
 ```
 
-```tsx
-import '@reef-ui/theme/css';
-```
+> 提示:使用 [`@reef-ui/components`](https://www.npmjs.com/package/@reef-ui/components) 时**无需单独引入**本包 —— 组件样式已内置全部 token。单独使用 token(不装组件库)时才需要本包。
 
-配合 [`@reef-ui/components`](https://www.npmjs.com/package/@reef-ui/components) 使用,详见 [Reef UI 文档](https://reef-ui.imxuex.workers.dev)。
+详见 [Reef UI 文档](https://reef-ui.imxuex.workers.dev)。
 
 MIT © 2026 jxzzz
