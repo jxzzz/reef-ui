@@ -1,0 +1,44 @@
+.reef-skeleton {
+  display: flex;
+  gap: 12px;
+}
+
+.reef-skeleton__avatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+  animation: reef-skeleton-shimmer 1.4s ease infinite;
+}
+
+.reef-skeleton__rows {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reef-skeleton__row {
+  height: 16px;
+  border-radius: var(--reef-radius-sm);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+  animation: reef-skeleton-shimmer 1.4s ease infinite;
+}
+
+.reef-skeleton__row:last-child {
+  width: 60%;
+}
+
+@keyframes reef-skeleton-shimmer {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reef-skeleton__avatar,
+  .reef-skeleton__row {
+    animation: none;
+  }
+}
