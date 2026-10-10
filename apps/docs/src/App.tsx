@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Icon } from '@reef-ui/components';
+import { SearchInput } from './docs-ui';
 import { AlertPage } from './pages/AlertPage';
 import { AvatarPage } from './pages/AvatarPage';
 import { BadgePage } from './pages/BadgePage';
@@ -189,13 +190,7 @@ export default function App() {
     <div className="docs">
       <aside className="docs__sidebar">
         <a className="docs__logo" href="#home">Reef UI</a>
-        <input
-          className="docs__search"
-          type="search"
-          placeholder="搜索组件…"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+        <SearchInput value={query} onChange={setQuery} placeholder="搜索组件…" />
         <nav>
           {visibleGroups.map((g) => (
             <div key={g.label} className="docs__group">

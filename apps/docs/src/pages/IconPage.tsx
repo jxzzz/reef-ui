@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ICON_NAMES, Icon, type IconName } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, Demo, SearchInput } from '../docs-ui';
 
 const sizeCode = `<Icon name="check" size={12} />
 <Icon name="check" size={16} />
@@ -28,13 +28,7 @@ export function IconPage() {
       <p>内置 SVG 图标，颜色跟随文字颜色（currentColor），默认对屏幕阅读器隐藏。点击图标即可复制使用代码。</p>
 
       <div className="icon-picker">
-        <input
-          className="docs__search"
-          type="search"
-          placeholder={`搜索 ${ICON_NAMES.length} 个图标…`}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+        <SearchInput value={query} onChange={setQuery} placeholder={`搜索 ${ICON_NAMES.length} 个图标…`} />
         <div className="icon-grid">
           {names.map((name) => (
             <button
