@@ -68,6 +68,8 @@
 .reef-input__wrapper {
   position: relative;
   display: inline-flex;
+  /* 高度是组件设计的一部分，不允许被 flex 容器压缩 */
+  flex-shrink: 0;
   align-items: center;
   box-sizing: border-box;
   padding: 0 var(--reef-space-md);
