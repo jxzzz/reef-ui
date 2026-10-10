@@ -16,6 +16,7 @@ export * from './modal';
 export * from './pagination';
 export * from './progress';
 export * from './radio';
+export * from './result';
 export * from './select';
 export * from './skeleton';
 export * from './spin';
