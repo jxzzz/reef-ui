@@ -8,6 +8,7 @@ import { ButtonPage } from './pages/ButtonPage';
 import { CardPage } from './pages/CardPage';
 import { DescriptionsPage } from './pages/DescriptionsPage';
 import { DividerPage } from './pages/DividerPage';
+import { DrawerPage } from './pages/DrawerPage';
 import { CheckboxPage } from './pages/CheckboxPage';
 import { EmptyPage } from './pages/EmptyPage';
 import { FormPage } from './pages/FormPage';
@@ -43,6 +44,7 @@ type PageKey =
   | 'card'
   | 'descriptions'
   | 'divider'
+  | 'drawer'
   | 'checkbox'
   | 'empty'
   | 'form'
@@ -78,6 +80,7 @@ function currentPage(): PageKey {
     'card',
     'descriptions',
     'divider',
+    'drawer',
     'checkbox',
     'empty',
     'form',
@@ -106,7 +109,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'descriptions', 'divider', 'empty', 'input', 'modal', 'pagination', 'segmented', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'descriptions', 'divider', 'drawer', 'empty', 'input', 'modal', 'pagination', 'segmented', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -137,6 +140,7 @@ export default function App() {
     { key: 'card', title: 'Card 卡片', node: <CardPage /> },
     { key: 'descriptions', title: 'Descriptions 描述列表', node: <DescriptionsPage /> },
     { key: 'divider', title: 'Divider 分割线', node: <DividerPage /> },
+    { key: 'drawer', title: 'Drawer 抽屉', node: <DrawerPage /> },
     { key: 'empty', title: 'Empty 空状态', node: <EmptyPage /> },
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
     { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },

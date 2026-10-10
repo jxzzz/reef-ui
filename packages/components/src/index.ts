@@ -9,6 +9,7 @@ export * from './card';
 export * from './checkbox';
 export * from './descriptions';
 export * from './divider';
+export * from './drawer';
 export * from './empty';
 export * from './form';
 export * from './icon';
