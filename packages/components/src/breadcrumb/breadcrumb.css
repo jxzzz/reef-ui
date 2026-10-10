@@ -1,0 +1,32 @@
+.reef-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reef-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+}
+
+/* 分隔符由相邻项的伪元素提供 */
+.reef-breadcrumb__item + .reef-breadcrumb__item::before {
+  margin: 0 var(--reef-space-sm);
+  color: var(--reef-color-text-disabled);
+  content: '/';
+}
+
+.reef-breadcrumb__link {
+  color: var(--reef-color-text-secondary);
+  text-decoration: none;
+}
+
+.reef-breadcrumb__link:hover {
+  color: var(--reef-color-brand);
+  text-decoration: underline;
+}
