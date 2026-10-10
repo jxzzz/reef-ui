@@ -23,6 +23,7 @@ import { ProgressPage } from './pages/ProgressPage';
 import { RadioPage } from './pages/RadioPage';
 import { StepsPage } from './pages/StepsPage';
 import { SwitchPage } from './pages/SwitchPage';
+import { TimelinePage } from './pages/TimelinePage';
 import { TabsPage } from './pages/TabsPage';
 import { TagPage } from './pages/TagPage';
 import { TooltipPage } from './pages/TooltipPage';
@@ -51,6 +52,7 @@ type PageKey =
   | 'spin'
   | 'steps'
   | 'switch'
+  | 'timeline'
   | 'tabs'
   | 'tag'
   | 'tooltip'
@@ -82,6 +84,7 @@ function currentPage(): PageKey {
     'spin',
     'steps',
     'switch',
+    'timeline',
     'tabs',
     'tag',
     'tooltip',
@@ -94,7 +97,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'divider', 'empty', 'input', 'modal', 'pagination', 'progress', 'select', 'skeleton', 'spin', 'steps', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'divider', 'empty', 'input', 'modal', 'pagination', 'progress', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -134,6 +137,7 @@ export default function App() {
     { key: 'spin', title: 'Spin 加载中', node: <SpinPage /> },
     { key: 'steps', title: 'Steps 步骤条', node: <StepsPage /> },
     { key: 'switch', title: 'Switch 开关', node: <SwitchPage /> },
+    { key: 'timeline', title: 'Timeline 时间轴', node: <TimelinePage /> },
     { key: 'tabs', title: 'Tabs 标签页', node: <TabsPage /> },
     { key: 'checkbox', title: 'Checkbox 复选框', node: <CheckboxPage /> },
     { key: 'form', title: 'Form 表单', node: <FormPage /> },
