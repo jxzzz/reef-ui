@@ -16,6 +16,7 @@ import { GuidePage } from './pages/GuidePage';
 import { HomePage } from './pages/Home';
 import { IconPage } from './pages/IconPage';
 import { InputPage } from './pages/InputPage';
+import { MessagePage } from './pages/MessagePage';
 import { ModalPage } from './pages/ModalPage';
 import { PaginationPage } from './pages/PaginationPage';
 import { SegmentedPage } from './pages/SegmentedPage';
@@ -49,6 +50,7 @@ type PageKey =
   | 'empty'
   | 'form'
   | 'input'
+  | 'message'
   | 'modal'
   | 'pagination'
   | 'segmented'
@@ -85,6 +87,7 @@ function currentPage(): PageKey {
     'empty',
     'form',
     'input',
+    'message',
     'modal',
     'pagination',
     'segmented',
@@ -109,7 +112,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'descriptions', 'divider', 'drawer', 'empty', 'input', 'modal', 'pagination', 'segmented', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'descriptions', 'divider', 'drawer', 'empty', 'input', 'message', 'modal', 'pagination', 'segmented', 'progress', 'result', 'select', 'skeleton', 'spin', 'steps', 'switch', 'timeline', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -143,6 +146,7 @@ export default function App() {
     { key: 'drawer', title: 'Drawer 抽屉', node: <DrawerPage /> },
     { key: 'empty', title: 'Empty 空状态', node: <EmptyPage /> },
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
+    { key: 'message', title: 'Message 全局提示', node: <MessagePage /> },
     { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },
     { key: 'pagination', title: 'Pagination 分页', node: <PaginationPage /> },
     { key: 'segmented', title: 'Segmented 分段控制器', node: <SegmentedPage /> },

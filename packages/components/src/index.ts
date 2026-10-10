@@ -14,6 +14,7 @@ export * from './empty';
 export * from './form';
 export * from './icon';
 export * from './input';
+export * from './message';
 export * from './modal';
 export * from './pagination';
 export * from './progress';
