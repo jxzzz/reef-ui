@@ -14,6 +14,7 @@ export * from './modal';
 export * from './pagination';
 export * from './radio';
 export * from './select';
+export * from './steps';
 export * from './switch';
 export * from './tabs';
 export * from './tag';

@@ -1,0 +1,92 @@
+.reef-steps {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reef-steps__item {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.reef-steps__item:last-child {
+  flex: none;
+}
+
+/* 连接线：完成后变品牌色 */
+.reef-steps__item:not(:last-child)::after {
+  flex: 1;
+  height: 1px;
+  margin: 0 var(--reef-space-sm);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 15%, transparent);
+  content: '';
+}
+
+.reef-steps__item--finish:not(:last-child)::after {
+  background: var(--reef-color-brand);
+}
+
+.reef-steps__head {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 25%, transparent);
+  border-radius: var(--reef-radius-full);
+  background: var(--reef-color-surface);
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-steps__item--process .reef-steps__head {
+  border-color: var(--reef-color-brand);
+  background: var(--reef-color-brand);
+  color: var(--reef-color-surface);
+}
+
+.reef-steps__item--finish .reef-steps__head {
+  border-color: var(--reef-color-brand);
+  color: var(--reef-color-brand);
+}
+
+.reef-steps__text {
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--reef-space-sm);
+}
+
+.reef-steps__title {
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+}
+
+.reef-steps__item--process .reef-steps__title {
+  color: var(--reef-color-brand);
+  font-weight: 600;
+}
+
+.reef-steps__description {
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
+}
+
+/* 可点击项：指针 + 悬停反馈 */
+.reef-steps__item[tabindex='0'] {
+  cursor: pointer;
+}
+
+.reef-steps__item[tabindex='0'] .reef-steps__head:hover {
+  border-color: var(--reef-color-brand-hover);
+  color: var(--reef-color-brand-hover);
+}
+
+.reef-steps__item[tabindex='0']:focus-visible {
+  outline: 2px solid var(--reef-color-brand);
+  outline-offset: 2px;
+  border-radius: var(--reef-radius-sm);
+}
