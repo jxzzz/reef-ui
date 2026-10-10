@@ -80,6 +80,12 @@ body {
   color: var(--reef-color-text-secondary);
 }
 
+/* Scroll 组件的滑块贴容器右缘，而侧栏有 16px 右内边距：
+   把 bar 拉出去贴住侧栏边框（hover 加粗朝左扩展，沿轴不跳） */
+.docs__sidebar .reef-scroll__bar--y {
+  right: -14px;
+}
+
 .docs__main {
   display: flex;
   flex-direction: column;
