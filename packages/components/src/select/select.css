@@ -3,14 +3,6 @@
   display: inline-block;
 }
 
-.reef-select--block {
-  display: block;
-}
-
-.reef-select--block .reef-select__trigger {
-  width: 100%;
-}
-
 .reef-select__trigger {
   display: inline-flex;
   align-items: center;
@@ -31,14 +23,28 @@
     box-shadow 0.15s;
 }
 
-.reef-select__trigger:hover:not(:disabled) {
-  border-color: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
+.reef-select--block {
+  display: block;
+}
+
+.reef-select--block .reef-select__trigger {
+  width: 100%;
 }
 
 .reef-select__trigger:focus-visible {
   outline: none;
   border-color: var(--reef-color-brand);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-select__trigger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* 聚焦时不套用悬停色，避免盖掉品牌色聚焦边框 */
+.reef-select__trigger:hover:not(:disabled, :focus) {
+  border-color: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
 }
 
 .reef-select__trigger--open,
@@ -50,11 +56,6 @@
 .reef-select__trigger--invalid,
 .reef-select__trigger--invalid:hover:not(:disabled) {
   border-color: var(--reef-color-danger);
-}
-
-.reef-select__trigger:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
 }
 
 .reef-select__trigger--small {

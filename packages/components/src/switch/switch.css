@@ -12,23 +12,23 @@
   transition: background 0.2s;
 }
 
-.reef-switch:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
-}
-
 .reef-switch:focus-visible {
   outline: 2px solid var(--reef-color-brand);
   outline-offset: 2px;
 }
 
-.reef-switch--on,
-.reef-switch--on:hover:not(:disabled) {
-  background: var(--reef-color-brand);
-}
-
 .reef-switch:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+.reef-switch:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
+}
+
+.reef-switch--on,
+.reef-switch--on:hover:not(:disabled) {
+  background: var(--reef-color-brand);
 }
 
 .reef-switch__thumb {

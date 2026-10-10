@@ -1,58 +1,57 @@
 .reef-form {
+  /* 字段间距由 FormItem 常驻的提示行提供（6 + 18 = 24px），不再额外加 gap */
   display: flex;
   flex-direction: column;
-  /* 字段间距由 FormItem 常驻的提示行提供（6 + 18 = 24px），不再额外加 gap */
   gap: 0;
 }
 
 .reef-form--inline {
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   align-items: center;
   gap: var(--reef-space-md);
 }
 
-.reef-form-item {
+.reef-formitem {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.reef-form--horizontal .reef-form-item {
+.reef-form--horizontal .reef-formitem {
   flex-direction: row;
   align-items: flex-start;
   gap: var(--reef-space-md);
 }
 
-.reef-form--horizontal .reef-form-item__head {
-  padding-top: 8px; /* 与 medium 输入框基线对齐 */
-  flex-shrink: 0;
-  min-width: 72px;
-}
-
-.reef-form-item__head {
+.reef-formitem__head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 8px;
 }
 
-.reef-form-item__label {
+.reef-form--horizontal .reef-formitem__head {
+  padding-top: 8px; /* 与 medium 输入框基线对齐 */
+  flex-shrink: 0;
+  min-width: 72px;
+}
+
+.reef-formitem__label {
   font-size: var(--reef-font-size-md);
   color: var(--reef-color-text-primary);
 }
 
-.reef-form-item__help {
+.reef-formitem__help {
   font-size: var(--reef-font-size-sm);
   color: var(--reef-color-text-secondary);
 }
 
-.reef-form-item__required {
+.reef-formitem__required {
   margin-right: 4px;
   color: var(--reef-color-danger);
 }
 
-.reef-form-item__control {
+.reef-formitem__control {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -60,42 +59,39 @@
   min-width: 0;
 }
 
-.reef-form--inline .reef-form-item {
+/* 行内布局不占行：错误信息绝对定位在字段下方 */
+.reef-form--inline .reef-formitem {
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  position: relative;
 }
 
-.reef-form--inline .reef-form-item__label {
+.reef-form--inline .reef-formitem__label {
   flex-shrink: 0;
 }
 
-.reef-form--inline .reef-form-item__control {
+.reef-form--inline .reef-formitem__control {
   flex-direction: row;
   align-items: center;
 }
 
-/* 行内布局不占行：错误信息绝对定位在字段下方 */
-.reef-form--inline .reef-form-item {
-  position: relative;
-}
-
-.reef-form--inline .reef-form-item__message {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  margin-top: 2px;
-  white-space: nowrap;
-  min-height: 0;
-}
-
-.reef-form-item__message {
+.reef-formitem__message {
   min-height: 18px; /* 常驻占位一行，错误出现时不挤动布局 */
   font-size: var(--reef-font-size-sm);
   line-height: 1.5;
   color: var(--reef-color-text-secondary);
 }
 
-.reef-form-item__message--error {
+.reef-formitem__message--error {
   color: var(--reef-color-danger);
+}
+
+.reef-form--inline .reef-formitem__message {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  white-space: nowrap;
+  min-height: 0;
 }

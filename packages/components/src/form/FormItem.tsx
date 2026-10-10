@@ -19,29 +19,29 @@ export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
     return (
       <div
         ref={ref}
-        className={cn('reef-form-item', { 'reef-form-item--error': !!message }, className)}
+        className={cn('reef-formitem', { 'reef-formitem--error': !!message }, className)}
         {...rest}
       >
         {label && (
-          <div className="reef-form-item__head">
-            <label className="reef-form-item__label" htmlFor={htmlFor}>
+          <div className="reef-formitem__head">
+            <label className="reef-formitem__label" htmlFor={htmlFor}>
               {required && (
-                <span className="reef-form-item__required" aria-hidden="true">
+                <span className="reef-formitem__required" aria-hidden="true">
                   *
                 </span>
               )}
               {label}
             </label>
             {/* help 显示在标签右上角，不占下方提示行 */}
-            {help && <span className="reef-form-item__help">{help}</span>}
+            {help && <span className="reef-formitem__help">{help}</span>}
           </div>
         )}
-        <div className="reef-form-item__control">
+        <div className="reef-formitem__control">
           {children}
           {/* 始终渲染，空时也占一行高度，避免错误出现时布局跳动 */}
           <div
-            className={cn('reef-form-item__message', {
-              'reef-form-item__message--error': !!message,
+            className={cn('reef-formitem__message', {
+              'reef-formitem__message--error': !!message,
             })}
             role={message ? 'alert' : undefined}
           >
