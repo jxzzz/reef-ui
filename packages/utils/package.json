@@ -8,7 +8,9 @@
     "types": "./dist/index.d.ts",
     "import": "./dist/index.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean",
     "typecheck": "tsc --noEmit"
@@ -18,5 +20,19 @@
   },
   "devDependencies": {
     "tsup": "^8.3.0"
-  }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxzzz/reef-ui.git"
+  },
+  "homepage": "https://github.com/jxzzz/reef-ui#readme",
+  "bugs": {
+    "url": "https://github.com/jxzzz/reef-ui/issues"
+  },
+  "description": "Reef UI 内部工具函数（cn/clsx helper）",
+  "keywords": [
+    "utils",
+    "classnames"
+  ]
 }

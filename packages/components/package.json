@@ -42,5 +42,25 @@
     "react-dom": "^18.3.1",
     "tsup": "^8.3.0",
     "vitest": "^2.1.1"
-  }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxzzz/reef-ui.git"
+  },
+  "homepage": "https://github.com/jxzzz/reef-ui#readme",
+  "bugs": {
+    "url": "https://github.com/jxzzz/reef-ui/issues"
+  },
+  "description": "Reef UI React 组件库 —— 中后台场景的开源组件（React component library for admin dashboards）",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "component-library",
+    "admin",
+    "dashboard",
+    "typescript",
+    "react-components"
+  ]
 }
