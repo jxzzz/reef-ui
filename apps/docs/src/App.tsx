@@ -7,6 +7,7 @@ import { BreadcrumbPage } from './pages/BreadcrumbPage';
 import { ButtonPage } from './pages/ButtonPage';
 import { CardPage } from './pages/CardPage';
 import { CheckboxPage } from './pages/CheckboxPage';
+import { EmptyPage } from './pages/EmptyPage';
 import { FormPage } from './pages/FormPage';
 import { GuidePage } from './pages/GuidePage';
 import { HomePage } from './pages/Home';
@@ -34,6 +35,7 @@ type PageKey =
   | 'button'
   | 'card'
   | 'checkbox'
+  | 'empty'
   | 'form'
   | 'input'
   | 'modal'
@@ -61,6 +63,7 @@ function currentPage(): PageKey {
     'button',
     'card',
     'checkbox',
+    'empty',
     'form',
     'input',
     'modal',
@@ -82,7 +85,7 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件 / 资源 分组
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'input', 'modal', 'pagination', 'progress', 'select', 'steps', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
+  { label: '组件', keys: ['alert', 'avatar', 'badge', 'breadcrumb', 'button', 'card', 'empty', 'input', 'modal', 'pagination', 'progress', 'select', 'steps', 'switch', 'tabs', 'checkbox', 'form', 'radio', 'tag', 'tooltip'] },
   { label: '资源', keys: ['icon', 'typography'] },
 ] as const;
 
@@ -111,6 +114,7 @@ export default function App() {
     { key: 'breadcrumb', title: 'Breadcrumb 面包屑', node: <BreadcrumbPage /> },
     { key: 'button', title: 'Button 按钮', node: <ButtonPage /> },
     { key: 'card', title: 'Card 卡片', node: <CardPage /> },
+    { key: 'empty', title: 'Empty 空状态', node: <EmptyPage /> },
     { key: 'input', title: 'Input 输入框', node: <InputPage /> },
     { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },
     { key: 'pagination', title: 'Pagination 分页', node: <PaginationPage /> },

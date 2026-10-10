@@ -1,0 +1,26 @@
+.reef-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--reef-space-sm);
+  padding: var(--reef-space-xl) 0;
+}
+
+.reef-empty__art {
+  width: 64px;
+  height: 41px;
+  fill: none;
+  stroke: color-mix(in srgb, var(--reef-color-text-disabled) 60%, transparent);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.reef-empty__description {
+  margin: 0;
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-empty__action {
+  margin-top: var(--reef-space-xs);
+}
