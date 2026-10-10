@@ -1,0 +1,28 @@
+.reef-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-brand) 12%, transparent);
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-brand);
+  user-select: none;
+}
+
+.reef-avatar--square {
+  border-radius: var(--reef-radius-md);
+}
+
+.reef-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reef-avatar__fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
