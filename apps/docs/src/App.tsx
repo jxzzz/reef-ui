@@ -112,7 +112,8 @@ function currentPage(): PageKey {
 // 企业级文档站结构：使用指南 / 组件（按用途分 5 组）/ 资源
 const groups = [
   { label: '指南', keys: ['guide'] },
-  { label: '通用', keys: ['button', 'divider', 'icon', 'typography'] },
+  { label: '资源', keys: ['icon', 'typography'] },
+  { label: '通用', keys: ['button', 'divider'] },
   { label: '数据录入', keys: ['checkbox', 'form', 'input', 'radio', 'segmented', 'select', 'switch'] },
   { label: '数据展示', keys: ['avatar', 'badge', 'card', 'descriptions', 'empty', 'tag', 'timeline', 'tooltip'] },
   { label: '反馈', keys: ['alert', 'drawer', 'message', 'modal', 'progress', 'result', 'skeleton', 'spin'] },
