@@ -41,4 +41,22 @@ describe('Segmented', () => {
     render(<Segmented options={OPTIONS} defaultValue="month" />);
     expect(screen.getByRole('radio', { name: '月' }).getAttribute('aria-checked')).toBe('true');
   });
+
+  test('方向键移动选中（循环），非选中项 roving tabindex=-1', async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+    render(<Segmented options={OPTIONS} onChange={onChange} />);
+    const day = screen.getByRole('radio', { name: '日' });
+    expect(day.tabIndex).toBe(0);
+    expect(screen.getByRole('radio', { name: '月' }).tabIndex).toBe(-1);
+
+    day.focus();
+    await user.keyboard('{ArrowRight}');
+    expect(onChange).toHaveBeenLastCalledWith('week');
+    expect(screen.getByRole('radio', { name: '周' }).getAttribute('aria-checked')).toBe('true');
+    await user.keyboard('{ArrowLeft}');
+    await user.keyboard('{ArrowLeft}');
+    expect(onChange).toHaveBeenLastCalledWith('month');
+    expect(screen.getByRole('radio', { name: '月' }).getAttribute('aria-checked')).toBe('true');
+  });
 });
