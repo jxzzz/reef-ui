@@ -501,13 +501,22 @@ body {
 
 .code-block__reveal pre {
   margin: 0;
-  padding: 16px 24px;
+  padding: 14px 20px;
+  /* 与行内 code 同栈：不设的话 pre 落到浏览器默认等宽（Windows 为 Courier New），观感差 */
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
   /* 跟随主题的浅底：高亮 token 用主题色，暗色模式随 token 一起翻转 */
-  background: color-mix(in srgb, var(--reef-color-text-primary) 4%, var(--reef-color-surface));
+  background: color-mix(in srgb, var(--reef-color-text-primary) 3%, var(--reef-color-surface));
   color: var(--reef-color-text-primary);
-  font-size: var(--reef-font-size-sm);
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.7;
+  /* 内嵌阴影：代码区轻微下沉感 */
+  box-shadow: inset 0 1px 2px color-mix(in srgb, var(--reef-color-text-primary) 4%, transparent);
   overflow-x: auto;
+}
+
+/* demo 容器不裁剪（要放弹出层），代码区作为最后一段自行收底部圆角 */
+.demo .code-block__reveal pre {
+  border-radius: 0 0 var(--reef-radius-lg) var(--reef-radius-lg);
 }
 
 /* Prism token 主题：全部取自主题色，暗色模式自动适配 */
@@ -543,31 +552,31 @@ body {
   font-style: italic;
 }
 
-/* demo 底部操作栏：语言标签 + 展开代码 / 复制 */
+/* 顶部标题栏：语言标签在左，展开/复制在右 */
 .code-block__actions {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 4px;
-  padding: 6px 12px;
-  border-top: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  gap: 2px;
+  padding: 5px 8px 5px 16px;
 }
 
 .code-block__lang {
   margin-right: auto;
   font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
   font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--reef-color-text-disabled);
+  letter-spacing: 0.08em;
+  color: var(--reef-color-text-secondary);
+  opacity: 0.7;
 }
 
 .code-block__btn {
-  padding: 5px 10px;
+  padding: 4px 10px;
   border: none;
   border-radius: var(--reef-radius-sm);
   background: transparent;
   color: var(--reef-color-text-secondary);
-  font-size: var(--reef-font-size-sm);
+  font-size: 12px;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
@@ -575,6 +584,19 @@ body {
 .code-block__btn:hover {
   background: color-mix(in srgb, var(--reef-color-text-primary) 6%, transparent);
   color: var(--reef-color-text-primary);
+}
+
+/* 独立代码块（demo 之外的，如使用指南）自己收口成卡片；demo 内由外层容器包边 */
+.docs__content .code-block {
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-sm);
+  overflow: hidden;
+}
+
+/* demo 内的代码块是 demo 卡片的底部段落，不要自己的边框 */
+.demo .code-block {
+  border: none;
+  border-radius: 0;
 }
 
 /* ---- 落地页首页 ---- */

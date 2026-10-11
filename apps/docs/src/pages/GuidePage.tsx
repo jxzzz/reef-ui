@@ -17,6 +17,7 @@ const usageCode: Record<Lang, string> = {
 import '@reef-ui/components/style.css';
 
 export default function App() {
+  const handleSubmit = () => {};
   return <Button variant="primary" onClick={handleSubmit}>提交</Button>;
 }`,
   en: `import { Button } from '@reef-ui/components';
@@ -24,6 +25,7 @@ export default function App() {
 import '@reef-ui/components/style.css';
 
 export default function App() {
+  const handleSubmit = () => {};
   return <Button variant="primary" onClick={handleSubmit}>Submit</Button>;
 }`,
 };
@@ -64,7 +66,7 @@ export function GuidePage() {
   const { lang } = useLang();
   const zh = lang === 'zh';
 
-  const steps: Array<{ title: string; desc: ReactNode; code: string }> = [
+  const steps: Array<{ title: string; desc: ReactNode; code: string; lang?: 'tsx' | 'bash' }> = [
     {
       title: zh ? '安装' : 'Install',
       desc: (
@@ -81,6 +83,7 @@ export function GuidePage() {
         </>
       ),
       code: installCode[lang],
+      lang: 'bash',
     },
     {
       title: zh ? '引入样式' : 'Import styles',
@@ -120,7 +123,7 @@ export function GuidePage() {
           <div className="guide-step__body">
             <h3>{step.title}</h3>
             <p>{step.desc}</p>
-            <CodeBlock code={step.code} />
+            <CodeBlock code={step.code} lang={step.lang} defaultExpanded />
           </div>
         </section>
       ))}
@@ -131,7 +134,7 @@ export function GuidePage() {
           ? '覆盖 Design Token 即可换成品牌主题，CSS 变量是运行时生效的，改完刷新即见，无需重新编译。'
           : 'Override Design Tokens to rebrand. CSS variables apply at runtime — refresh and it is live, no recompilation.'}
       </p>
-      <CodeBlock code={themeCode[lang]} />
+      <CodeBlock code={themeCode[lang]} defaultExpanded />
       <div className="guide-tokens">
         {swatches.map(([name, desc]) => (
           <div className="guide-token" key={name}>
@@ -157,7 +160,7 @@ export function GuidePage() {
           </>
         )}
       </p>
-      <CodeBlock code={darkCode[lang]} />
+      <CodeBlock code={darkCode[lang]} defaultExpanded />
     </>
   );
 }

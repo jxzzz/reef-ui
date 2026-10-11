@@ -2,6 +2,10 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Icon, Input } from '@reef-ui/components';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
+// prism-tsx 依赖 typescript 语法，须先引入
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-bash';
 import { groupLabel, useChrome, useLang } from './i18n';
 
 /** 搜索输入框：基于库内 Input（prefix 图标 + clearable），Esc 清空 */
@@ -31,12 +35,25 @@ export function SearchInput({
 }
 
 /** 可复制、可折叠（默认收起）的代码块：操作栏在下方，代码展开时追加在操作栏之后 */
-export function CodeBlock({ code, defaultExpanded = false }: { code: string; defaultExpanded?: boolean }) {
+export function CodeBlock({
+  code,
+  lang = 'tsx',
+  defaultExpanded = false,
+}: {
+  code: string;
+  /** 代码语言，决定语法高亮与标题栏标签 */
+  lang?: 'tsx' | 'bash';
+  defaultExpanded?: boolean;
+}) {
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(defaultExpanded);
   const t = useChrome();
 
-  const html = useMemo(() => Prism.highlight(code, Prism.languages.jsx, 'jsx'), [code]);
+  const html = useMemo(
+    // 语法包未注册时回退 jsx，避免 Prism.highlight 抛错
+    () => Prism.highlight(code, Prism.languages[lang] ?? Prism.languages.jsx, lang),
+    [code, lang],
+  );
 
   const copy = async () => {
     await navigator.clipboard.writeText(code);
@@ -46,6 +63,16 @@ export function CodeBlock({ code, defaultExpanded = false }: { code: string; def
 
   return (
     <div className="code-block">
+      {/* 顶部标题栏：语言标签 + 展开/复制，先于代码区渲染 */}
+      <div className="code-block__actions">
+        <span className="code-block__lang">{lang.toUpperCase()}</span>
+        <button className="code-block__btn" onClick={() => setExpanded(!expanded)}>
+          {expanded ? t.collapse : t.expand}
+        </button>
+        <button className="code-block__btn" onClick={copy}>
+          {copied ? t.copied : t.copy}
+        </button>
+      </div>
       {/* grid 0fr→1fr 过渡实现平滑的高度展开/收起，组件保持挂载 */}
       <div className={expanded ? 'code-block__reveal code-block__reveal--open' : 'code-block__reveal'}>
         <div className="code-block__clip">
@@ -54,15 +81,6 @@ export function CodeBlock({ code, defaultExpanded = false }: { code: string; def
             <code dangerouslySetInnerHTML={{ __html: html }} />
           </pre>
         </div>
-      </div>
-      <div className="code-block__actions">
-        <span className="code-block__lang">TSX</span>
-        <button className="code-block__btn" onClick={() => setExpanded(!expanded)}>
-          {expanded ? t.collapse : t.expand}
-        </button>
-        <button className="code-block__btn" onClick={copy}>
-          {copied ? t.copied : t.copy}
-        </button>
       </div>
     </div>
   );
