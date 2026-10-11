@@ -17,6 +17,7 @@ import { CheckboxPage } from './pages/CheckboxPage';
 import { EmptyPage } from './pages/EmptyPage';
 import { FormPage } from './pages/FormPage';
 import { GuidePage } from './pages/GuidePage';
+import { ChangelogPage } from './pages/ChangelogPage';
 import { HomePage } from './pages/Home';
 import { IconPage } from './pages/IconPage';
 import { InputPage } from './pages/InputPage';
@@ -49,6 +50,7 @@ const pages = [
   // 首页是独立落地页（自带顶部导航，提前 return），node 永远不会渲染
   { key: 'home', title: '首页', group: null, node: null },
   { key: 'guide', title: '使用指南', group: '指南', node: <GuidePage /> },
+  { key: 'changelog', title: '更新记录', group: '指南', node: <ChangelogPage /> },
   { key: 'icon', title: 'Icon 图标', group: '资源', node: <IconPage /> },
   { key: 'typography', title: 'Typography 排版', group: '资源', node: <TypographyPage /> },
   { key: 'button', title: 'Button 按钮', group: '通用', node: <ButtonPage /> },

@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/gen-changelog.mjs && vite build",
+    "gen:changelog": "node scripts/gen-changelog.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
