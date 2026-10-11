@@ -1,0 +1,73 @@
+.reef-table {
+  overflow-x: auto;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+}
+
+.reef-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-primary);
+}
+
+.reef-table__cell {
+  padding: 10px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.reef-table__cell--ellipsis {
+  overflow: hidden;
+  max-width: 0;
+  text-overflow: ellipsis;
+}
+
+.reef-table__cell--center {
+  text-align: center;
+}
+
+.reef-table__cell--right {
+  text-align: right;
+}
+
+.reef-table thead .reef-table__cell {
+  background: var(--reef-color-surface);
+  color: var(--reef-color-text-secondary);
+  font-weight: 500;
+  border-bottom: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+}
+
+.reef-table tbody .reef-table__cell {
+  border-bottom: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+}
+
+.reef-table tbody tr:last-child .reef-table__cell {
+  border-bottom: none;
+}
+
+.reef-table tbody tr:hover {
+  background: color-mix(in srgb, var(--reef-color-brand) 4%, transparent);
+}
+
+.reef-table__cell--sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.reef-table__sorter {
+  margin-left: 4px;
+  font-size: 12px;
+  opacity: 0.3;
+}
+
+.reef-table__sorter--active {
+  opacity: 1;
+  color: var(--reef-color-brand);
+}
+
+.reef-table__empty {
+  padding: 32px 12px;
+  text-align: center;
+  color: var(--reef-color-text-secondary);
+}

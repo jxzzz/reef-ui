@@ -29,6 +29,7 @@ import { ScrollPage } from './pages/ScrollPage';
 import { ResultPage } from './pages/ResultPage';
 import { RadioPage } from './pages/RadioPage';
 import { StepsPage } from './pages/StepsPage';
+import { TablePage } from './pages/TablePage';
 import { SwitchPage } from './pages/SwitchPage';
 import { TimelinePage } from './pages/TimelinePage';
 import { TabsPage } from './pages/TabsPage';
@@ -65,6 +66,7 @@ type PageKey =
   | 'spin'
   | 'steps'
   | 'switch'
+  | 'table'
   | 'timeline'
   | 'tabs'
   | 'tag'
@@ -103,6 +105,7 @@ function currentPage(): PageKey {
     'spin',
     'steps',
     'switch',
+    'table',
     'timeline',
     'tabs',
     'tag',
@@ -119,7 +122,7 @@ const groups = [
   { label: '资源', keys: ['icon', 'typography'] },
   { label: '通用', keys: ['button', 'divider', 'scroll'] },
   { label: '数据录入', keys: ['checkbox', 'form', 'input', 'radio', 'segmented', 'select', 'switch'] },
-  { label: '数据展示', keys: ['avatar', 'badge', 'card', 'descriptions', 'empty', 'tag', 'timeline', 'tooltip'] },
+  { label: '数据展示', keys: ['avatar', 'badge', 'card', 'descriptions', 'empty', 'table', 'tag', 'timeline', 'tooltip'] },
   { label: '反馈', keys: ['alert', 'drawer', 'message', 'modal', 'progress', 'result', 'skeleton', 'spin'] },
   { label: '导航', keys: ['breadcrumb', 'pagination', 'steps', 'tabs'] },
 ] as const;
@@ -167,6 +170,7 @@ export default function App() {
     { key: 'spin', title: 'Spin 加载中', node: <SpinPage /> },
     { key: 'steps', title: 'Steps 步骤条', node: <StepsPage /> },
     { key: 'switch', title: 'Switch 开关', node: <SwitchPage /> },
+    { key: 'table', title: 'Table 表格', node: <TablePage /> },
     { key: 'timeline', title: 'Timeline 时间轴', node: <TimelinePage /> },
     { key: 'tabs', title: 'Tabs 标签页', node: <TabsPage /> },
     { key: 'checkbox', title: 'Checkbox 复选框', node: <CheckboxPage /> },
