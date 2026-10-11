@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Breadcrumb, Icon, Menu, Scroll, type MenuItem } from '@reef-ui/components';
+// 版本号直接取组件包 package.json，发版随 changeset 自动更新
+import componentsPkg from '../../../packages/components/package.json';
 import { SearchInput } from './docs-ui';
 import { AlertPage } from './pages/AlertPage';
 import { AvatarPage } from './pages/AvatarPage';
@@ -136,7 +138,9 @@ export default function App() {
   return (
     <div className="docs">
       <aside className="docs__sidebar">
-        <a className="docs__logo" href="#home">Reef UI</a>
+        <a className="docs__logo" href="#home">
+          Reef UI <span className="docs__version">v{componentsPkg.version}</span>
+        </a>
         <SearchInput value={query} onChange={setQuery} placeholder="搜索组件…" />
         {/* flex:1 + minHeight:0：flex 列里滚动的前提是允许收缩到内容以下 */}
         <Scroll style={{ flex: 1, minHeight: 0 }}>

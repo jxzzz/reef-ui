@@ -37,6 +37,14 @@ body {
   color: var(--reef-color-brand);
 }
 
+.docs__version {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--reef-color-text-secondary);
+  opacity: 0.7;
+}
+
 /* 侧栏导航由 Menu 组件渲染，容器级调整节奏：
    条目间留呼吸感，分组标题还原原先的小字 + 组间留白；
    容器留白由 .docs__sidebar 提供，这里不再叠加 */

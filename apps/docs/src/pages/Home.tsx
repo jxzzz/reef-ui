@@ -1,4 +1,6 @@
 import { Icon } from '@reef-ui/components';
+// 版本号直接取组件包 package.json，发版随 changeset 自动更新
+import componentsPkg from '../../../../packages/components/package.json';
 
 const entries = [
   {
@@ -87,7 +89,7 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
         <div className="landing__nav-inner">
           <a className="landing__brand" href="#home">
             Reef UI
-            <span className="landing__version">v0.1</span>
+            <span className="landing__version">v{componentsPkg.version}</span>
           </a>
           <nav className="landing__links" aria-label="站点导航">
             <a href="#button">组件</a>
