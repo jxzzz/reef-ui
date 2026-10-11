@@ -199,6 +199,71 @@ body {
   color: var(--reef-color-brand);
 }
 
+/* 使用指南：编号步骤（真实序列：安装 → 引入样式 → 使用组件） */
+.guide-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  margin: 36px 0;
+}
+
+.guide-step__num {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--reef-radius-full);
+  display: grid;
+  place-items: center;
+  margin-top: 2px;
+  background: var(--reef-color-brand);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.guide-step__body h3 {
+  margin: 4px 0 6px;
+  font-size: 17px;
+}
+
+.guide-step__body p {
+  margin: 0 0 12px;
+}
+
+/* 使用指南：主题 Token 色卡（色值取自当前主题变量，暗色模式自动跟随） */
+.guide-tokens {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 16px 0 8px;
+}
+
+.guide-token {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+}
+
+.guide-token__swatch {
+  height: 40px;
+  margin-bottom: 8px;
+  border-radius: var(--reef-radius-sm);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);
+}
+
+.guide-token__name {
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+  font-size: 12px;
+  color: var(--reef-color-text-primary);
+}
+
+.guide-token__desc {
+  font-size: 12px;
+  color: var(--reef-color-text-secondary);
+}
+
 /* 底部上一篇/下一篇 */
 .docs__pager {
   display: flex;
