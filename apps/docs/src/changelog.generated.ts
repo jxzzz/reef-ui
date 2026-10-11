@@ -7,6 +7,20 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    "version": "未发布",
+    "date": "开发中",
+    "items": [
+      {
+        "type": "新增",
+        "text": "[components] 新增 Popconfirm/Slider/Rate/TimePicker 组件"
+      },
+      {
+        "type": "修复",
+        "text": "[components] 修复 checkbox 暗色模式对勾常显与 divider 虚线过淡"
+      }
+    ]
+  },
+  {
     "version": "0.3.0",
     "date": "2026-10-11",
     "items": [
