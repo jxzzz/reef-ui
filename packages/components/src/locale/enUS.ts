@@ -1,0 +1,29 @@
+import type { Locale } from './types';
+
+export const enUS: Locale = {
+  Breadcrumb: { nav: 'Breadcrumb' },
+  Select: { placeholder: 'Select' },
+  DatePicker: {
+    placeholder: 'Select date',
+    startPlaceholder: 'Start date',
+    endPlaceholder: 'End date',
+    prevYear: 'Previous year',
+    prevMonth: 'Previous month',
+    nextMonth: 'Next month',
+    nextYear: 'Next year',
+    calendar: 'Calendar',
+    weekdays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    weekStart: 0,
+    yearMonth: (y, m) => `${new Date(y, m, 1).toLocaleString('en-US', { month: 'long' })} ${y}`,
+  },
+  Table: { empty: 'No data' },
+  Empty: { description: 'No data' },
+  Spin: { loading: 'Loading' },
+  Pagination: { nav: 'Pagination', prevPage: 'Previous page', nextPage: 'Next page', page: (n) => `Page ${n}` },
+  Input: { clear: 'Clear' },
+  InputNumber: { increase: 'Increase', decrease: 'Decrease' },
+  Tag: { close: 'Close' },
+  Alert: { close: 'Close' },
+  Modal: { close: 'Close' },
+  Message: { close: 'Close' },
+};

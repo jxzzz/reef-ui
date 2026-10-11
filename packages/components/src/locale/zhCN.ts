@@ -1,0 +1,29 @@
+import type { Locale } from './types';
+
+export const zhCN: Locale = {
+  Breadcrumb: { nav: '面包屑' },
+  Select: { placeholder: '请选择' },
+  DatePicker: {
+    placeholder: '请选择日期',
+    startPlaceholder: '开始日期',
+    endPlaceholder: '结束日期',
+    prevYear: '上一年',
+    prevMonth: '上一月',
+    nextMonth: '下一月',
+    nextYear: '下一年',
+    calendar: '日历',
+    weekdays: ['一', '二', '三', '四', '五', '六', '日'],
+    weekStart: 1,
+    yearMonth: (y, m) => `${y}年${m + 1}月`,
+  },
+  Table: { empty: '暂无数据' },
+  Empty: { description: '暂无数据' },
+  Spin: { loading: '加载中' },
+  Pagination: { nav: '分页', prevPage: '上一页', nextPage: '下一页', page: (n) => `第 ${n} 页` },
+  Input: { clear: '清空' },
+  InputNumber: { increase: '增加', decrease: '减少' },
+  Tag: { close: '关闭' },
+  Alert: { close: '关闭' },
+  Modal: { close: '关闭' },
+  Message: { close: '关闭' },
+};

@@ -1,10 +1,12 @@
 import { cn } from '@reef-ui/utils';
+import { useLocale } from '../locale';
 import type { BreadcrumbProps } from './types';
 import './breadcrumb.css';
 
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
+  const t = useLocale();
   return (
-    <nav aria-label="面包屑" className={cn('reef-breadcrumb', className)}>
+    <nav aria-label={t.Breadcrumb.nav} className={cn('reef-breadcrumb', className)}>
       <ol className="reef-breadcrumb__list">
         {items.map((item, i) => {
           const isLast = i === items.length - 1;

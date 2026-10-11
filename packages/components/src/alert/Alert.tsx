@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { useLocale } from '../locale';
 import type { AlertProps } from './types';
 import './alert.css';
 
 export function Alert({ type = 'info', title, closable = false, onClose, className, children }: AlertProps) {
   const [visible, setVisible] = useState(true);
+  const t = useLocale();
 
   if (!visible) return null;
 
@@ -16,7 +18,7 @@ export function Alert({ type = 'info', title, closable = false, onClose, classNa
           <button
             type="button"
             className="reef-alert__close"
-            aria-label="关闭"
+            aria-label={t.Alert.close}
             onClick={() => {
               setVisible(false);
               onClose?.();

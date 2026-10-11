@@ -1,5 +1,3 @@
-import type * as React from 'react';
-
 /** 日期一律用 YYYY-MM-DD 字符串，与 Form 的 FormData 读取天然兼容 */
 export type DateString = string;
 

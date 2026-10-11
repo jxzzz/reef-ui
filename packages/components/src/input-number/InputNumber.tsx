@@ -2,6 +2,7 @@ import { forwardRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
 import { Input } from '../input';
+import { useLocale } from '../locale';
 import type { InputNumberProps, InputNumberValue } from './types';
 import './input-number.css';
 
@@ -24,6 +25,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
     },
     ref,
   ) => {
+    const t = useLocale();
     const [text, setText] = useState(() =>
       value !== undefined ? String(value) : defaultValue !== undefined ? String(defaultValue) : '',
     );
@@ -83,7 +85,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
             <button
               type="button"
               tabIndex={-1}
-              aria-label="增加"
+              aria-label={t.InputNumber.increase}
               disabled={disabled}
               className="reef-inputnumber__btn"
               onClick={() => stepBy(1)}
@@ -93,7 +95,7 @@ export const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
             <button
               type="button"
               tabIndex={-1}
-              aria-label="减少"
+              aria-label={t.InputNumber.decrease}
               disabled={disabled}
               className="reef-inputnumber__btn"
               onClick={() => stepBy(-1)}

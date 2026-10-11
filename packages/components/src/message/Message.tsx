@@ -1,10 +1,12 @@
 import { createPortal } from 'react-dom';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
+import { useLocale } from '../locale';
 import type { MessageProps } from './types';
 import './message.css';
 
 export function Message({ items, onClose, className }: MessageProps) {
+  const t = useLocale();
   if (items.length === 0) return null;
   return createPortal(
     <div role="status" className={cn('reef-message', className)}>
@@ -15,7 +17,7 @@ export function Message({ items, onClose, className }: MessageProps) {
             <button
               type="button"
               className="reef-message__close"
-              aria-label="关闭"
+              aria-label={t.Message.close}
               onClick={() => onClose(item.key)}
             >
               <Icon name="close" size={12} />

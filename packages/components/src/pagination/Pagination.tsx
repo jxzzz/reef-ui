@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { useLocale } from '../locale';
 import type { PaginationProps } from './types';
 import './pagination.css';
 
@@ -21,6 +22,7 @@ function pageItems(current: number, count: number): PageItem[] {
 }
 
 export function Pagination({ total, pageSize = 10, current, defaultCurrent = 1, onChange, className }: PaginationProps) {
+  const t = useLocale();
   const count = Math.max(1, Math.ceil(total / pageSize));
   const [inner, setInner] = useState(Math.min(defaultCurrent, count));
   // 越界直接钳制到 [1, count]，受控值过大时显示最后一页
@@ -33,11 +35,11 @@ export function Pagination({ total, pageSize = 10, current, defaultCurrent = 1, 
   };
 
   return (
-    <nav aria-label="分页" className={cn('reef-pagination', className)}>
+    <nav aria-label={t.Pagination.nav} className={cn('reef-pagination', className)}>
       <button
         type="button"
         className="reef-pagination__btn"
-        aria-label="上一页"
+        aria-label={t.Pagination.prevPage}
         disabled={page <= 1}
         onClick={() => go(page - 1)}
       >
@@ -51,7 +53,7 @@ export function Pagination({ total, pageSize = 10, current, defaultCurrent = 1, 
             key={item}
             type="button"
             className={cn('reef-pagination__btn', item === page && 'reef-pagination__btn--active')}
-            aria-label={`第 ${item} 页`}
+            aria-label={t.Pagination.page(item)}
             aria-current={item === page ? 'page' : undefined}
             onClick={() => go(item)}
           >
@@ -62,7 +64,7 @@ export function Pagination({ total, pageSize = 10, current, defaultCurrent = 1, 
       <button
         type="button"
         className="reef-pagination__btn"
-        aria-label="下一页"
+        aria-label={t.Pagination.nextPage}
         disabled={page >= count}
         onClick={() => go(page + 1)}
       >

@@ -16,6 +16,7 @@ export * from './form';
 export * from './icon';
 export * from './input';
 export * from './input-number';
+export * from './locale';
 export * from './message';
 export * from './modal';
 export * from './menu';

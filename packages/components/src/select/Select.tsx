@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { useLocale } from '../locale';
 import type { SelectProps } from './types';
 import './select.css';
 
@@ -10,7 +11,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       value,
       defaultValue,
       onChange,
-      placeholder = '请选择',
+      placeholder,
       disabled = false,
       size = 'medium',
       invalid = false,
@@ -20,6 +21,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
     },
     ref,
   ) => {
+    const t = useLocale();
     const [open, setOpen] = useState(false);
     const [inner, setInner] = useState(defaultValue);
     const [active, setActive] = useState(-1);
@@ -115,7 +117,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           onKeyDown={onKeyDown}
         >
           <span className={cn('reef-select__value', !selected && 'reef-select__value--placeholder')}>
-            {selected ? selected.label : placeholder}
+            {selected ? selected.label : (placeholder ?? t.Select.placeholder)}
           </span>
           <svg
             className={cn('reef-select__arrow', { 'reef-select__arrow--open': open })}

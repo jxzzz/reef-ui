@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
+import { useLocale } from '../locale';
 import { CalendarPanel } from './CalendarPanel';
 import { formatDate, parseDate } from './utils';
 import { useOpen } from './useOpen';
@@ -11,13 +12,14 @@ export function DatePicker({
   value,
   defaultValue,
   onChange,
-  placeholder = '请选择日期',
+  placeholder,
   disabled = false,
   invalid = false,
   block = false,
   isDisabled,
   className,
 }: DatePickerProps) {
+  const t = useLocale();
   const { open, setOpen, rootRef } = useOpen();
   const [inner, setInner] = useState(defaultValue);
   const current = value !== undefined ? value : inner;
@@ -37,7 +39,7 @@ export function DatePicker({
       <input
         type="text"
         readOnly
-        placeholder={placeholder}
+        placeholder={placeholder ?? t.DatePicker.placeholder}
         disabled={disabled}
         aria-haspopup="grid"
         aria-expanded={open}

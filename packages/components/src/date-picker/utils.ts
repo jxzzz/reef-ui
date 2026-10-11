@@ -14,16 +14,16 @@ export function parseDate(s: string | null): Date | null {
   return Number.isNaN(d.getTime()) || formatDate(d) !== s ? null : d;
 }
 
-/** 周一为一周起点 */
-export function startOfWeek(d: Date): Date {
+/** 一周起点（weekStart：0 周日、1 周一，默认周一） */
+export function startOfWeek(d: Date, weekStart: 0 | 1 = 1): Date {
   const r = new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  r.setDate(r.getDate() - ((r.getDay() + 6) % 7));
+  r.setDate(r.getDate() - ((r.getDay() - weekStart + 7) % 7));
   return r;
 }
 
 /** 当月网格 6 行 42 格（含前后月补位） */
-export function monthGrid(year: number, month: number): Date[] {
-  const start = startOfWeek(new Date(year, month, 1));
+export function monthGrid(year: number, month: number, weekStart: 0 | 1 = 1): Date[] {
+  const start = startOfWeek(new Date(year, month, 1), weekStart);
   return Array.from({ length: 42 }, (_, i) => {
     const d = new Date(start);
     d.setDate(start.getDate() + i);

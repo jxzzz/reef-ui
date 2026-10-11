@@ -1,6 +1,7 @@
 import { forwardRef, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
+import { useLocale } from '../locale';
 import type { InputProps } from './types';
 import './input.css';
 
@@ -24,6 +25,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ref,
   ) => {
     const innerRef = useRef<HTMLInputElement | null>(null);
+    const t = useLocale();
     const [hasContent, setHasContent] = useState(() => String(value ?? defaultValue ?? '').length > 0);
     const wrapped = clearable || prefix != null || suffix != null;
 
@@ -84,7 +86,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {prefix != null && <span className="reef-input__prefix">{prefix}</span>}
         {input}
         {clearable && hasContent && !disabled && (
-          <button type="button" className="reef-input__clear" aria-label="清空" onClick={clear}>
+          <button type="button" className="reef-input__clear" aria-label={t.Input.clear} onClick={clear}>
             <Icon name="close" size={10} />
           </button>
         )}

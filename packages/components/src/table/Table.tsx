@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { useLocale } from '../locale';
 import type { TableColumn, TableProps, TableSortOrder } from './types';
 import './table.css';
 
@@ -13,8 +14,9 @@ export function Table<T = Record<string, unknown>>({
   dataSource,
   rowKey,
   className,
-  empty = '暂无数据',
+  empty,
 }: TableProps<T>) {
+  const t = useLocale();
   const [sort, setSort] = useState<{ key: string; order: TableSortOrder } | null>(null);
 
   const rows = useMemo(() => {
@@ -100,7 +102,7 @@ export function Table<T = Record<string, unknown>>({
           {rows.length === 0 && (
             <tr>
               <td colSpan={columns.length} className="reef-table__empty">
-                {empty}
+                {empty ?? t.Table.empty}
               </td>
             </tr>
           )}

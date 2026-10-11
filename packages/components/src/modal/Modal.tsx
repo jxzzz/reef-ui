@@ -1,6 +1,7 @@
 import { useEffect, useRef, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@reef-ui/utils';
+import { useLocale } from '../locale';
 import type { ModalProps } from './types';
 import './modal.css';
 
@@ -8,6 +9,7 @@ const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabi
 
 export function Modal({ open, title, width = 480, footer, onClose, children, className }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const t = useLocale();
 
   useEffect(() => {
     if (!open) return;
@@ -63,7 +65,7 @@ export function Modal({ open, title, width = 480, footer, onClose, children, cla
         {title != null && (
           <div className="reef-modal__header">
             <h4 className="reef-modal__title">{title}</h4>
-            <button type="button" className="reef-modal__close" aria-label="关闭" onClick={() => onClose?.()}>
+            <button type="button" className="reef-modal__close" aria-label={t.Modal.close} onClick={() => onClose?.()}>
               ×
             </button>
           </div>

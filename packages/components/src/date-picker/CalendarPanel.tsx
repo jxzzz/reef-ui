@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
+import { useLocale } from '../locale';
 import { dayState, formatDate, isSameDay, monthGrid } from './utils';
-
-const WEEKDAYS = ['一', '二', '三', '四', '五', '六', '日'];
 
 /** 日历面板：受控的选中区间 [start, end]（单选传同一端点即可），点击回调完整新区间 */
 export function CalendarPanel({
@@ -15,6 +14,7 @@ export function CalendarPanel({
   onPick: (range: [Date | null, Date | null]) => void;
   isDisabled?: (date: Date) => boolean;
 }) {
+  const t = useLocale();
   const today = new Date();
   const [view, setView] = useState({ y: value[0]?.getFullYear() ?? today.getFullYear(), m: value[0]?.getMonth() ?? today.getMonth() });
   const [hover, setHover] = useState<Date | null>(null);
@@ -40,31 +40,29 @@ export function CalendarPanel({
   };
 
   const effEnd = pickingEnd ? hover : value[1];
-  const grid = monthGrid(view.y, view.m);
+  const grid = monthGrid(view.y, view.m, t.DatePicker.weekStart);
 
   return (
     <div className="reef-datepicker__panel" onMouseLeave={() => setHover(null)}>
       <div className="reef-datepicker__head">
-        <button type="button" aria-label="上一年" className="reef-datepicker__nav" onClick={() => jump(-12)}>
+        <button type="button" aria-label={t.DatePicker.prevYear} className="reef-datepicker__nav" onClick={() => jump(-12)}>
           <Icon name="chevron-left" size={12} />
           <Icon name="chevron-left" size={12} />
         </button>
-        <button type="button" aria-label="上一月" className="reef-datepicker__nav" onClick={() => jump(-1)}>
+        <button type="button" aria-label={t.DatePicker.prevMonth} className="reef-datepicker__nav" onClick={() => jump(-1)}>
           <Icon name="chevron-left" size={12} />
         </button>
-        <span className="reef-datepicker__month">
-          {view.y}年{view.m + 1}月
-        </span>
-        <button type="button" aria-label="下一月" className="reef-datepicker__nav" onClick={() => jump(1)}>
+        <span className="reef-datepicker__month">{t.DatePicker.yearMonth(view.y, view.m)}</span>
+        <button type="button" aria-label={t.DatePicker.nextMonth} className="reef-datepicker__nav" onClick={() => jump(1)}>
           <Icon name="chevron-right" size={12} />
         </button>
-        <button type="button" aria-label="下一年" className="reef-datepicker__nav" onClick={() => jump(12)}>
+        <button type="button" aria-label={t.DatePicker.nextYear} className="reef-datepicker__nav" onClick={() => jump(12)}>
           <Icon name="chevron-right" size={12} />
           <Icon name="chevron-right" size={12} />
         </button>
       </div>
-      <div className="reef-datepicker__grid" role="grid" aria-label="日历">
-        {WEEKDAYS.map((w) => (
+      <div className="reef-datepicker__grid" role="grid" aria-label={t.DatePicker.calendar}>
+        {t.DatePicker.weekdays.map((w) => (
           <span key={w} className="reef-datepicker__weekday">
             {w}
           </span>
