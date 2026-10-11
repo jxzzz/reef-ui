@@ -32,6 +32,10 @@ import { SelectPage } from './pages/SelectPage';
 import { SkeletonPage } from './pages/SkeletonPage';
 import { SpinPage } from './pages/SpinPage';
 import { ProgressPage } from './pages/ProgressPage';
+import { PopconfirmPage } from './pages/PopconfirmPage';
+import { RatePage } from './pages/RatePage';
+import { SliderPage } from './pages/SliderPage';
+import { TimePickerPage } from './pages/TimePickerPage';
 import { ScrollPage } from './pages/ScrollPage';
 import { ResultPage } from './pages/ResultPage';
 import { RadioPage } from './pages/RadioPage';
@@ -64,8 +68,11 @@ const pages = [
   { key: 'input', title: 'Input 输入框', group: '数据录入', node: <InputPage />, en: 'Input' },
   { key: 'radio', title: 'Radio 单选框', group: '数据录入', node: <RadioPage />, en: 'Radio' },
   { key: 'segmented', title: 'Segmented 分段控制器', group: '数据录入', node: <SegmentedPage />, en: 'Segmented' },
+  { key: 'rate', title: 'Rate 评分', group: '数据录入', node: <RatePage />, en: 'Rate' },
   { key: 'select', title: 'Select 选择器', group: '数据录入', node: <SelectPage />, en: 'Select' },
+  { key: 'slider', title: 'Slider 滑动输入条', group: '数据录入', node: <SliderPage />, en: 'Slider' },
   { key: 'switch', title: 'Switch 开关', group: '数据录入', node: <SwitchPage />, en: 'Switch' },
+  { key: 'time-picker', title: 'TimePicker 时间选择器', group: '数据录入', node: <TimePickerPage />, en: 'TimePicker' },
   { key: 'avatar', title: 'Avatar 头像', group: '数据展示', node: <AvatarPage />, en: 'Avatar' },
   { key: 'badge', title: 'Badge 徽标数', group: '数据展示', node: <BadgePage />, en: 'Badge' },
   { key: 'card', title: 'Card 卡片', group: '数据展示', node: <CardPage />, en: 'Card' },
@@ -80,6 +87,7 @@ const pages = [
   { key: 'message', title: 'Message 全局提示', group: '反馈', node: <MessagePage />, en: 'Message' },
   { key: 'menu', title: 'Menu 导航菜单', group: '导航', node: <MenuPage />, en: 'Menu' },
   { key: 'modal', title: 'Modal 对话框', group: '反馈', node: <ModalPage />, en: 'Modal' },
+  { key: 'popconfirm', title: 'Popconfirm 气泡确认框', group: '反馈', node: <PopconfirmPage />, en: 'Popconfirm' },
   { key: 'progress', title: 'Progress 进度条', group: '反馈', node: <ProgressPage />, en: 'Progress' },
   { key: 'result', title: 'Result 结果页', group: '反馈', node: <ResultPage />, en: 'Result' },
   { key: 'skeleton', title: 'Skeleton 骨架屏', group: '反馈', node: <SkeletonPage />, en: 'Skeleton' },
