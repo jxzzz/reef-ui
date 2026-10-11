@@ -18,6 +18,7 @@ export * from './input';
 export * from './input-number';
 export * from './message';
 export * from './modal';
+export * from './menu';
 export * from './pagination';
 export * from './progress';
 export * from './radio';
