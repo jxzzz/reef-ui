@@ -2,55 +2,57 @@
 
 # @reef-ui/components
 
-**Reef UI 组件库主包 —— 面向中后台与管理端场景的 React 组件库**
+**The main package of Reef UI — React component library for admin & dashboard scenarios**
 
 [![npm version](https://img.shields.io/npm/v/@reef-ui/components?color=cb3837&logo=npm)](https://www.npmjs.com/package/@reef-ui/components)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/jxzzz/reef-ui/blob/main/LICENSE)
-[📖 完整文档](https://reef-ui.imxuex.workers.dev)
+[📖 Full documentation](https://reef-ui.imxuex.workers.dev) · [中文说明](https://github.com/jxzzz/reef-ui/blob/main/README.zh-CN.md)
 
 </div>
 
-30+ 企业级组件:表单、反馈、导航、数据展示全覆盖。基于 CSS Variables 的 Design Token 主题系统,暗色模式一键切换,TypeScript 类型完备。
+30+ enterprise components covering forms, feedback, navigation and data display. Design Token theme system built on CSS Variables, one-line dark mode, complete TypeScript types.
 
-## 安装
+## Install
 
 ```bash
 npm install @reef-ui/components
-# @reef-ui/theme、@reef-ui/utils 作为依赖自动安装,无需手动装
+# @reef-ui/theme and @reef-ui/utils are installed automatically as dependencies
 ```
 
-要求 React >= 18。
+Requires React >= 18.
 
-## 使用
+## Usage
 
 ```tsx
 import { Button, Message } from '@reef-ui/components';
-import '@reef-ui/components/style.css';  // 组件样式(含 Design Token)
+import '@reef-ui/components/style.css';  // component styles (incl. Design Tokens)
 
-<Button variant="primary" onClick={() => Message.success('发布成功')}>
-  发布
+<Button variant="primary" onClick={() => Message.success('Published')}>
+  Publish
 </Button>
 ```
 
-暗色模式:在 `<html>` 或任意根元素上设置 `data-theme="dark"`。
+Dark mode: set `data-theme="dark"` on `<html>` or any root element.
 
-## 组件
+Localization: wrap your app with `<LocaleProvider locale={enUS}>` to switch built-in texts such as placeholders, empty states and aria-labels (defaults to Chinese).
 
-| 分类 | 组件 |
+## Components
+
+| Category | Components |
 |---|---|
-| **通用** | Button、Divider、Scroll、Typography(Title / Text) |
-| **数据录入** | Checkbox、DatePicker / DateRangePicker、Form / FormItem、Input、InputNumber、Radio、Segmented、Select、Switch |
-| **数据展示** | Avatar、Badge、Card、Descriptions、Empty、Icon、Table、Tag、Timeline、Tooltip |
-| **反馈** | Alert、Drawer、Message、Modal、Progress、Result、Skeleton、Spin |
-| **导航** | Breadcrumb、Pagination、Steps、Tabs |
+| **General** | Button, Divider, Scroll, Typography (Title / Text) |
+| **Data Entry** | Checkbox, DatePicker / DateRangePicker, Form / FormItem, Input, InputNumber, Radio, Segmented, Select, Switch |
+| **Data Display** | Avatar, Badge, Card, Descriptions, Empty, Icon, Table, Tag, Timeline, Tooltip |
+| **Feedback** | Alert, Drawer, Message, Modal, Progress, Result, Skeleton, Spin |
+| **Navigation** | Breadcrumb, Menu, Pagination, Steps, Tabs |
 
-每个组件的 live demo 与完整 API 见[在线文档](https://reef-ui.imxuex.workers.dev)。
+Live demos and the full API reference are on the [documentation site](https://reef-ui.imxuex.workers.dev).
 
-## 相关包
+## Related packages
 
-- [`@reef-ui/theme`](https://www.npmjs.com/package/@reef-ui/theme) — Design Token(CSS Variables + 暗色主题)
-- [`@reef-ui/utils`](https://www.npmjs.com/package/@reef-ui/utils) — 工具函数
+- [`@reef-ui/theme`](https://www.npmjs.com/package/@reef-ui/theme) — Design Tokens (CSS Variables + dark theme)
+- [`@reef-ui/utils`](https://www.npmjs.com/package/@reef-ui/utils) — utilities (`cn` etc.)
 
-## 许可证
+## License
 
 [MIT](https://github.com/jxzzz/reef-ui/blob/main/LICENSE) © 2026 jxzzz
