@@ -1,0 +1,171 @@
+.reef-datepicker {
+  position: relative;
+  display: inline-block;
+}
+
+.reef-datepicker--block {
+  display: block;
+}
+
+.reef-datepicker > input {
+  width: 100%;
+  cursor: pointer;
+}
+
+.reef-datepicker--invalid .reef-input,
+.reef-datepicker--invalid input {
+  border-color: var(--reef-color-danger);
+}
+
+.reef-datepicker__pop {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  padding: var(--reef-space-sm);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+}
+
+/* ---- 日历面板 ---- */
+.reef-datepicker__panel {
+  width: 252px;
+  user-select: none;
+}
+
+.reef-datepicker__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  margin-bottom: var(--reef-space-xs);
+}
+
+.reef-datepicker__month {
+  flex: 1;
+  text-align: center;
+  font-size: var(--reef-font-size-sm);
+  font-weight: 500;
+  color: var(--reef-color-text-primary);
+}
+
+.reef-datepicker__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-sm);
+  background: transparent;
+  color: var(--reef-color-text-secondary);
+  cursor: pointer;
+}
+
+.reef-datepicker__nav:hover {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+  color: var(--reef-color-text-primary);
+}
+
+.reef-datepicker__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.reef-datepicker__weekday {
+  padding: 4px 0;
+  text-align: center;
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-datepicker__day {
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-sm);
+  background: transparent;
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-primary);
+  cursor: pointer;
+}
+
+.reef-datepicker__day:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.reef-datepicker__day:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--reef-color-brand) 12%, transparent);
+}
+
+.reef-datepicker__day--other {
+  color: var(--reef-color-text-disabled);
+}
+
+.reef-datepicker__day--today {
+  font-weight: 600;
+}
+
+.reef-datepicker__day--in-range {
+  border-radius: 0;
+  background: color-mix(in srgb, var(--reef-color-brand) 10%, transparent);
+}
+
+.reef-datepicker__day--selected {
+  background: var(--reef-color-brand);
+  color: #fff;
+}
+
+/* ---- Range 双输入 ---- */
+.reef-datepicker--range {
+  position: relative;
+  display: inline-block;
+}
+
+.reef-datepicker__fields {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--reef-space-xs);
+  padding: 0 var(--reef-space-sm);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 22%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+}
+
+.reef-datepicker__fields:focus-within {
+  border-color: var(--reef-color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-datepicker__fields[data-disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.reef-datepicker__fields input {
+  width: 92px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--reef-color-text-primary);
+  font-family: inherit;
+  font-size: var(--reef-font-size-md);
+  cursor: pointer;
+}
+
+.reef-datepicker__fields input:focus {
+  outline: none;
+}
+
+.reef-datepicker__fields input:disabled {
+  cursor: not-allowed;
+}
+
+.reef-datepicker__fields > span {
+  color: var(--reef-color-text-disabled);
+}

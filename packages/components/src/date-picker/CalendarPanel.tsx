@@ -1,0 +1,97 @@
+import { useState } from 'react';
+import { cn } from '@reef-ui/utils';
+import { Icon } from '../icon';
+import { dayState, formatDate, isSameDay, monthGrid } from './utils';
+
+const WEEKDAYS = ['一', '二', '三', '四', '五', '六', '日'];
+
+/** 日历面板：受控的选中区间 [start, end]（单选传同一端点即可），点击回调完整新区间 */
+export function CalendarPanel({
+  value,
+  onPick,
+  isDisabled,
+}: {
+  value: [Date | null, Date | null];
+  onPick: (range: [Date | null, Date | null]) => void;
+  isDisabled?: (date: Date) => boolean;
+}) {
+  const today = new Date();
+  const [view, setView] = useState({ y: value[0]?.getFullYear() ?? today.getFullYear(), m: value[0]?.getMonth() ?? today.getMonth() });
+  const [hover, setHover] = useState<Date | null>(null);
+  // 单选区间在填第二个端点；点击首个端点后进入 end 阶段
+  const pickingEnd = value[0] != null && value[1] == null;
+
+  const jump = (dm: number) => {
+    setView(({ y, m }) => {
+      const nm = m + dm;
+      return { y: y + Math.floor(nm / 12), m: ((nm % 12) + 12) % 12 };
+    });
+  };
+
+  const pick = (d: Date) => {
+    if (isDisabled?.(d)) return;
+    if (!pickingEnd) {
+      onPick([d, null]);
+      return;
+    }
+    // 第二次点击：自动排序 start/end
+    const a = value[0]!;
+    onPick(a.getTime() <= d.getTime() ? [a, d] : [d, a]);
+  };
+
+  const effEnd = pickingEnd ? hover : value[1];
+  const grid = monthGrid(view.y, view.m);
+
+  return (
+    <div className="reef-datepicker__panel" onMouseLeave={() => setHover(null)}>
+      <div className="reef-datepicker__head">
+        <button type="button" aria-label="上一年" className="reef-datepicker__nav" onClick={() => jump(-12)}>
+          <Icon name="chevron-left" size={12} />
+          <Icon name="chevron-left" size={12} />
+        </button>
+        <button type="button" aria-label="上一月" className="reef-datepicker__nav" onClick={() => jump(-1)}>
+          <Icon name="chevron-left" size={12} />
+        </button>
+        <span className="reef-datepicker__month">
+          {view.y}年{view.m + 1}月
+        </span>
+        <button type="button" aria-label="下一月" className="reef-datepicker__nav" onClick={() => jump(1)}>
+          <Icon name="chevron-right" size={12} />
+        </button>
+        <button type="button" aria-label="下一年" className="reef-datepicker__nav" onClick={() => jump(12)}>
+          <Icon name="chevron-right" size={12} />
+          <Icon name="chevron-right" size={12} />
+        </button>
+      </div>
+      <div className="reef-datepicker__grid" role="grid" aria-label="日历">
+        {WEEKDAYS.map((w) => (
+          <span key={w} className="reef-datepicker__weekday">
+            {w}
+          </span>
+        ))}
+        {grid.map((d) => {
+          const state = dayState(d, value[0], effEnd);
+          const disabled = isDisabled?.(d) ?? false;
+          return (
+            <button
+              key={formatDate(d)}
+              type="button"
+              disabled={disabled}
+              aria-selected={state === 'selected' || undefined}
+              className={cn(
+                'reef-datepicker__day',
+                d.getMonth() !== view.m && 'reef-datepicker__day--other',
+                isSameDay(d, new Date()) && 'reef-datepicker__day--today',
+                state && `reef-datepicker__day--${state}`,
+              )}
+              onMouseEnter={() => setHover(d)}
+              onClick={() => pick(d)}
+            >
+              {d.getDate()}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

@@ -39,7 +39,7 @@ import '@reef-ui/components/style.css';  // 组件样式(含 Design Token)
 | 分类 | 组件 |
 |---|---|
 | **通用** | Button、Divider、Scroll、Typography(Title / Text) |
-| **数据录入** | Checkbox、Form / FormItem、Input、Radio、Segmented、Select、Switch |
+| **数据录入** | Checkbox、DatePicker / DateRangePicker、Form / FormItem、Input、InputNumber、Radio、Segmented、Select、Switch |
 | **数据展示** | Avatar、Badge、Card、Descriptions、Empty、Icon、Table、Tag、Timeline、Tooltip |
 | **反馈** | Alert、Drawer、Message、Modal、Progress、Result、Skeleton、Spin |
 | **导航** | Breadcrumb、Pagination、Steps、Tabs |

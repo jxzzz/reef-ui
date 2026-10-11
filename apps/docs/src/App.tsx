@@ -5,6 +5,7 @@ import { AlertPage } from './pages/AlertPage';
 import { AvatarPage } from './pages/AvatarPage';
 import { BadgePage } from './pages/BadgePage';
 import { BreadcrumbPage } from './pages/BreadcrumbPage';
+import { DatePickerPage } from './pages/DatePickerPage';
 import { ButtonPage } from './pages/ButtonPage';
 import { CardPage } from './pages/CardPage';
 import { DescriptionsPage } from './pages/DescriptionsPage';
@@ -17,6 +18,7 @@ import { GuidePage } from './pages/GuidePage';
 import { HomePage } from './pages/Home';
 import { IconPage } from './pages/IconPage';
 import { InputPage } from './pages/InputPage';
+import { InputNumberPage } from './pages/InputNumberPage';
 import { MessagePage } from './pages/MessagePage';
 import { ModalPage } from './pages/ModalPage';
 import { PaginationPage } from './pages/PaginationPage';
@@ -50,6 +52,8 @@ type PageKey =
   | 'divider'
   | 'drawer'
   | 'checkbox'
+  | 'date-picker'
+  | 'input-number'
   | 'empty'
   | 'form'
   | 'input'
@@ -89,6 +93,8 @@ function currentPage(): PageKey {
     'divider',
     'drawer',
     'checkbox',
+    'date-picker',
+    'input-number',
     'empty',
     'form',
     'input',
@@ -121,7 +127,7 @@ const groups = [
   { label: '指南', keys: ['guide'] },
   { label: '资源', keys: ['icon', 'typography'] },
   { label: '通用', keys: ['button', 'divider', 'scroll'] },
-  { label: '数据录入', keys: ['checkbox', 'form', 'input', 'radio', 'segmented', 'select', 'switch'] },
+  { label: '数据录入', keys: ['checkbox', 'date-picker', 'form', 'input', 'input-number', 'radio', 'segmented', 'select', 'switch'] },
   { label: '数据展示', keys: ['avatar', 'badge', 'card', 'descriptions', 'empty', 'table', 'tag', 'timeline', 'tooltip'] },
   { label: '反馈', keys: ['alert', 'drawer', 'message', 'modal', 'progress', 'result', 'skeleton', 'spin'] },
   { label: '导航', keys: ['breadcrumb', 'pagination', 'steps', 'tabs'] },
@@ -174,6 +180,8 @@ export default function App() {
     { key: 'timeline', title: 'Timeline 时间轴', node: <TimelinePage /> },
     { key: 'tabs', title: 'Tabs 标签页', node: <TabsPage /> },
     { key: 'checkbox', title: 'Checkbox 复选框', node: <CheckboxPage /> },
+    { key: 'date-picker', title: 'DatePicker 日期选择', node: <DatePickerPage /> },
+    { key: 'input-number', title: 'InputNumber 数字输入框', node: <InputNumberPage /> },
     { key: 'form', title: 'Form 表单', node: <FormPage /> },
     { key: 'radio', title: 'Radio 单选框', node: <RadioPage /> },
     { key: 'tag', title: 'Tag 标签', node: <TagPage /> },

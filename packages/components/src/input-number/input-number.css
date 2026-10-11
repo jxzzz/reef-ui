@@ -1,0 +1,43 @@
+/* 隐藏 type=number 的原生步进按钮，用自绘 stepper（隐藏必须用厂商前缀属性） */
+/* stylelint-disable property-no-vendor-prefix */
+.reef-inputnumber__input::-webkit-outer-spin-button,
+.reef-inputnumber__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.reef-inputnumber__input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+/* stylelint-enable property-no-vendor-prefix */
+
+.reef-inputnumber__stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.reef-inputnumber__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 11px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-sm);
+  background: transparent;
+  color: var(--reef-color-text-secondary);
+  cursor: pointer;
+}
+
+.reef-inputnumber__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.reef-inputnumber__btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 8%, transparent);
+  color: var(--reef-color-text-primary);
+}
