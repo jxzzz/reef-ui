@@ -15,7 +15,8 @@
 ## 安装
 
 ```bash
-npm install @reef-ui/components @reef-ui/theme
+npm install @reef-ui/components
+# @reef-ui/theme、@reef-ui/utils 作为依赖自动安装,无需手动装
 ```
 
 要求 React >= 18。

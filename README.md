@@ -27,8 +27,8 @@ Reef UI 是一套开源的 React 组件库,专注于中后台(admin / dashboard)
 ## 安装
 
 ```bash
-npm install @reef-ui/components @reef-ui/theme
-# 或 pnpm / yarn
+npm install @reef-ui/components
+# 或 pnpm / yarn(theme、utils 等会作为依赖自动安装)
 ```
 
 要求 React >= 18。
