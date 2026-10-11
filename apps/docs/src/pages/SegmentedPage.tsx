@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Segmented, type SegmentedOption } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, Demo, TypeBlock } from '../docs-ui';
 
 const options: SegmentedOption[] = [
   { label: '日', value: 'day' },
@@ -41,6 +41,13 @@ export function SegmentedPage() {
           ['defaultValue', '非受控初始值（默认第一项）', 'string', '—'],
           ['onChange', '选中变化回调', '(value: string) => void', '—'],
         ]}
+      />
+
+      <TypeBlock
+        code={`interface SegmentedOption {
+  label: ReactNode;
+  value: string;
+}`}
       />
     </>
   );

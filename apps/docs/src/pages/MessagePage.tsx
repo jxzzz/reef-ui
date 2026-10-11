@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Button, Message } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { Button, Message, type MessageItem } from '@reef-ui/components';
+import { ApiTable, Demo, TypeBlock } from '../docs-ui';
 
-const fullCode = `const [items, setItems] = useState([
+const fullCode = `const [items, setItems] = useState<MessageItem[]>([
   { key: '1', type: 'success', content: '保存成功' },
   { key: '2', type: 'warning', content: '部分字段未填写' },
 ]);
@@ -12,7 +12,7 @@ const fullCode = `const [items, setItems] = useState([
 />`;
 
 export function MessagePage() {
-  const [items, setItems] = useState([
+  const [items, setItems] = useState<MessageItem[]>([
     { key: '1', type: 'success' as const, content: '保存成功' },
     { key: '2', type: 'warning' as const, content: '部分字段未填写' },
   ]);
@@ -42,10 +42,18 @@ export function MessagePage() {
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['items', '消息列表（父级受控）', 'MessageItem[]', '必填'],
+          ['items', '消息列表（父级受控）{ key, type?, content }', 'MessageItem[]', '必填'],
           ['items[].type', '消息类型', "'info' | 'success' | 'warning' | 'danger'", "'info'"],
           ['onClose', '单条关闭回调，携带 key', '(key: string) => void', '—'],
         ]}
+      />
+
+      <TypeBlock
+        code={`interface MessageItem {
+  key: string;
+  type?: 'info' | 'success' | 'warning' | 'danger';
+  content: ReactNode;
+}`}
       />
     </>
   );

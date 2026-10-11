@@ -1,5 +1,5 @@
-import { Table, Tag } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { Table, Tag, type TableColumn } from '@reef-ui/components';
+import { ApiTable, Demo, TypeBlock } from '../docs-ui';
 
 const users = [
   { id: 1, name: '张三', age: 28, city: '杭州', role: '管理员' },
@@ -7,14 +7,25 @@ const users = [
   { id: 3, name: '王五', age: 22, city: '上海', role: '访客' },
 ];
 
-const columns = [
+const columns: TableColumn<(typeof users)[number]>[] = [
   { key: 'name', title: '姓名' },
   { key: 'age', title: '年龄' },
   { key: 'city', title: '城市' },
   { key: 'role', title: '角色' },
 ];
 
-const basicCode = `<Table columns={columns} dataSource={users} rowKey="id" />`;
+const basicCode = `const columns: TableColumn[] = [
+  { key: 'name', title: '姓名' },
+  { key: 'age', title: '年龄' },
+  { key: 'city', title: '城市' },
+  { key: 'role', title: '角色' },
+];
+const users = [
+  { id: 1, name: '张三', age: 28, city: '杭州', role: '管理员' },
+  { id: 2, name: '李四', age: 35, city: '北京', role: '编辑' },
+  { id: 3, name: '王五', age: 22, city: '上海', role: '访客' },
+];
+<Table columns={columns} dataSource={users} rowKey="id" />`;
 
 const sorterCode = `<Table
   rowKey="id"
@@ -76,11 +87,23 @@ export function TablePage() {
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['columns', '列配置（key/title 必填，render 单元格，sorter 启用排序）', 'TableColumn[]', '必填'],
+          ['columns', '列配置 { key, title, width?, align?, ellipsis?, render?, sorter? }', 'TableColumn[]', '必填'],
           ['dataSource', '数据源', 'T[]', '必填'],
           ['rowKey', '行 key（属性名或函数），缺省用下标', 'keyof T | (record, index) => string', '—'],
           ['empty', '空态内容', 'ReactNode', '"暂无数据"'],
         ]}
+      />
+
+      <TypeBlock
+        code={`interface TableColumn<T = Record<string, unknown>> {
+  key: string;
+  title: ReactNode;
+  width?: number;
+  align?: 'left' | 'center' | 'right';
+  ellipsis?: boolean;
+  render?: (record: T, index: number) => ReactNode;
+  sorter?: (a: T, b: T) => number;
+}`}
       />
     </>
   );

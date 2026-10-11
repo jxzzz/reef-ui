@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Select } from '@reef-ui/components';
 import type { SelectOption } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, Demo, TypeBlock } from '../docs-ui';
 
 const cityOptions: SelectOption[] = [
   { label: '上海', value: 'shanghai' },
@@ -77,6 +77,14 @@ export function SelectPage() {
           ['invalid', '校验失败态', 'boolean', 'false'],
           ['block', '宽度撑满父容器', 'boolean', 'false'],
         ]}
+      />
+
+      <TypeBlock
+        code={`interface SelectOption {
+  label: string;
+  value: string;
+  disabled?: boolean;
+}`}
       />
       <p>支持受控与非受控两种用法；disabled 选项键盘导航仍可经过，但无法选中。</p>
     </>

@@ -1,5 +1,5 @@
 import { DatePicker, DateRangePicker } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, Demo, TypeBlock } from '../docs-ui';
 
 const disabledCode = `<DatePicker
   isDisabled={(d) => d.getDay() === 0 || d.getDay() === 6}
@@ -31,12 +31,17 @@ export function DatePickerPage() {
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['value / defaultValue', '日期（范围组件为 [start, end]）', 'DateString | DateRange', '—'],
+          ['value / defaultValue', '日期，YYYY-MM-DD 字符串（范围组件为 [start, end]）', 'DateString | DateRange', '—'],
           ['onChange', '选中回调，回传 YYYY-MM-DD', '(value) => void', '—'],
           ['isDisabled', '禁用日期（对所有月份生效）', '(date) => boolean', '—'],
           ['placeholder', '占位文字（Range 为 startPlaceholder / endPlaceholder）', 'string', '"请选择日期"'],
           ['invalid / disabled / block', '状态与布局', 'boolean', 'false'],
         ]}
+      />
+
+      <TypeBlock
+        code={`type DateString = string; // 'YYYY-MM-DD'
+type DateRange = [DateString | null, DateString | null];`}
       />
     </>
   );

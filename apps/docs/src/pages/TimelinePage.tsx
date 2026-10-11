@@ -1,13 +1,18 @@
-import { Timeline } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { Timeline, type TimelineItem } from '@reef-ui/components';
+import { ApiTable, Demo, TypeBlock } from '../docs-ui';
 
-const basicCode = `<Timeline
-  items={[
-    { key: 'a', content: '创建订单' },
-    { key: 'b', content: '支付成功' },
-    { key: 'c', content: '已发货' },
-  ]}
-/>`;
+const timelineItems: TimelineItem[] = [
+  { key: 'a', content: '创建订单' },
+  { key: 'b', content: '支付成功' },
+  { key: 'c', content: '已发货' },
+];
+
+const basicCode = `const timelineItems: TimelineItem[] = [
+  { key: 'a', content: '创建订单' },
+  { key: 'b', content: '支付成功' },
+  { key: 'c', content: '已发货' },
+];
+<Timeline items={timelineItems} />`;
 
 const dotCode = `<Timeline
   items={[
@@ -23,13 +28,7 @@ export function TimelinePage() {
       <p>垂直时间轴，按序展示一系列节点。</p>
 
       <Demo title="基础用法" code={basicCode}>
-        <Timeline
-          items={[
-            { key: 'a', content: '创建订单' },
-            { key: 'b', content: '支付成功' },
-            { key: 'c', content: '已发货' },
-          ]}
-        />
+        <Timeline items={timelineItems} />
       </Demo>
 
       <Demo title="自定义节点" code={dotCode}>
@@ -44,9 +43,17 @@ export function TimelinePage() {
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['items', '节点配置（content 必填）', 'TimelineItem[]', '必填'],
+          ['items', '节点配置 { key?, content, dot? }，content 必填', 'TimelineItem[]', '必填'],
           ['items[].dot', '自定义节点圆点', 'ReactNode', '—'],
         ]}
+      />
+
+      <TypeBlock
+        code={`interface TimelineItem {
+  key?: string;
+  content: ReactNode;
+  dot?: ReactNode;
+}`}
       />
     </>
   );

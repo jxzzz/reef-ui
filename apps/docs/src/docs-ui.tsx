@@ -30,9 +30,9 @@ export function SearchInput({
 }
 
 /** 可复制、可折叠（默认收起）的代码块：操作栏在下方，代码展开时追加在操作栏之后 */
-export function CodeBlock({ code }: { code: string }) {
+export function CodeBlock({ code, defaultExpanded = false }: { code: string; defaultExpanded?: boolean }) {
   const [copied, setCopied] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(defaultExpanded);
 
   const html = useMemo(() => Prism.highlight(code, Prism.languages.jsx, 'jsx'), [code]);
 
@@ -103,5 +103,15 @@ export function ApiTable({ rows }: { rows: Array<[string, string, string, string
         ))}
       </tbody>
     </table>
+  );
+}
+
+/** 类型定义块：API 表下方直接展示导出自定义类型的 TS 定义（默认展开） */
+export function TypeBlock({ code }: { code: string }) {
+  return (
+    <section className="type-block">
+      <h3 className="demo__title">类型定义</h3>
+      <CodeBlock code={code} defaultExpanded />
+    </section>
   );
 }

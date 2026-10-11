@@ -1,26 +1,20 @@
-import { Steps } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { Steps, type StepsItem } from '@reef-ui/components';
+import { ApiTable, Demo, TypeBlock } from '../docs-ui';
 
-const basicCode = `<Steps
-  defaultCurrent={1}
-  items={[
-    { key: 'info', title: '填写信息', description: '基本信息' },
-    { key: 'confirm', title: '确认订单' },
-    { key: 'pay', title: '支付' },
-  ]}
-/>`;
+const basicCode = `const stepsItems: StepsItem[] = [
+  { key: 'info', title: '填写信息', description: '基本信息' },
+  { key: 'confirm', title: '确认订单' },
+  { key: 'pay', title: '支付' },
+];
+<Steps defaultCurrent={1} items={stepsItems} />`;
 
 const clickableCode = `<Steps
   defaultCurrent={0}
   onChange={(index) => console.log(index)}
-  items={[
-    { key: 'info', title: '填写信息', description: '基本信息' },
-    { key: 'confirm', title: '确认订单' },
-    { key: 'pay', title: '支付' },
-  ]}
+  items={stepsItems}
 />`;
 
-const stepsItems = [
+const stepsItems: StepsItem[] = [
   { key: 'info', title: '填写信息', description: '基本信息' },
   { key: 'confirm', title: '确认订单' },
   { key: 'pay', title: '支付' },
@@ -43,10 +37,18 @@ export function StepsPage() {
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['items', '步骤配置', 'StepsItem[]', '必填'],
+          ['items', '步骤配置 { key, title, description? }', 'StepsItem[]', '必填'],
           ['current / defaultCurrent', '当前步骤索引（从 0 开始）', 'number', '0'],
           ['onChange', '点击步骤回调（提供后可点击）', '(index: number) => void', '—'],
         ]}
+      />
+
+      <TypeBlock
+        code={`interface StepsItem {
+  key: string;
+  title: ReactNode;
+  description?: ReactNode;
+}`}
       />
     </>
   );
