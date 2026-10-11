@@ -28,10 +28,15 @@ const entries = [];
 let unreleased = null;
 let current = null;
 
-// 全量 log：tag 指向的提交可能不碰 packages/，路径过滤会把边界吃掉；噪音由 type/docs 过滤兜住
-for (const line of git(
-  "git log --no-merges --date=short --format='%H%x09%ad%x09%s'"
-).split('\n')) {
+let log;
+try {
+  // 全量 log：tag 指向的提交可能不碰 packages/，路径过滤会把边界吃掉；噪音由 type/docs 过滤兜住
+  log = git("git log --no-merges --date=short --format='%H%x09%ad%x09%s'");
+} catch {
+  console.log('git 不可用，保留已提交的 changelog.generated.ts');
+  process.exit(0);
+}
+for (const line of log.split('\n')) {
   if (!line) continue;
   const [hash, date, subject] = line.split('\t');
   const m = subject.match(/^(\w+)(?:\(([^)]*)\))?: (.+)$/);
@@ -68,6 +73,13 @@ for (const e of entries) {
   e.items = rest;
 }
 
+const finalEntries = entries.filter((e) => e.items.length > 0);
+// 浅克隆（CI depth 1）拿不到历史：不覆盖已提交的生成文件
+if (finalEntries.length === 0) {
+  console.log('git 历史为空（浅克隆？），保留已提交的 changelog.generated.ts');
+  process.exit(0);
+}
+
 const out = `// 由 scripts/gen-changelog.mjs 从 git 历史生成，勿手改
 export interface ChangelogEntry {
   version: string;
@@ -75,7 +87,7 @@ export interface ChangelogEntry {
   items: Array<{ type: string; text: string }>;
 }
 
-export const changelog: ChangelogEntry[] = ${JSON.stringify(entries.filter((e) => e.items.length > 0), null, 2)};
+export const changelog: ChangelogEntry[] = ${JSON.stringify(finalEntries, null, 2)};
 `;
 writeFileSync(fileURLToPath(new URL('../src/changelog.generated.ts', import.meta.url)), out);
 console.log(`changelog.generated.ts: ${entries.filter((e) => e.items.length).length} versions`);
