@@ -20,6 +20,7 @@ import { IconPage } from './pages/IconPage';
 import { InputPage } from './pages/InputPage';
 import { InputNumberPage } from './pages/InputNumberPage';
 import { MessagePage } from './pages/MessagePage';
+import { MenuPage } from './pages/MenuPage';
 import { ModalPage } from './pages/ModalPage';
 import { PaginationPage } from './pages/PaginationPage';
 import { SegmentedPage } from './pages/SegmentedPage';
@@ -39,99 +40,62 @@ import { TagPage } from './pages/TagPage';
 import { TooltipPage } from './pages/TooltipPage';
 import { TypographyPage } from './pages/TypographyPage';
 
-type PageKey =
-  | 'home'
-  | 'guide'
-  | 'alert'
-  | 'avatar'
-  | 'badge'
-  | 'breadcrumb'
-  | 'button'
-  | 'card'
-  | 'descriptions'
-  | 'divider'
-  | 'drawer'
-  | 'checkbox'
-  | 'date-picker'
-  | 'input-number'
-  | 'empty'
-  | 'form'
-  | 'input'
-  | 'message'
-  | 'modal'
-  | 'pagination'
-  | 'segmented'
-  | 'progress'
-  | 'scroll'
-  | 'result'
-  | 'radio'
-  | 'select'
-  | 'skeleton'
-  | 'spin'
-  | 'steps'
-  | 'switch'
-  | 'table'
-  | 'timeline'
-  | 'tabs'
-  | 'tag'
-  | 'tooltip'
-  | 'icon'
-  | 'typography';
+// 页面注册单一来源：hash key、侧栏分组、页面渲染都从这里派生。
+// 新增页面只改这一处（import + 一行注册）。
+// 侧栏分组顺序 = group 字段的首次出现顺序；group: null 的页面不进侧栏。
+const pages = [
+  // 首页是独立落地页（自带顶部导航，提前 return），node 永远不会渲染
+  { key: 'home', title: '首页', group: null, node: null },
+  { key: 'guide', title: '使用指南', group: '指南', node: <GuidePage /> },
+  { key: 'icon', title: 'Icon 图标', group: '资源', node: <IconPage /> },
+  { key: 'typography', title: 'Typography 排版', group: '资源', node: <TypographyPage /> },
+  { key: 'button', title: 'Button 按钮', group: '通用', node: <ButtonPage /> },
+  { key: 'divider', title: 'Divider 分割线', group: '通用', node: <DividerPage /> },
+  { key: 'scroll', title: 'Scroll 滚动条', group: '通用', node: <ScrollPage /> },
+  { key: 'checkbox', title: 'Checkbox 复选框', group: '数据录入', node: <CheckboxPage /> },
+  { key: 'date-picker', title: 'DatePicker 日期选择', group: '数据录入', node: <DatePickerPage /> },
+  { key: 'input-number', title: 'InputNumber 数字输入框', group: '数据录入', node: <InputNumberPage /> },
+  { key: 'form', title: 'Form 表单', group: '数据录入', node: <FormPage /> },
+  { key: 'input', title: 'Input 输入框', group: '数据录入', node: <InputPage /> },
+  { key: 'radio', title: 'Radio 单选框', group: '数据录入', node: <RadioPage /> },
+  { key: 'segmented', title: 'Segmented 分段控制器', group: '数据录入', node: <SegmentedPage /> },
+  { key: 'select', title: 'Select 选择器', group: '数据录入', node: <SelectPage /> },
+  { key: 'switch', title: 'Switch 开关', group: '数据录入', node: <SwitchPage /> },
+  { key: 'avatar', title: 'Avatar 头像', group: '数据展示', node: <AvatarPage /> },
+  { key: 'badge', title: 'Badge 徽标数', group: '数据展示', node: <BadgePage /> },
+  { key: 'card', title: 'Card 卡片', group: '数据展示', node: <CardPage /> },
+  { key: 'descriptions', title: 'Descriptions 描述列表', group: '数据展示', node: <DescriptionsPage /> },
+  { key: 'empty', title: 'Empty 空状态', group: '数据展示', node: <EmptyPage /> },
+  { key: 'table', title: 'Table 表格', group: '数据展示', node: <TablePage /> },
+  { key: 'tag', title: 'Tag 标签', group: '数据展示', node: <TagPage /> },
+  { key: 'timeline', title: 'Timeline 时间轴', group: '数据展示', node: <TimelinePage /> },
+  { key: 'tooltip', title: 'Tooltip 文字提示', group: '数据展示', node: <TooltipPage /> },
+  { key: 'alert', title: 'Alert 警告提示', group: '反馈', node: <AlertPage /> },
+  { key: 'drawer', title: 'Drawer 抽屉', group: '反馈', node: <DrawerPage /> },
+  { key: 'message', title: 'Message 全局提示', group: '反馈', node: <MessagePage /> },
+  { key: 'menu', title: 'Menu 导航菜单', group: '导航', node: <MenuPage /> },
+  { key: 'modal', title: 'Modal 对话框', group: '反馈', node: <ModalPage /> },
+  { key: 'progress', title: 'Progress 进度条', group: '反馈', node: <ProgressPage /> },
+  { key: 'result', title: 'Result 结果页', group: '反馈', node: <ResultPage /> },
+  { key: 'skeleton', title: 'Skeleton 骨架屏', group: '反馈', node: <SkeletonPage /> },
+  { key: 'spin', title: 'Spin 加载中', group: '反馈', node: <SpinPage /> },
+  { key: 'breadcrumb', title: 'Breadcrumb 面包屑', group: '导航', node: <BreadcrumbPage /> },
+  { key: 'pagination', title: 'Pagination 分页', group: '导航', node: <PaginationPage /> },
+  { key: 'steps', title: 'Steps 步骤条', group: '导航', node: <StepsPage /> },
+  { key: 'tabs', title: 'Tabs 标签页', group: '导航', node: <TabsPage /> },
+] as const;
+
+type PageKey = (typeof pages)[number]['key'];
 
 function currentPage(): PageKey {
   const key = location.hash.slice(1) as PageKey;
-  const keys: PageKey[] = [
-    'home',
-    'guide',
-    'alert',
-    'avatar',
-    'badge',
-    'breadcrumb',
-    'button',
-    'card',
-    'descriptions',
-    'divider',
-    'drawer',
-    'checkbox',
-    'date-picker',
-    'input-number',
-    'empty',
-    'form',
-    'input',
-    'message',
-    'modal',
-    'pagination',
-    'segmented',
-    'progress',
-    'result',
-    'scroll',
-    'radio',
-    'select',
-    'skeleton',
-    'spin',
-    'steps',
-    'switch',
-    'table',
-    'timeline',
-    'tabs',
-    'tag',
-    'tooltip',
-    'icon',
-    'typography',
-  ];
-  return keys.includes(key) ? key : 'home';
+  return pages.some((p) => p.key === key) ? key : 'home';
 }
 
-// 企业级文档站结构：使用指南 / 组件（按用途分 5 组）/ 资源
-const groups = [
-  { label: '指南', keys: ['guide'] },
-  { label: '资源', keys: ['icon', 'typography'] },
-  { label: '通用', keys: ['button', 'divider', 'scroll'] },
-  { label: '数据录入', keys: ['checkbox', 'date-picker', 'form', 'input', 'input-number', 'radio', 'segmented', 'select', 'switch'] },
-  { label: '数据展示', keys: ['avatar', 'badge', 'card', 'descriptions', 'empty', 'table', 'tag', 'timeline', 'tooltip'] },
-  { label: '反馈', keys: ['alert', 'drawer', 'message', 'modal', 'progress', 'result', 'skeleton', 'spin'] },
-  { label: '导航', keys: ['breadcrumb', 'pagination', 'steps', 'tabs'] },
-] as const;
+// 侧栏分组：从 pages 派生
+const groups = [...new Set(pages.map((p) => p.group).filter((g) => g !== null))].map(
+  (label) => ({ label, keys: pages.filter((p) => p.group === label).map((p) => p.key) }),
+);
 
 export default function App() {
   const [page, setPage] = useState<PageKey>(currentPage);
@@ -149,46 +113,6 @@ export default function App() {
   }, [dark]);
 
   const toggleDark = () => setDark(!dark);
-
-  const pages = [
-    { key: 'home', title: '首页', node: <HomePage dark={dark} onToggleDark={toggleDark} /> },
-    { key: 'guide', title: '使用指南', node: <GuidePage /> },
-    { key: 'alert', title: 'Alert 警告提示', node: <AlertPage /> },
-    { key: 'avatar', title: 'Avatar 头像', node: <AvatarPage /> },
-    { key: 'badge', title: 'Badge 徽标数', node: <BadgePage /> },
-    { key: 'breadcrumb', title: 'Breadcrumb 面包屑', node: <BreadcrumbPage /> },
-    { key: 'button', title: 'Button 按钮', node: <ButtonPage /> },
-    { key: 'card', title: 'Card 卡片', node: <CardPage /> },
-    { key: 'descriptions', title: 'Descriptions 描述列表', node: <DescriptionsPage /> },
-    { key: 'divider', title: 'Divider 分割线', node: <DividerPage /> },
-    { key: 'drawer', title: 'Drawer 抽屉', node: <DrawerPage /> },
-    { key: 'empty', title: 'Empty 空状态', node: <EmptyPage /> },
-    { key: 'input', title: 'Input 输入框', node: <InputPage /> },
-    { key: 'message', title: 'Message 全局提示', node: <MessagePage /> },
-    { key: 'modal', title: 'Modal 对话框', node: <ModalPage /> },
-    { key: 'pagination', title: 'Pagination 分页', node: <PaginationPage /> },
-    { key: 'segmented', title: 'Segmented 分段控制器', node: <SegmentedPage /> },
-    { key: 'progress', title: 'Progress 进度条', node: <ProgressPage /> },
-    { key: 'scroll', title: 'Scroll 滚动条', node: <ScrollPage /> },
-    { key: 'result', title: 'Result 结果页', node: <ResultPage /> },
-    { key: 'select', title: 'Select 选择器', node: <SelectPage /> },
-    { key: 'skeleton', title: 'Skeleton 骨架屏', node: <SkeletonPage /> },
-    { key: 'spin', title: 'Spin 加载中', node: <SpinPage /> },
-    { key: 'steps', title: 'Steps 步骤条', node: <StepsPage /> },
-    { key: 'switch', title: 'Switch 开关', node: <SwitchPage /> },
-    { key: 'table', title: 'Table 表格', node: <TablePage /> },
-    { key: 'timeline', title: 'Timeline 时间轴', node: <TimelinePage /> },
-    { key: 'tabs', title: 'Tabs 标签页', node: <TabsPage /> },
-    { key: 'checkbox', title: 'Checkbox 复选框', node: <CheckboxPage /> },
-    { key: 'date-picker', title: 'DatePicker 日期选择', node: <DatePickerPage /> },
-    { key: 'input-number', title: 'InputNumber 数字输入框', node: <InputNumberPage /> },
-    { key: 'form', title: 'Form 表单', node: <FormPage /> },
-    { key: 'radio', title: 'Radio 单选框', node: <RadioPage /> },
-    { key: 'tag', title: 'Tag 标签', node: <TagPage /> },
-    { key: 'tooltip', title: 'Tooltip 文字提示', node: <TooltipPage /> },
-    { key: 'icon', title: 'Icon 图标', node: <IconPage /> },
-    { key: 'typography', title: 'Typography 排版', node: <TypographyPage /> },
-  ] as const;
 
   const active = pages.find((p) => p.key === page)!;
   // 面包屑：当前页所属分组（首页/指南不显示）
