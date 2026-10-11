@@ -45,6 +45,11 @@
   display: none;
 }
 
+/* 选中态的白色对勾，默认隐藏（否则暗色主题下未选中也会显示） */
+.reef-checkbox__mark-check {
+  display: none;
+}
+
 .reef-checkbox__native:checked + .reef-checkbox__box,
 .reef-checkbox__native[data-indeterminate] + .reef-checkbox__box {
   border-color: var(--reef-color-brand);
