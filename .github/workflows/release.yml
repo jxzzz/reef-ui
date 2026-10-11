@@ -8,7 +8,7 @@ on:
 
 permissions:
   id-token: write # OIDC 关键权限
-  contents: read
+  contents: write # 推送 changeset publish 创建的版本 tag
 
 jobs:
   publish:
@@ -32,3 +32,6 @@ jobs:
 
       - name: Publish
         run: pnpm exec changeset publish
+
+      - name: Push tags # changeset publish 只在 runner 本地打 tag，需手动推送
+        run: git push --tags
