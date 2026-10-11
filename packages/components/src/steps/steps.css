@@ -7,6 +7,7 @@
 
 .reef-steps__item {
   display: flex;
+
   /* 按内容分配宽度（basis:0 会强制均分，长英文标题会被压换行），剩余空间由连接线吸收 */
   flex: 1 1 auto;
   align-items: center;
