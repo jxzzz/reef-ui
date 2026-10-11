@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import { Segmented } from '@reef-ui/components';
+import { Segmented, type SegmentedOption } from '@reef-ui/components';
 import { ApiTable, Demo } from '../docs-ui';
 
-const options = [
+const options: SegmentedOption[] = [
   { label: '日', value: 'day' },
   { label: '周', value: 'week' },
   { label: '月', value: 'month' },
 ];
 
-const basicCode = `const options = [
+const basicCode = `const options: SegmentedOption[] = [
   { label: '日', value: 'day' },
   { label: '周', value: 'week' },
   { label: '月', value: 'month' },
 ];
-// 类型：SegmentedOption { label: ReactNode; value: string }
 <Segmented options={options} />`;
 
 const controlledCode = `const [range, setRange] = useState('week');
@@ -37,7 +36,7 @@ export function SegmentedPage() {
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['options', '选项配置', 'SegmentedOption[]', '必填'],
+          ['options', '选项数组 { label, value }', 'SegmentedOption[]', '必填'],
           ['value', '受控选中值', 'string', '—'],
           ['defaultValue', '非受控初始值（默认第一项）', 'string', '—'],
           ['onChange', '选中变化回调', '(value: string) => void', '—'],
