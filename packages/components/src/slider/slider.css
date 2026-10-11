@@ -1,0 +1,76 @@
+.reef-slider {
+  appearance: none;
+
+  /* 透明本体只提供点击热区，可见部分全在 track/thumb 伪元素上 */
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ---- WebKit：填充段由 --reef-slider-fill 处的硬分界 linear-gradient 画出 ---- */
+.reef-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: var(--reef-radius-full);
+  background: linear-gradient(
+    to right,
+    var(--reef-color-brand) var(--reef-slider-fill),
+    color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent) var(--reef-slider-fill)
+  );
+}
+
+/* (track 6px - thumb 16px) / 2，让 thumb 垂直居中于轨道 */
+.reef-slider::-webkit-slider-thumb {
+  appearance: none;
+  margin-top: -5px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--reef-color-brand);
+  border-radius: var(--reef-radius-full);
+  background: var(--reef-color-surface);
+  transition: transform 0.15s;
+}
+
+.reef-slider:hover:not(:disabled)::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+/* ---- Firefox：原生提供 range-progress，无需 gradient 方案 ---- */
+.reef-slider::-moz-range-track {
+  height: 6px;
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+}
+
+.reef-slider::-moz-range-progress {
+  height: 6px;
+  border-radius: var(--reef-radius-full);
+  background: var(--reef-color-brand);
+}
+
+.reef-slider::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--reef-color-brand);
+  border-radius: var(--reef-radius-full);
+  background: var(--reef-color-surface);
+  transition: transform 0.15s;
+}
+
+.reef-slider:hover:not(:disabled)::-moz-range-thumb {
+  transform: scale(1.15);
+}
+
+/* 主题未提供 --reef-focus-ring，回退 select 同款 box-shadow 聚焦圈 */
+.reef-slider:focus-visible {
+  outline: none;
+  border-radius: var(--reef-radius-full);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-slider:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

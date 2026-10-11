@@ -1,0 +1,42 @@
+.reef-rate {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reef-rate__star {
+  display: inline-flex;
+  padding: 2px;
+  border: none;
+  background: none;
+  color: color-mix(in srgb, var(--reef-color-text-primary) 25%, transparent);
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    color 0.15s;
+}
+
+.reef-rate__star--on {
+  color: var(--reef-color-warning);
+}
+
+.reef-rate__star:focus-visible {
+  outline: none;
+  border-radius: var(--reef-radius-sm);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-rate__star:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* 只读态保留焦点与悬停色，仅去掉手势 */
+.reef-rate--readonly .reef-rate__star {
+  cursor: default;
+}
+
+.reef-rate__star:not(:disabled):hover {
+  transform: scale(1.15);
+}

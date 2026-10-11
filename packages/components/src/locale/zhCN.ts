@@ -26,4 +26,7 @@ export const zhCN: Locale = {
   Alert: { close: '关闭' },
   Modal: { close: '关闭' },
   Message: { close: '关闭' },
+  Popconfirm: { confirm: '确定', cancel: '取消' },
+  Rate: { description: '评分' },
+  TimePicker: { placeholder: '请选择时间', hour: '时', minute: '分', second: '秒' },
 };

@@ -1,0 +1,137 @@
+.reef-timepicker {
+  position: relative;
+  display: inline-block;
+}
+
+.reef-timepicker__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 132px;
+  height: 36px;
+  padding: 0 28px 0 var(--reef-space-md);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 22%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  color: var(--reef-color-text-primary);
+  font-family: inherit;
+  font-size: var(--reef-font-size-md);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.reef-timepicker__trigger:focus-visible {
+  outline: none;
+  border-color: var(--reef-color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-timepicker__trigger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* 聚焦时不套用悬停色，避免盖掉品牌色聚焦边框 */
+.reef-timepicker__trigger:hover:not(:disabled, :focus) {
+  border-color: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
+}
+
+.reef-timepicker__trigger--open,
+.reef-timepicker__trigger--open:focus-visible {
+  border-color: var(--reef-color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-timepicker__icon {
+  flex-shrink: 0;
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-timepicker__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reef-timepicker__value--placeholder {
+  color: var(--reef-color-text-disabled);
+}
+
+/* 与触发器平级的清空按钮，绝对定位在右侧预留位 */
+.reef-timepicker__clear {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-sm);
+  background: transparent;
+  color: var(--reef-color-text-secondary);
+  cursor: pointer;
+}
+
+.reef-timepicker__clear:hover {
+  color: var(--reef-color-text-primary);
+}
+
+/* ---- 三列面板 ---- */
+.reef-timepicker__panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  box-sizing: border-box;
+  padding: var(--reef-space-sm);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+
+.reef-timepicker__col-head {
+  margin: 0 0 4px;
+  text-align: center;
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
+  user-select: none;
+}
+
+.reef-timepicker__list {
+  height: 240px;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+  border-radius: var(--reef-radius-sm);
+}
+
+.reef-timepicker__option {
+  padding: 0 10px;
+  border-radius: var(--reef-radius-sm);
+  color: var(--reef-color-text-primary);
+  font-size: var(--reef-font-size-md);
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.reef-timepicker__option:hover {
+  background: color-mix(in srgb, var(--reef-color-brand) 10%, transparent);
+}
+
+.reef-timepicker__option--selected {
+  color: var(--reef-color-brand);
+  font-weight: 600;
+}

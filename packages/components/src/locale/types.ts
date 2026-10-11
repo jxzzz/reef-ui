@@ -28,4 +28,7 @@ export interface Locale {
   Alert: { close: string };
   Modal: { close: string };
   Message: { close: string };
+  Popconfirm: { confirm: string; cancel: string };
+  Rate: { description: string };
+  TimePicker: { placeholder: string; hour: string; minute: string; second: string };
 }

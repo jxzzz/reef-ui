@@ -26,4 +26,7 @@ export const enUS: Locale = {
   Alert: { close: 'Close' },
   Modal: { close: 'Close' },
   Message: { close: 'Close' },
+  Popconfirm: { confirm: 'OK', cancel: 'Cancel' },
+  Rate: { description: 'Rating' },
+  TimePicker: { placeholder: 'Select time', hour: 'h', minute: 'm', second: 's' },
 };
