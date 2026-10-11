@@ -36,7 +36,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       if (value === undefined) setInner(v);
       onChange?.(v);
       setOpen(false);
-      (ref as React.RefObject<HTMLButtonElement | null>).current?.focus();
+      (ref as React.RefObject<HTMLButtonElement | null> | null)?.current?.focus();
     };
 
     // 点击外部关闭

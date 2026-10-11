@@ -6,6 +6,7 @@
 
 .reef-progress__track {
   flex: 1;
+
   /* 轨道是空元素，没有固有宽度；在 flex 收缩上下文里保证可见下限 */
   min-width: 96px;
   height: 8px;
@@ -49,12 +50,14 @@
 .reef-progress--circle .reef-progress__track {
   flex: none;
   min-width: 0;
+
   /* 条形轨道的底色与圆角作用在 svg 上会画出一个实心圆饼，圆环的
      灰色轨道由 __ring 的描边提供，svg 本身必须完全透明 */
   height: auto;
   overflow: visible;
   border-radius: 0;
   background: transparent;
+
   /* 起点转到 12 点方向 */
   transform: rotate(-90deg);
 }
