@@ -189,9 +189,6 @@ body {
   min-height: 72px;
   padding: 28px 24px;
   box-sizing: border-box;
-  /* 淡淡的点状网格，让预览区有"画布"质感 */
-  background-image: radial-gradient(color-mix(in srgb, var(--reef-color-text-primary) 14%, transparent) 1px, transparent 1px);
-  background-size: 16px 16px;
 }
 
 /* 高度展开/收起动画：grid 轨道 0fr→1fr 过渡 */

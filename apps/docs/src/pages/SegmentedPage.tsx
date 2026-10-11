@@ -8,7 +8,13 @@ const options = [
   { label: '月', value: 'month' },
 ];
 
-const basicCode = `<Segmented options={options} />`;
+const basicCode = `const options = [
+  { label: '日', value: 'day' },
+  { label: '周', value: 'week' },
+  { label: '月', value: 'month' },
+];
+// 类型：SegmentedOption { label: ReactNode; value: string }
+<Segmented options={options} />`;
 
 const controlledCode = `const [range, setRange] = useState('week');
 <Segmented options={options} value={range} onChange={setRange} />`;
