@@ -2,34 +2,61 @@ import { useState } from 'react';
 import { DatePicker, Icon, Progress, Segmented, Switch, Tag } from '@reef-ui/components';
 // 版本号直接取组件包 package.json，发版随 changeset 自动更新
 import componentsPkg from '../../../../packages/components/package.json';
+import { useLang } from '../i18n';
 
-const entries = [
-  {
-    href: '#guide',
-    icon: 'package',
-    term: '使用指南',
-    desc: '安装、引入与主题定制，几分钟接入你的应用。',
+/** 首页文案双语（组件舞台里的示例标签跟随语言） */
+const strings = {
+  zh: {
+    entries: [
+      { href: '#guide', icon: 'package', term: '使用指南', desc: '安装、引入与主题定制，几分钟接入你的应用。' },
+      { href: '#button', icon: 'layers', term: '组件', desc: '精心打磨的基础组件，类型、尺寸与状态完整。' },
+      { href: '#icon', icon: 'heart', term: '资源', desc: '图标与排版规范，与组件共享同一套 Design Token。' },
+    ],
+    values: [
+      { icon: 'layers', text: '统一 Design Token' },
+      { icon: 'moon', text: '暗色主题' },
+      { icon: 'package', text: '零运行时依赖' },
+      { icon: 'heart', text: 'WCAG AA' },
+    ],
+    navComponents: '组件',
+    heroTitle: (<>一致的组件，<br />可切换的主题。</>),
+    heroSub: 'Reef UI 是为中后台场景打造的基础 React 组件库：TypeScript 编写，样式基于 CSS Variables，开箱即用，覆盖变量即可换成你的品牌。',
+    cta: '查看组件',
+    entryLink: '查看详情 →',
+    footer: 'MIT License · Reef UI · 用 TypeScript 与 CSS Variables 构建',
+    footerGuide: '使用指南',
+    footerComponents: '组件',
+    stageNotify: '消息通知',
+    stageStable: '稳定',
+    stageStorage: '存储用量 72%',
+    segDay: '日', segWeek: '周', segMonth: '月',
   },
-  {
-    href: '#button',
-    icon: 'layers',
-    term: '组件',
-    desc: '精心打磨的基础组件，类型、尺寸与状态完整。',
+  en: {
+    entries: [
+      { href: '#guide', icon: 'package', term: 'Guide', desc: 'Install, import and theme — integrate in minutes.' },
+      { href: '#button', icon: 'layers', term: 'Components', desc: 'Carefully crafted foundational components with full types, sizes and states.' },
+      { href: '#icon', icon: 'heart', term: 'Resources', desc: 'Icons and typography guidelines sharing the same Design Tokens.' },
+    ],
+    values: [
+      { icon: 'layers', text: 'Unified Design Tokens' },
+      { icon: 'moon', text: 'Dark theme' },
+      { icon: 'package', text: 'Zero runtime deps' },
+      { icon: 'heart', text: 'WCAG AA' },
+    ],
+    navComponents: 'Components',
+    heroTitle: (<>Consistent components,<br />switchable themes.</>),
+    heroSub: 'Reef UI is a foundational React component library for admin apps: written in TypeScript, styled with CSS Variables, ready out of the box — override the tokens to make it yours.',
+    cta: 'Browse components',
+    entryLink: 'Explore →',
+    footer: 'MIT License · Reef UI · Built with TypeScript and CSS Variables',
+    footerGuide: 'Guide',
+    footerComponents: 'Components',
+    stageNotify: 'Notifications',
+    stageStable: 'Stable',
+    stageStorage: 'Storage 72%',
+    segDay: 'Day', segWeek: 'Week', segMonth: 'Month',
   },
-  {
-    href: '#icon',
-    icon: 'heart',
-    term: '资源',
-    desc: '图标与排版规范，与组件共享同一套 Design Token。',
-  },
-] as const;
-
-const values = [
-  { icon: 'layers', text: '统一 Design Token' },
-  { icon: 'moon', text: '暗色主题' },
-  { icon: 'package', text: '零运行时依赖' },
-  { icon: 'heart', text: 'WCAG AA' },
-] as const;
+} as const;
 
 interface HomePageProps {
   dark: boolean;
@@ -86,14 +113,16 @@ function SeaScene() {
 /** hero 右侧的活体组件舞台：全部是真实可交互的库内组件（aria-hidden 由组件自身语义保证，不加） */
 function ComponentStage() {
   const [notify, setNotify] = useState(true);
+  const { lang } = useLang();
+  const t = strings[lang];
   return (
     <div className="landing__stage">
       <div className="landing__stage-card landing__stage-card--a">
         <Segmented
           options={[
-            { label: '日', value: 'day' },
-            { label: '周', value: 'week' },
-            { label: '月', value: 'month' },
+            { label: t.segDay, value: 'day' },
+            { label: t.segWeek, value: 'week' },
+            { label: t.segMonth, value: 'month' },
           ]}
           defaultValue="week"
         />
@@ -101,17 +130,17 @@ function ComponentStage() {
       <div className="landing__stage-card landing__stage-card--b">
         <label className="landing__stage-row">
           <Switch checked={notify} onChange={(checked) => setNotify(checked)} />
-          消息通知
+          {t.stageNotify}
         </label>
       </div>
       <div className="landing__stage-card landing__stage-card--c">
         <Tag color="brand">v{componentsPkg.version}</Tag>
-        <Tag color="success">稳定</Tag>
+        <Tag color="success">{t.stageStable}</Tag>
         <Tag color="warning">Beta</Tag>
       </div>
       <div className="landing__stage-card landing__stage-card--d">
         <Progress percent={72} />
-        <span className="landing__stage-note">存储用量 72%</span>
+        <span className="landing__stage-note">{t.stageStorage}</span>
       </div>
       <div className="landing__stage-card landing__stage-card--e">
         <DatePicker defaultValue="2026-10-11" />
@@ -121,6 +150,8 @@ function ComponentStage() {
 }
 
 export function HomePage({ dark, onToggleDark }: HomePageProps) {
+  const { lang } = useLang();
+  const t = strings[lang];
   return (
     <div className="landing">
       <header className="landing__nav">
@@ -130,7 +161,7 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
             <span className="landing__version">v{componentsPkg.version}</span>
           </a>
           <nav className="landing__links" aria-label="站点导航">
-            <a href="#button">组件</a>
+            <a href="#button">{t.navComponents}</a>
             <a
               href="https://github.com/jxzzz/reef-ui"
               target="_blank"
@@ -155,18 +186,11 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
         <section className="landing__hero">
           <div className="landing__hero-inner">
             <div className="landing__hero-copy">
-              <h1 className="landing__title">
-                一致的组件，
-                <br />
-                可切换的主题。
-              </h1>
-              <p className="landing__sub">
-                Reef UI 是为中后台场景打造的基础 React 组件库：TypeScript
-                编写，样式基于 CSS Variables，开箱即用，覆盖变量即可换成你的品牌。
-              </p>
+              <h1 className="landing__title">{t.heroTitle}</h1>
+              <p className="landing__sub">{t.heroSub}</p>
               <div className="landing__cta">
                 <a className="landing__cta-primary" href="#button">
-                  查看组件
+                  {t.cta}
                 </a>
               </div>
             </div>
@@ -176,20 +200,20 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
         </section>
 
         <section className="landing__entries" aria-label="探索">
-          {entries.map((e) => (
+          {t.entries.map((e) => (
             <a key={e.href} className="landing__entry" href={e.href}>
               <span className="landing__entry-icon">
                 <Icon name={e.icon} size={18} />
               </span>
               <h3>{e.term}</h3>
               <p>{e.desc}</p>
-              <span className="landing__entry-link">查看详情 →</span>
+              <span className="landing__entry-link">{t.entryLink}</span>
             </a>
           ))}
         </section>
 
         <section className="landing__values" aria-label="特性">
-          {values.map((v) => (
+          {t.values.map((v) => (
             <span key={v.text} className="landing__value">
               <Icon name={v.icon} size={16} />
               {v.text}
@@ -200,10 +224,10 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
 
       <footer className="landing__footer">
         <div className="landing__footer-inner">
-          <span>MIT License · Reef UI · 用 TypeScript 与 CSS Variables 构建</span>
+          <span>{t.footer}</span>
           <nav className="landing__footer-links" aria-label="页脚导航">
             <a href="#guide">使用指南</a>
-            <a href="#button">组件</a>
+            <a href="#button">{t.navComponents}</a>
             <a href="https://github.com/jxzzz/reef-ui" target="_blank" rel="noopener noreferrer">
               GitHub
             </a>

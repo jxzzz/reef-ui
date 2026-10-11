@@ -1,34 +1,58 @@
 import { Button, Tooltip } from '@reef-ui/components';
 import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
+import { useLang, type Lang } from '../i18n';
 
-const basicCode = `<Tooltip title="删除该条目">
+const basicCode: Record<Lang, string> = {
+  zh: `<Tooltip title="删除该条目">
   <Button>删除</Button>
 </Tooltip>
 <Tooltip title="顶部提示" placement="top">
   <Button>上方</Button>
-</Tooltip>`;
+</Tooltip>`,
+  en: `<Tooltip title="Delete this item">
+  <Button>Delete</Button>
+</Tooltip>
+<Tooltip title="Top tooltip" placement="top">
+  <Button>Above</Button>
+</Tooltip>`,
+};
 
 export function TooltipPage() {
+  const { lang } = useLang();
+  const zh = lang === 'zh';
   return (
     <>
-      <ComponentHeader group="数据展示" title="Tooltip 文字提示">
-        鼠标悬停或键盘聚焦时显示的轻量气泡，纯 CSS 实现。
+      <ComponentHeader group="数据展示" title={zh ? 'Tooltip 文字提示' : 'Tooltip'}>
+        {zh ? '鼠标悬停或键盘聚焦时显示的轻量气泡，纯 CSS 实现。' : 'A lightweight bubble shown on hover or keyboard focus, implemented in pure CSS.'}
       </ComponentHeader>
 
-      <Demo title="基础用法" code={basicCode}>
-        <Tooltip title="删除该条目">
-          <Button>删除</Button>
-        </Tooltip>
-        <Tooltip title="我在下面" placement="bottom">
-          <Button>下方</Button>
-        </Tooltip>
+      <Demo title={zh ? '基础用法' : 'Basic usage'} code={zh ? basicCode.zh : basicCode.en}>
+        {zh ? (
+          <>
+            <Tooltip title="删除该条目">
+              <Button>删除</Button>
+            </Tooltip>
+            <Tooltip title="我在下面" placement="bottom">
+              <Button>下方</Button>
+            </Tooltip>
+          </>
+        ) : (
+          <>
+            <Tooltip title="Delete this item">
+              <Button>Delete</Button>
+            </Tooltip>
+            <Tooltip title="I'm at the bottom" placement="bottom">
+              <Button>Below</Button>
+            </Tooltip>
+          </>
+        )}
       </Demo>
 
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['title', '气泡文案', 'string', '必填'],
-          ['placement', '显示位置', "'top' | 'bottom'", "'top'"],
+          ['title', zh ? '气泡文案' : 'Tooltip text', 'string', zh ? '必填' : 'Required'],
+          ['placement', zh ? '显示位置' : 'Display position', "'top' | 'bottom'", "'top'"],
         ]}
       />
     </>

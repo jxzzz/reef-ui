@@ -1,47 +1,80 @@
 import { Button, Divider } from '@reef-ui/components';
 import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
+import { useLang, type Lang } from '../i18n';
 
-const basicCode = `内容上方
+const basicCode: Record<Lang, string> = {
+  zh: `内容上方
 <Divider>中间文字</Divider>
-内容下方`;
+内容下方`,
+  en: `Content above
+<Divider>Middle text</Divider>
+Content below`,
+};
 
 const dashedCode = `<Divider dashed />`;
 
-const verticalCode = `<Button>左侧</Button>
+const verticalCode: Record<Lang, string> = {
+  zh: `<Button>左侧</Button>
 <Divider vertical />
-<Button>右侧</Button>`;
+<Button>右侧</Button>`,
+  en: `<Button>Left</Button>
+<Divider vertical />
+<Button>Right</Button>`,
+};
 
 export function DividerPage() {
+  const { lang } = useLang();
+  const zh = lang === 'zh';
   return (
     <>
-      <ComponentHeader group="通用" title="Divider 分割线">
-        水平或垂直分割线，水平线可带文字。
+      <ComponentHeader group="通用" title={zh ? 'Divider 分割线' : 'Divider'}>
+        {zh ? '水平或垂直分割线，水平线可带文字。' : 'Horizontal or vertical divider; the horizontal one can carry text.'}
       </ComponentHeader>
 
-      <Demo title="基础用法" code={basicCode}>
-        <div>内容上方</div>
-        <Divider>中间文字</Divider>
-        <div>内容下方</div>
+      <Demo title={zh ? '基础用法' : 'Basic usage'} code={zh ? basicCode.zh : basicCode.en}>
+        {zh ? (
+          <>
+            <div>内容上方</div>
+            <Divider>中间文字</Divider>
+            <div>内容下方</div>
+          </>
+        ) : (
+          <>
+            <div>Content above</div>
+            <Divider>Middle text</Divider>
+            <div>Content below</div>
+          </>
+        )}
       </Demo>
 
-      <Demo title="虚线" code={dashedCode}>
+      <Demo title={zh ? '虚线' : 'Dashed'} code={dashedCode}>
         <Divider dashed />
       </Demo>
 
-      <Demo title="垂直分割线" code={verticalCode}>
+      <Demo title={zh ? '垂直分割线' : 'Vertical divider'} code={zh ? verticalCode.zh : verticalCode.en}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Button>左侧</Button>
-          <Divider vertical />
-          <Button>右侧</Button>
+          {zh ? (
+            <>
+              <Button>左侧</Button>
+              <Divider vertical />
+              <Button>右侧</Button>
+            </>
+          ) : (
+            <>
+              <Button>Left</Button>
+              <Divider vertical />
+              <Button>Right</Button>
+            </>
+          )}
         </div>
       </Demo>
 
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['vertical', '是否垂直分割线', 'boolean', 'false'],
-          ['dashed', '是否虚线', 'boolean', 'false'],
-          ['children', '水平线的文字内容', 'ReactNode', '—'],
+          ['vertical', zh ? '是否垂直分割线' : 'Whether the divider is vertical', 'boolean', 'false'],
+          ['dashed', zh ? '是否虚线' : 'Whether the line is dashed', 'boolean', 'false'],
+          ['children', zh ? '水平线的文字内容' : 'Text content of the horizontal line', 'ReactNode', '—'],
         ]}
       />
     </>

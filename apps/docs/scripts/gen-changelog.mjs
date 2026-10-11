@@ -69,7 +69,7 @@ for (const e of entries) {
     else rest.push(item);
   }
   if (adds.length >= 3) rest.push({ type: '新增', text: `首批组件：${adds.join('；')}` });
-  else for (const [i, name] of adds.reverse().entries()) rest.push({ type: '新增', text: `新增 ${name} 组件` });
+  else for (const name of adds.reverse()) rest.push({ type: '新增', text: `新增 ${name} 组件` });
   e.items = rest;
 }
 

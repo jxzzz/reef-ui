@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Icon, Input } from '@reef-ui/components';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
+import { groupLabel, useChrome, useLang } from './i18n';
 
 /** 搜索输入框：基于库内 Input（prefix 图标 + clearable），Esc 清空 */
 export function SearchInput({
@@ -33,6 +34,7 @@ export function SearchInput({
 export function CodeBlock({ code, defaultExpanded = false }: { code: string; defaultExpanded?: boolean }) {
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(defaultExpanded);
+  const t = useChrome();
 
   const html = useMemo(() => Prism.highlight(code, Prism.languages.jsx, 'jsx'), [code]);
 
@@ -56,10 +58,10 @@ export function CodeBlock({ code, defaultExpanded = false }: { code: string; def
       <div className="code-block__actions">
         <span className="code-block__lang">TSX</span>
         <button className="code-block__btn" onClick={() => setExpanded(!expanded)}>
-          {expanded ? '收起代码' : '展开代码'}
+          {expanded ? t.collapse : t.expand}
         </button>
         <button className="code-block__btn" onClick={copy}>
-          {copied ? '已复制' : '复制'}
+          {copied ? t.copied : t.copy}
         </button>
       </div>
     </div>
@@ -77,16 +79,17 @@ export function Demo({ title, code, children }: { title: string; code: string; c
   );
 }
 
-/** 组件 API 表格：[属性, 说明, 类型, 默认值] */
+/** 组件 API 表格：[属性, 说明, 类型, 默认值]，表头随语言切换 */
 export function ApiTable({ rows }: { rows: Array<[string, string, string, string]> }) {
+  const t = useChrome();
   return (
     <table className="api">
       <thead>
         <tr>
-          <th>属性</th>
-          <th>说明</th>
-          <th>类型</th>
-          <th>默认值</th>
+          <th>{t.prop}</th>
+          <th>{t.desc}</th>
+          <th>{t.type}</th>
+          <th>{t.def}</th>
         </tr>
       </thead>
       <tbody>
@@ -109,19 +112,21 @@ export function ApiTable({ rows }: { rows: Array<[string, string, string, string
 
 /** 类型定义块：API 表下方直接展示导出自定义类型的 TS 定义（默认展开） */
 export function TypeBlock({ code }: { code: string }) {
+  const t = useChrome();
   return (
     <section className="type-block">
-      <h3 className="demo__title">类型定义</h3>
+      <h3 className="demo__title">{t.typeDef}</h3>
       <CodeBlock code={code} defaultExpanded />
     </section>
   );
 }
 
-/** 组件页头部：分组眉题 + 标题 + 导语（fragment 渲染，h2/p 仍是 content 直接子元素，复用既有样式） */
+/** 组件页头部：分组眉题（经 groupLabel 双语化）+ 标题 + 导语 */
 export function ComponentHeader({ group, title, children }: { group: string; title: string; children?: ReactNode }) {
+  const { lang } = useLang();
   return (
     <>
-      <p className="docs__eyebrow">{group}</p>
+      <p className="docs__eyebrow">{groupLabel(group, lang)}</p>
       <h2>{title}</h2>
       {children ? <p>{children}</p> : null}
     </>
@@ -138,6 +143,7 @@ interface TocItem {
 export function Toc({ pageKey }: { pageKey: string }) {
   const [items, setItems] = useState<TocItem[]>([]);
   const [active, setActive] = useState('');
+  const t = useChrome();
 
   useEffect(() => {
     // 切页先清空上一页的目录，否则短页面会残留上一页的条目
@@ -175,9 +181,9 @@ export function Toc({ pageKey }: { pageKey: string }) {
 
   if (items.length === 0) return null;
   return (
-    <nav className="docs__toc" aria-label="本页目录">
+    <nav className="docs__toc" aria-label={t.toc}>
       <div className="docs__toc-inner">
-        <p className="docs__toc-label">本页目录</p>
+        <p className="docs__toc-label">{t.toc}</p>
         <ul>
           {items.map((item) => (
             <li key={item.id} className={item.level === 3 ? 'docs__toc-sub' : undefined}>

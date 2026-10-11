@@ -11,6 +11,10 @@ export const changelog: ChangelogEntry[] = [
     "date": "开发中",
     "items": [
       {
+        "type": "修复",
+        "text": "更新记录在浅克隆部署环境不再被空历史覆盖"
+      },
+      {
         "type": "新增",
         "text": "Menu 导航菜单组件"
       },
