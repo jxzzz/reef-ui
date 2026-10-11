@@ -60,6 +60,20 @@ export function Menu({
           </Fragment>
         );
       }
+      // 非内联（水平模式 / 弹出面板内）：分组渲染为弹出子菜单，否则竖块会破坏横排布局
+      if (!inline) {
+        return (
+          <li key={item.key} className="reef-menu__item--submenu" role="none">
+            <button type="button" role="menuitem" aria-haspopup="true" className="reef-menu__item">
+              <span className="reef-menu__label">{item.label}</span>
+              <Arrow />
+            </button>
+            <ul className="reef-menu__popup" role="menu">
+              {item.children?.map((child) => renderItem(child, depth + 1))}
+            </ul>
+          </li>
+        );
+      }
       return (
         <li key={item.key} className="reef-menu__group" role="none">
           <span className="reef-menu__group-title">{item.label}</span>
@@ -69,7 +83,6 @@ export function Menu({
         </li>
       );
     }
-
     const icon = item.icon && <span className="reef-menu__icon">{item.icon}</span>;
 
     if (item.children) {

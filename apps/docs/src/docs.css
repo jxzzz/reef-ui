@@ -37,41 +37,35 @@ body {
   color: var(--reef-color-brand);
 }
 
-.docs__sidebar nav {
+/* 侧栏导航由 Menu 组件渲染，容器级调整节奏：
+   条目间留呼吸感，分组标题还原原先的小字 + 组间留白；
+   容器留白由 .docs__sidebar 提供，这里不再叠加 */
+.docs__menu {
+  padding: 0;
+}
+
+.docs__menu .reef-menu__list {
   display: grid;
-  gap: 4px;
-  flex: 1;
-  align-content: start;
+  gap: 2px;
 }
 
-.docs__sidebar nav a {
-  display: block;
-  padding: 8px 12px;
-  border-radius: var(--reef-radius-md);
-  color: var(--reef-color-text-secondary);
-  text-decoration: none;
-  font-size: var(--reef-font-size-md);
+/* 对齐文档站惯例的 32px 条目高度（Menu 默认 8px 内边距偏高） */
+/* 覆盖 Menu 组件默认值（组件已自带非首分组 8px 间距）：文档侧栏用更轻的密度 */
+.docs__menu .reef-menu__item {
+  padding: 6px 12px;
 }
 
-.docs__sidebar nav a:hover {
-  background: color-mix(in srgb, var(--reef-color-text-primary) 6%, transparent);
-}
-
-.docs__sidebar nav a.active {
-  background: color-mix(in srgb, var(--reef-color-brand) 12%, transparent);
-  color: var(--reef-color-brand);
-  font-weight: 600;
-  box-shadow: inset 2px 0 0 var(--reef-color-brand);
-}
-
-.docs__group-label {
-  margin: 20px 0 6px;
-  padding: 0 12px;
+.docs__menu .reef-menu__group-title {
+  margin-top: 18px;
+  padding: 0 12px 4px;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--reef-color-text-secondary);
   opacity: 0.65;
+}
+
+.docs__menu > .reef-menu__list > li:first-child .reef-menu__group-title {
+  margin-top: 0;
 }
 
 .docs__empty {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Icon, Menu, type MenuItem } from '@reef-ui/components';
+import { Button, Icon, Menu, type MenuItem } from '@reef-ui/components';
 import { ApiTable, Demo, TypeBlock } from '../docs-ui';
 
 const items: MenuItem[] = [
@@ -67,6 +67,7 @@ const controlledCode = `<Menu items={items} selectedKey={current} onChange={setC
 const horizontalCode = `<Menu mode="horizontal" items={items} />`;
 
 const collapsedCode = `const [collapsed, setCollapsed] = useState(false);
+<Button onClick={() => setCollapsed(!collapsed)}>{collapsed ? '展开' : '收起'}</Button>
 <Menu items={items} collapsed={collapsed} />`;
 
 export function MenuPage() {
@@ -92,7 +93,7 @@ export function MenuPage() {
       <Demo title="收起窄条" code={collapsedCode}>
         <div>
           <p style={{ marginBottom: 12 }}>
-            <button onClick={() => setCollapsed(!collapsed)}>{collapsed ? '展开' : '收起'}</button>
+            <Button onClick={() => setCollapsed(!collapsed)}>{collapsed ? '展开' : '收起'}</Button>
           </p>
           <Menu items={plainItems} collapsed={collapsed} />
         </div>

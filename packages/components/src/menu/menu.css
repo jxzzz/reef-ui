@@ -107,6 +107,11 @@
   font-size: var(--reef-font-size-sm);
 }
 
+/* 非首个分组与前面内容拉开距离（侧栏/下拉通用） */
+.reef-menu .reef-menu__group:not(:first-child) .reef-menu__group-title {
+  margin-top: var(--reef-space-sm);
+}
+
 .reef-menu__divider {
   margin: var(--reef-space-xs) var(--reef-space-sm);
   border-top: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);

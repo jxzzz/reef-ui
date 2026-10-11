@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Breadcrumb, Icon, Scroll } from '@reef-ui/components';
+import { Breadcrumb, Icon, Menu, Scroll, type MenuItem } from '@reef-ui/components';
 import { SearchInput } from './docs-ui';
 import { AlertPage } from './pages/AlertPage';
 import { AvatarPage } from './pages/AvatarPage';
@@ -122,6 +122,13 @@ export default function App() {
   const visibleGroups = groups
     .map((g) => ({ ...g, keys: (g.keys as readonly string[]).filter((k) => !q || pages.find((p) => p.key === k)!.title.toLowerCase().includes(q)) }))
     .filter((g) => g.keys.length > 0);
+  // 侧栏即 Menu 组件本身（dogfooding）：分组 → type: 'group'，页面 → 叶子项
+  const sidebarItems: MenuItem[] = visibleGroups.map((g) => ({
+    key: `group-${g.label}`,
+    type: 'group',
+    label: g.label,
+    children: g.keys.map((k) => ({ key: k, label: pages.find((p) => p.key === k)!.title })),
+  }));
 
   // 首页是独立落地页，自带顶部导航，不带文档壳（侧栏）
   if (page === 'home') return <HomePage dark={dark} onToggleDark={toggleDark} />;
@@ -133,22 +140,15 @@ export default function App() {
         <SearchInput value={query} onChange={setQuery} placeholder="搜索组件…" />
         {/* flex:1 + minHeight:0：flex 列里滚动的前提是允许收缩到内容以下 */}
         <Scroll style={{ flex: 1, minHeight: 0 }}>
-          <nav>
-            {visibleGroups.map((g) => (
-              <div key={g.label} className="docs__group">
-                <p className="docs__group-label">{g.label}</p>
-                {g.keys.map((k) => {
-                  const p = pages.find((item) => item.key === k)!;
-                  return (
-                    <a key={p.key} href={`#${p.key}`} className={p.key === page ? 'active' : ''}>
-                      {p.title}
-                    </a>
-                  );
-                })}
-              </div>
-            ))}
-            {visibleGroups.length === 0 && <p className="docs__empty">没有匹配的组件</p>}
-          </nav>
+          <Menu
+            className="docs__menu"
+            items={sidebarItems}
+            selectedKey={page}
+            onChange={(key) => {
+              location.hash = key;
+            }}
+          />
+          {visibleGroups.length === 0 && <p className="docs__empty">没有匹配的组件</p>}
         </Scroll>
       </aside>
       <div className="docs__main">

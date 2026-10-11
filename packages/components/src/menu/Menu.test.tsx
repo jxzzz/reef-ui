@@ -91,6 +91,16 @@ describe('Menu', () => {
     expect(handleChange).toHaveBeenCalledWith('order-list');
   });
 
+  test('水平模式：顶层分组渲染为弹出子菜单（触发器 + 面板），不破坏横排', async () => {
+    const handleChange = vi.fn();
+    render(<Menu items={items} mode="horizontal" onChange={handleChange} />);
+
+    const trigger = screen.getByRole('menuitem', { name: /设置/ });
+    expect(trigger.getAttribute('aria-haspopup')).toBe('true');
+    await userEvent.click(screen.getByRole('menuitem', { name: '个人资料' }));
+    expect(handleChange).toHaveBeenCalledWith('profile');
+  });
+
   test('收起态：叶子项只显首字，完整 label 放在 title 上', () => {
     render(<Menu items={items} collapsed />);
 
