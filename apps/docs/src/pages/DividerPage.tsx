@@ -1,4 +1,4 @@
-import { Button, Divider } from '@reef-ui/components';
+import { Avatar, Button, Divider } from '@reef-ui/components';
 import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 import { useLang, type Lang } from '../i18n';
 
@@ -11,7 +11,38 @@ const basicCode: Record<Lang, string> = {
 Content below`,
 };
 
-const dashedCode = `<Divider dashed />`;
+const dashedCode: Record<Lang, string> = {
+  zh: `<div style={{ width: 280 }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+    <Avatar size={40}>浪</Avatar>
+    <div>
+      <div>阿浪</div>
+      <div style={{ fontSize: 12, color: 'var(--reef-color-text-secondary)' }}>产品经理</div>
+    </div>
+  </div>
+  <Divider dashed />
+  <div style={{ display: 'grid', gap: 4, fontSize: 13 }}>
+    <span>手机：138 0000 0000</span>
+    <span>邮箱：alang@reef.dev</span>
+    <span>地点：杭州</span>
+  </div>
+</div>`,
+  en: `<div style={{ width: 280 }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+    <Avatar size={40}>A</Avatar>
+    <div>
+      <div>Alex Reef</div>
+      <div style={{ fontSize: 12, color: 'var(--reef-color-text-secondary)' }}>Product Manager</div>
+    </div>
+  </div>
+  <Divider dashed />
+  <div style={{ display: 'grid', gap: 4, fontSize: 13 }}>
+    <span>Phone: 138 0000 0000</span>
+    <span>Email: alex@reef.dev</span>
+    <span>Location: Hangzhou</span>
+  </div>
+</div>`,
+};
 
 const verticalCode: Record<Lang, string> = {
   zh: `<Button>左侧</Button>
@@ -47,8 +78,40 @@ export function DividerPage() {
         )}
       </Demo>
 
-      <Demo title={zh ? '虚线' : 'Dashed'} code={dashedCode}>
-        <Divider dashed />
+      <Demo title={zh ? '虚线' : 'Dashed'} code={zh ? dashedCode.zh : dashedCode.en}>
+        {zh ? (
+          <div style={{ width: 280 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <Avatar size={40}>浪</Avatar>
+              <div>
+                <div>阿浪</div>
+                <div style={{ fontSize: 12, color: 'var(--reef-color-text-secondary)' }}>产品经理</div>
+              </div>
+            </div>
+            <Divider dashed />
+            <div style={{ display: 'grid', gap: 4, fontSize: 13 }}>
+              <span>手机：138 0000 0000</span>
+              <span>邮箱：alang@reef.dev</span>
+              <span>地点：杭州</span>
+            </div>
+          </div>
+        ) : (
+          <div style={{ width: 280 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <Avatar size={40}>A</Avatar>
+              <div>
+                <div>Alex Reef</div>
+                <div style={{ fontSize: 12, color: 'var(--reef-color-text-secondary)' }}>Product Manager</div>
+              </div>
+            </div>
+            <Divider dashed />
+            <div style={{ display: 'grid', gap: 4, fontSize: 13 }}>
+              <span>Phone: 138 0000 0000</span>
+              <span>Email: alex@reef.dev</span>
+              <span>Location: Hangzhou</span>
+            </div>
+          </div>
+        )}
       </Demo>
 
       <Demo title={zh ? '垂直分割线' : 'Vertical divider'} code={zh ? verticalCode.zh : verticalCode.en}>

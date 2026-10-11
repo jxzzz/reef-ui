@@ -8,11 +8,39 @@ const basicCode = `<Spin size="small" />
 <Spin size="large" />`;
 
 const wrapCode: Record<Lang, string> = {
-  zh: `<Spin spinning={loading} tip="加载中…">
-  <div className="panel">表格内容</div>
+  zh: `const [loading, setLoading] = useState(true);
+
+<p style={{ marginBottom: 12 }}>
+  <Button onClick={() => setLoading(!loading)}>
+    {loading ? '停止加载' : '开始加载'}
+  </Button>
+</p>
+<Spin spinning={loading} tip="加载中…">
+  <div
+    style={{
+      padding: '24px 48px',
+      border: '1px dashed color-mix(in srgb, var(--reef-color-text-primary) 15%, transparent)',
+    }}
+  >
+    表格内容
+  </div>
 </Spin>`,
-  en: `<Spin spinning={loading} tip="Loading…">
-  <div className="panel">Table content</div>
+  en: `const [loading, setLoading] = useState(true);
+
+<p style={{ marginBottom: 12 }}>
+  <Button onClick={() => setLoading(!loading)}>
+    {loading ? 'Stop loading' : 'Start loading'}
+  </Button>
+</p>
+<Spin spinning={loading} tip="Loading…">
+  <div
+    style={{
+      padding: '24px 48px',
+      border: '1px dashed color-mix(in srgb, var(--reef-color-text-primary) 15%, transparent)',
+    }}
+  >
+    Table content
+  </div>
 </Spin>`,
 };
 

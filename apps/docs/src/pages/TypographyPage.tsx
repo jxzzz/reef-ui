@@ -3,27 +3,35 @@ import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 import { useLang, type Lang } from '../i18n';
 
 const titleCode: Record<Lang, string> = {
-  zh: `<Title level={1}>h1 一级标题</Title>
-<Title level={2}>h2 二级标题</Title>
-<Title level={3}>h3 三级标题</Title>
-<Title level={4}>h4 四级标题</Title>`,
-  en: `<Title level={1}>h1 heading</Title>
-<Title level={2}>h2 heading</Title>
-<Title level={3}>h3 heading</Title>
-<Title level={4}>h4 heading</Title>`,
+  zh: `<div style={{ display: 'grid', gap: 8 }}>
+  <Title level={1}>h1 一级标题</Title>
+  <Title level={2}>h2 二级标题</Title>
+  <Title level={3}>h3 三级标题</Title>
+  <Title level={4}>h4 四级标题</Title>
+</div>`,
+  en: `<div style={{ display: 'grid', gap: 8 }}>
+  <Title level={1}>h1 heading</Title>
+  <Title level={2}>h2 heading</Title>
+  <Title level={3}>h3 heading</Title>
+  <Title level={4}>h4 heading</Title>
+</div>`,
 };
 
 const textCode: Record<Lang, string> = {
-  zh: `<Text>Primary 文本</Text>
-<Text type="secondary">Secondary 文本</Text>
-<Text type="success">Success 文本</Text>
-<Text type="warning">Warning 文本</Text>
-<Text type="danger">Danger 文本</Text>`,
-  en: `<Text>Primary text</Text>
-<Text type="secondary">Secondary text</Text>
-<Text type="success">Success text</Text>
-<Text type="warning">Warning text</Text>
-<Text type="danger">Danger text</Text>`,
+  zh: `<div style={{ display: 'grid', gap: 8 }}>
+  <Text>Primary 文本</Text>
+  <Text type="secondary">Secondary 文本</Text>
+  <Text type="success">Success 文本</Text>
+  <Text type="warning">Warning 文本</Text>
+  <Text type="danger">Danger 文本</Text>
+</div>`,
+  en: `<div style={{ display: 'grid', gap: 8 }}>
+  <Text>Primary text</Text>
+  <Text type="secondary">Secondary text</Text>
+  <Text type="success">Success text</Text>
+  <Text type="warning">Warning text</Text>
+  <Text type="danger">Danger text</Text>
+</div>`,
 };
 
 export function TypographyPage() {

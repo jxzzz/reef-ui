@@ -6,43 +6,61 @@ import { useLang, type Lang } from '../i18n';
 const basicCode: Record<Lang, string> = {
   zh: `const [open, setOpen] = useState(false);
 
-<Modal open={open} title="确认删除" onClose={() => setOpen(false)}>
-  <p>删除后不可恢复，确定要删除这条记录吗？</p>
-</Modal>`,
+<>
+  <Button onClick={() => setOpen(true)}>打开对话框</Button>
+  <Modal open={open} title="确认删除" onClose={() => setOpen(false)}>
+    <p style={{ margin: 0 }}>删除后不可恢复，确定要删除这条记录吗？</p>
+  </Modal>
+</>`,
   en: `const [open, setOpen] = useState(false);
 
-<Modal open={open} title="Confirm deletion" onClose={() => setOpen(false)}>
-  <p>This cannot be undone. Delete this record?</p>
-</Modal>`,
+<>
+  <Button onClick={() => setOpen(true)}>Open dialog</Button>
+  <Modal open={open} title="Confirm deletion" onClose={() => setOpen(false)}>
+    <p style={{ margin: 0 }}>This cannot be undone. Delete this record?</p>
+  </Modal>
+</>`,
 };
 
 const footerCode: Record<Lang, string> = {
-  zh: `<Modal
-  open={open}
-  title="自定义底部"
-  footer={
-    <>
-      <Button onClick={() => setOpen(false)}>取消</Button>
-      <Button variant="primary" onClick={() => setOpen(false)}>确定</Button>
-    </>
-  }
-  onClose={() => setOpen(false)}
->
-  内容
-</Modal>`,
-  en: `<Modal
-  open={open}
-  title="Custom footer"
-  footer={
-    <>
-      <Button onClick={() => setOpen(false)}>Cancel</Button>
-      <Button variant="primary" onClick={() => setOpen(false)}>OK</Button>
-    </>
-  }
-  onClose={() => setOpen(false)}
->
-  Content
-</Modal>`,
+  zh: `const [open, setOpen] = useState(false);
+
+<>
+  <Button onClick={() => setOpen(true)}>打开带底部按钮的对话框</Button>
+  <Modal
+    open={open}
+    title="自定义底部"
+    width={520}
+    footer={
+      <>
+        <Button onClick={() => setOpen(false)}>取消</Button>
+        <Button variant="primary" onClick={() => setOpen(false)}>确定</Button>
+      </>
+    }
+    onClose={() => setOpen(false)}
+  >
+    <p style={{ margin: 0 }}>底部内容由使用方渲染。</p>
+  </Modal>
+</>`,
+  en: `const [open, setOpen] = useState(false);
+
+<>
+  <Button onClick={() => setOpen(true)}>Open dialog with footer buttons</Button>
+  <Modal
+    open={open}
+    title="Custom footer"
+    width={520}
+    footer={
+      <>
+        <Button onClick={() => setOpen(false)}>Cancel</Button>
+        <Button variant="primary" onClick={() => setOpen(false)}>OK</Button>
+      </>
+    }
+    onClose={() => setOpen(false)}
+  >
+    <p style={{ margin: 0 }}>The footer is rendered by the caller.</p>
+  </Modal>
+</>`,
 };
 
 export function ModalPage() {

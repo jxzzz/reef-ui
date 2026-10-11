@@ -30,7 +30,12 @@ const users = [
 };
 
 const sorterCode: Record<Lang, string> = {
-  zh: `<Table
+  zh: `const users = [
+  { id: 1, name: '张三', age: 28, city: '杭州', role: '管理员' },
+  { id: 2, name: '李四', age: 35, city: '北京', role: '编辑' },
+  { id: 3, name: '王五', age: 22, city: '上海', role: '访客' },
+];
+<Table
   rowKey="id"
   columns={[
     { key: 'name', title: '姓名' },
@@ -38,7 +43,12 @@ const sorterCode: Record<Lang, string> = {
   ]}
   dataSource={users}
 />`,
-  en: `<Table
+  en: `const users = [
+  { id: 1, name: 'John', age: 28, city: 'Hangzhou', role: 'Admin' },
+  { id: 2, name: 'Jane', age: 35, city: 'Beijing', role: 'Editor' },
+  { id: 3, name: 'Bob', age: 22, city: 'Shanghai', role: 'Viewer' },
+];
+<Table
   rowKey="id"
   columns={[
     { key: 'name', title: 'Name' },
@@ -49,21 +59,31 @@ const sorterCode: Record<Lang, string> = {
 };
 
 const renderCode: Record<Lang, string> = {
-  zh: `<Table
+  zh: `const users = [
+  { id: 1, name: '张三', age: 28, city: '杭州', role: '管理员' },
+  { id: 2, name: '李四', age: 35, city: '北京', role: '编辑' },
+  { id: 3, name: '王五', age: 22, city: '上海', role: '访客' },
+];
+<Table
   rowKey="id"
   columns={[
     { key: 'name', title: '姓名' },
     { key: 'role', title: '角色', render: (r) => <Tag color="brand">{r.role}</Tag> },
-    { key: 'id', title: '操作', render: (r) => <a>编辑 {r.id}</a>, align: 'right' },
+    { key: 'id', title: '操作', render: (r) => <a href="#">编辑 {r.id}</a>, align: 'right' },
   ]}
   dataSource={users}
 />`,
-  en: `<Table
+  en: `const users = [
+  { id: 1, name: 'John', age: 28, city: 'Hangzhou', role: 'Admin' },
+  { id: 2, name: 'Jane', age: 35, city: 'Beijing', role: 'Editor' },
+  { id: 3, name: 'Bob', age: 22, city: 'Shanghai', role: 'Viewer' },
+];
+<Table
   rowKey="id"
   columns={[
     { key: 'name', title: 'Name' },
     { key: 'role', title: 'Role', render: (r) => <Tag color="brand">{r.role}</Tag> },
-    { key: 'id', title: 'Action', render: (r) => <a>Edit {r.id}</a>, align: 'right' },
+    { key: 'id', title: 'Action', render: (r) => <a href="#">Edit {r.id}</a>, align: 'right' },
   ]}
   dataSource={users}
 />`,

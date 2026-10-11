@@ -23,7 +23,7 @@ export function SwitchPage() {
 
       <Demo title={zh ? '基础用法' : 'Basic usage'} code={basicCode}>
         <Switch checked={on} onChange={setOn} />
-        <Switch onChange={setOn} disabled />
+        <Switch checked={on} onChange={setOn} disabled />
       </Demo>
 
       <h3>API</h3>

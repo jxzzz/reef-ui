@@ -6,14 +6,14 @@ const basicCode: Record<Lang, string> = {
   zh: `<Tooltip title="删除该条目">
   <Button>删除</Button>
 </Tooltip>
-<Tooltip title="顶部提示" placement="top">
-  <Button>上方</Button>
+<Tooltip title="我在下面" placement="bottom">
+  <Button>下方</Button>
 </Tooltip>`,
   en: `<Tooltip title="Delete this item">
   <Button>Delete</Button>
 </Tooltip>
-<Tooltip title="Top tooltip" placement="top">
-  <Button>Above</Button>
+<Tooltip title="I'm at the bottom" placement="bottom">
+  <Button>Below</Button>
 </Tooltip>`,
 };
 

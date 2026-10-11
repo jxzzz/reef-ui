@@ -18,8 +18,22 @@ const basicCode: Record<Lang, string> = {
 <Segmented options={options} />`,
 };
 
-const controlledCode = `const [range, setRange] = useState('week');
-<Segmented options={options} value={range} onChange={setRange} />`;
+const controlledCode: Record<Lang, string> = {
+  zh: `const [range, setRange] = useState('week');
+const options: SegmentedOption[] = [
+  { label: '日', value: 'day' },
+  { label: '周', value: 'week' },
+  { label: '月', value: 'month' },
+];
+<Segmented options={options} value={range} onChange={setRange} />`,
+  en: `const [range, setRange] = useState('week');
+const options: SegmentedOption[] = [
+  { label: 'Day', value: 'day' },
+  { label: 'Week', value: 'week' },
+  { label: 'Month', value: 'month' },
+];
+<Segmented options={options} value={range} onChange={setRange} />`,
+};
 
 export function SegmentedPage() {
   const { lang } = useLang();
@@ -46,7 +60,7 @@ export function SegmentedPage() {
         <Segmented options={options} />
       </Demo>
 
-      <Demo title={zh ? '受控用法' : 'Controlled'} code={controlledCode}>
+      <Demo title={zh ? '受控用法' : 'Controlled'} code={zh ? controlledCode.zh : controlledCode.en}>
         <Segmented options={options} value={range} onChange={setRange} />
       </Demo>
 

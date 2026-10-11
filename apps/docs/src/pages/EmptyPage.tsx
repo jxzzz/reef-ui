@@ -41,7 +41,7 @@ export function EmptyPage() {
       <h3>API</h3>
       <ApiTable
         rows={[
-          ['description', zh ? '描述文案' : 'Description text', 'ReactNode', "'暂无数据'"],
+          ['description', zh ? '描述文案' : 'Description text', 'ReactNode', zh ? '"暂无数据"（随语言包）' : '"No data" (locale)'],
           ['children', zh ? '底部操作区' : 'Footer action area', 'ReactNode', '—'],
         ]}
       />

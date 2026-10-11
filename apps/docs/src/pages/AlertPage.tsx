@@ -14,10 +14,10 @@ const typesCode: Record<Lang, string> = {
 };
 
 const closableCode: Record<Lang, string> = {
-  zh: `<Alert type="success" title="操作成功" closable onClose={() => {}}>
+  zh: `<Alert type="success" title="操作成功" closable>
   数据已保存，点击 × 可关闭。
 </Alert>`,
-  en: `<Alert type="success" title="Success" closable onClose={() => {}}>
+  en: `<Alert type="success" title="Success" closable>
   Data has been saved. Click × to dismiss.
 </Alert>`,
 };

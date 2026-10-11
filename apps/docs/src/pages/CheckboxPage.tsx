@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Checkbox } from '@reef-ui/components';
 import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 import { useLang, type Lang } from '../i18n';
@@ -14,15 +15,28 @@ const basicCode: Record<Lang, string> = {
 const indeterminateCode: Record<Lang, string> = {
   zh: `const [all, setAll] = useState(false);
 
-<Checkbox indeterminate={!all}>全选</Checkbox>`,
+<Checkbox
+  checked={all}
+  indeterminate={!all}
+  onChange={(e) => setAll(e.target.checked)}
+>
+  全选
+</Checkbox>`,
   en: `const [all, setAll] = useState(false);
 
-<Checkbox indeterminate={!all}>Select all</Checkbox>`,
+<Checkbox
+  checked={all}
+  indeterminate={!all}
+  onChange={(e) => setAll(e.target.checked)}
+>
+  Select all
+</Checkbox>`,
 };
 
 export function CheckboxPage() {
   const { lang } = useLang();
   const zh = lang === 'zh';
+  const [all, setAll] = useState(false);
   return (
     <>
       <ComponentHeader group="数据录入" title={zh ? 'Checkbox 复选框' : 'Checkbox'}>
@@ -46,7 +60,9 @@ export function CheckboxPage() {
       </Demo>
 
       <Demo title={zh ? '半选态' : 'Indeterminate'} code={zh ? indeterminateCode.zh : indeterminateCode.en}>
-        {zh ? <Checkbox indeterminate>全选</Checkbox> : <Checkbox indeterminate>Select all</Checkbox>}
+        <Checkbox checked={all} indeterminate={!all} onChange={(e) => setAll(e.target.checked)}>
+          {zh ? '全选' : 'Select all'}
+        </Checkbox>
       </Demo>
 
       <h3>API</h3>

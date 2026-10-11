@@ -11,22 +11,42 @@ function makeItems(zh: boolean): MessageItem[] {
 }
 
 const fullCode: Record<Lang, string> = {
-  zh: `const [items, setItems] = useState<MessageItem[]>([
-  { key: '1', type: 'success', content: '保存成功' },
-  { key: '2', type: 'warning', content: '部分字段未填写' },
-]);
-<Message
-  items={items}
-  onClose={(key) => setItems(items.filter((item) => item.key !== key))}
-/>`,
-  en: `const [items, setItems] = useState<MessageItem[]>([
-  { key: '1', type: 'success', content: 'Saved successfully' },
-  { key: '2', type: 'warning', content: 'Some fields are missing' },
-]);
-<Message
-  items={items}
-  onClose={(key) => setItems(items.filter((item) => item.key !== key))}
-/>`,
+  zh: `function makeItems(): MessageItem[] {
+  return [
+    { key: '1', type: 'success', content: '保存成功' },
+    { key: '2', type: 'warning', content: '部分字段未填写' },
+  ];
+}
+
+const [items, setItems] = useState<MessageItem[]>(() => makeItems());
+
+<div>
+  <p style={{ marginBottom: 12 }}>
+    <Button onClick={() => setItems(makeItems())}>显示提示</Button>
+  </p>
+  <Message
+    items={items}
+    onClose={(key) => setItems(items.filter((item) => item.key !== key))}
+  />
+</div>`,
+  en: `function makeItems(): MessageItem[] {
+  return [
+    { key: '1', type: 'success', content: 'Saved successfully' },
+    { key: '2', type: 'warning', content: 'Some fields are missing' },
+  ];
+}
+
+const [items, setItems] = useState<MessageItem[]>(() => makeItems());
+
+<div>
+  <p style={{ marginBottom: 12 }}>
+    <Button onClick={() => setItems(makeItems())}>Show messages</Button>
+  </p>
+  <Message
+    items={items}
+    onClose={(key) => setItems(items.filter((item) => item.key !== key))}
+  />
+</div>`,
 };
 
 export function MessagePage() {

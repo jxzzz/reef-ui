@@ -2,23 +2,48 @@ import { Scroll } from '@reef-ui/components';
 import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 import { useLang, type Lang } from '../i18n';
 
-const listCode = `<Scroll maxHeight={160}>
+const listCode: Record<Lang, string> = {
+  zh: `const items = Array.from({ length: 20 }, (_, i) => \`列表项 \${i + 1}\`);
+
+<Scroll maxHeight={160}>
   {items.map((item) => (
-    <div key={item}>{item}</div>
+    <div
+      key={item}
+      style={{ padding: '8px 12px', borderBottom: '1px solid rgba(0,0,0,0.06)' }}
+    >
+      {item}
+    </div>
   ))}
-</Scroll>`;
+</Scroll>`,
+  en: `const items = Array.from({ length: 20 }, (_, i) => \`List item \${i + 1}\`);
+
+<Scroll maxHeight={160}>
+  {items.map((item) => (
+    <div
+      key={item}
+      style={{ padding: '8px 12px', borderBottom: '1px solid rgba(0,0,0,0.06)' }}
+    >
+      {item}
+    </div>
+  ))}
+</Scroll>`,
+};
 
 const wideCode: Record<Lang, string> = {
-  zh: `<Scroll>
-  <div style={{ width: 1200 }}>
-    横向超宽内容，hover 后底部出现横向滚动条
-  </div>
-</Scroll>`,
-  en: `<Scroll>
-  <div style={{ width: 1200 }}>
-    Wide horizontal content; hover to reveal the horizontal scrollbar at the bottom
-  </div>
-</Scroll>`,
+  zh: `<div style={{ width: 360 }}>
+  <Scroll>
+    <div style={{ width: 1200, padding: '8px 0' }}>
+      横向超宽内容，hover 后底部出现横向滚动条
+    </div>
+  </Scroll>
+</div>`,
+  en: `<div style={{ width: 360 }}>
+  <Scroll>
+    <div style={{ width: 1200, padding: '8px 0' }}>
+      Wide horizontal content; hover to reveal the horizontal scrollbar at the bottom
+    </div>
+  </Scroll>
+</div>`,
 };
 
 export function ScrollPage() {
@@ -45,19 +70,17 @@ export function ScrollPage() {
         )}
       </ComponentHeader>
 
-      <Demo title={zh ? '限高列表' : 'Bounded-height list'} code={listCode}>
-        <div style={{ width: 280 }}>
-          <Scroll maxHeight={160}>
-            {items.map((item) => (
-              <div
-                key={item}
-                style={{ padding: '8px 12px', borderBottom: '1px solid rgba(0,0,0,0.06)' }}
-              >
-                {item}
-              </div>
-            ))}
-          </Scroll>
-        </div>
+      <Demo title={zh ? '限高列表' : 'Bounded-height list'} code={zh ? listCode.zh : listCode.en}>
+        <Scroll maxHeight={160}>
+          {items.map((item) => (
+            <div
+              key={item}
+              style={{ padding: '8px 12px', borderBottom: '1px solid rgba(0,0,0,0.06)' }}
+            >
+              {item}
+            </div>
+          ))}
+        </Scroll>
       </Demo>
 
       <Demo title={zh ? '横向内容' : 'Horizontal content'} code={zh ? wideCode.zh : wideCode.en}>

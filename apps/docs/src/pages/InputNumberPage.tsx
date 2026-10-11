@@ -20,7 +20,7 @@ export function InputNumberPage() {
       </ComponentHeader>
 
       <Demo title={zh ? '基础用法' : 'Basic usage'} code="<InputNumber onChange={(v) => console.log(v)} />">
-        <InputNumber onChange={() => {}} />
+        <InputNumber onChange={(v) => console.log(v)} />
       </Demo>
 
       <Demo title={zh ? 'min / max / step（失焦钳位）' : 'min / max / step (clamped on blur)'} code={clampCode}>

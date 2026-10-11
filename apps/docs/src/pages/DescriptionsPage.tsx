@@ -33,7 +33,22 @@ const basicCode: Record<Lang, string> = {
 <Descriptions title="User details" items={items} />`,
 };
 
-const borderedCode = `<Descriptions bordered column={2} items={items} />`;
+const borderedCode: Record<Lang, string> = {
+  zh: `const items: DescriptionsItem[] = [
+  { key: 'name', label: '用户名', children: '张三' },
+  { key: 'role', label: '角色', children: '管理员' },
+  { key: 'email', label: '邮箱', children: 'zhang@example.com' },
+  { key: 'city', label: '城市', children: '杭州' },
+];
+<Descriptions bordered column={2} items={items} />`,
+  en: `const items: DescriptionsItem[] = [
+  { key: 'name', label: 'Username', children: 'Zhang San' },
+  { key: 'role', label: 'Role', children: 'Admin' },
+  { key: 'email', label: 'Email', children: 'zhang@example.com' },
+  { key: 'city', label: 'City', children: 'Hangzhou' },
+];
+<Descriptions bordered column={2} items={items} />`,
+};
 
 export function DescriptionsPage() {
   const { lang } = useLang();
@@ -48,7 +63,7 @@ export function DescriptionsPage() {
         <Descriptions title={zh ? '用户详情' : 'User details'} items={zh ? items : enItems} />
       </Demo>
 
-      <Demo title={zh ? '带边框两列' : 'Bordered two columns'} code={borderedCode}>
+      <Demo title={zh ? '带边框两列' : 'Bordered two columns'} code={zh ? borderedCode.zh : borderedCode.en}>
         <Descriptions bordered column={2} items={zh ? items : enItems} />
       </Demo>
 

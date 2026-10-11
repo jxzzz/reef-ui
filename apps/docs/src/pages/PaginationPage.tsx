@@ -16,7 +16,7 @@ export function PaginationPage() {
       </ComponentHeader>
 
       <Demo title={zh ? '基础用法' : 'Basic usage'} code={basicCode}>
-        <Pagination total={100} />
+        <Pagination total={100} defaultCurrent={1} onChange={(page) => console.log(page)} />
       </Demo>
 
       <Demo title={zh ? '页数较多' : 'More pages'} code={moreCode}>

@@ -29,8 +29,8 @@ const verticalCode: Record<Lang, string> = {
   >
     <Input type="email" placeholder="name@example.com" />
   </FormItem>
-  <FormItem label="备注">
-    <Input name="remark" placeholder="选填" />
+  <FormItem label="偏好" htmlFor="f-notice">
+    <Checkbox id="f-notice">订阅更新通知</Checkbox>
   </FormItem>
   <FormItem>
     <Button type="submit">提交</Button>
@@ -62,8 +62,8 @@ const verticalCode: Record<Lang, string> = {
   >
     <Input type="email" placeholder="name@example.com" />
   </FormItem>
-  <FormItem label="Remark">
-    <Input name="remark" placeholder="Optional" />
+  <FormItem label="Preferences" htmlFor="f-notice">
+    <Checkbox id="f-notice">Subscribe to update notifications</Checkbox>
   </FormItem>
   <FormItem>
     <Button type="submit">Submit</Button>
@@ -79,6 +79,9 @@ const horizontalCode: Record<Lang, string> = {
   <FormItem label="邮箱">
     <Input type="email" placeholder="name@example.com" />
   </FormItem>
+  <FormItem label="通知">
+    <Switch />
+  </FormItem>
 </Form>`,
   en: `<Form layout="horizontal">
   <FormItem label="Username" required>
@@ -87,30 +90,37 @@ const horizontalCode: Record<Lang, string> = {
   <FormItem label="Email">
     <Input type="email" placeholder="name@example.com" />
   </FormItem>
+  <FormItem label="Notifications">
+    <Switch />
+  </FormItem>
 </Form>`,
 };
 
 const errorCode: Record<Lang, string> = {
   zh: `// 提交时 Form 一次性校验所有字段，错误同时列出；
 // 已报错的字段在输入时会即时重校验，改对立即消除错误。
-<FormItem
-  name="username"
-  label="用户名"
-  required
-  validate={(v) => (v.length < 4 ? '用户名至少 4 个字符' : null)}
->
-  <Input value={name} onChange={(e) => setName(e.target.value)} />
-</FormItem>`,
+<Form onSubmit={(e) => e.preventDefault()}>
+  <FormItem
+    name="demo-name"
+    label="用户名"
+    required
+    validate={(v) => (v.length < 4 ? '用户名至少 4 个字符' : null)}
+  >
+    <Input placeholder="先提交触发错误，再输入试试" />
+  </FormItem>
+</Form>`,
   en: `// On submit, Form validates all fields at once and lists every error;
 // fields with errors are re-validated as you type and clear as soon as they pass.
-<FormItem
-  name="username"
-  label="Username"
-  required
-  validate={(v) => (v.length < 4 ? 'Username must be at least 4 characters' : null)}
->
-  <Input value={name} onChange={(e) => setName(e.target.value)} />
-</FormItem>`,
+<Form onSubmit={(e) => e.preventDefault()}>
+  <FormItem
+    name="demo-name"
+    label="Username"
+    required
+    validate={(v) => (v.length < 4 ? 'Username must be at least 4 characters' : null)}
+  >
+    <Input placeholder="Submit to trigger an error, then start typing" />
+  </FormItem>
+</Form>`,
 };
 
 const inlineCode: Record<Lang, string> = {

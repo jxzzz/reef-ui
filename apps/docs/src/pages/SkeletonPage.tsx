@@ -8,12 +8,30 @@ const basicCode = `<Skeleton rows={3} />`;
 const avatarCode = `<Skeleton avatar rows={2} />`;
 
 const loadCode: Record<Lang, string> = {
-  zh: `<Skeleton loading={loading} rows={2}>
-  <p>加载完成的内容</p>
-</Skeleton>`,
-  en: `<Skeleton loading={loading} rows={2}>
-  <p>Content loaded</p>
-</Skeleton>`,
+  zh: `const [loading, setLoading] = useState(true);
+
+<div>
+  <p style={{ marginBottom: 12 }}>
+    <Button onClick={() => setLoading(!loading)}>
+      {loading ? '停止加载' : '开始加载'}
+    </Button>
+  </p>
+  <Skeleton loading={loading} rows={2}>
+    <p>加载完成的内容</p>
+  </Skeleton>
+</div>`,
+  en: `const [loading, setLoading] = useState(true);
+
+<div>
+  <p style={{ marginBottom: 12 }}>
+    <Button onClick={() => setLoading(!loading)}>
+      {loading ? 'Stop loading' : 'Start loading'}
+    </Button>
+  </p>
+  <Skeleton loading={loading} rows={2}>
+    <p>Content loaded</p>
+  </Skeleton>
+</div>`,
 };
 
 export function SkeletonPage() {

@@ -27,7 +27,7 @@ function makeItems(withIcon: boolean, zh: boolean): MenuItem[] {
   ];
 }
 
-const basicCode: Record<Lang, string> = {
+const itemsCode: Record<Lang, string> = {
   zh: `const items: MenuItem[] = [
   { key: 'home', label: '首页', icon: <Icon name="home" size={16} /> },
   {
@@ -46,8 +46,7 @@ const basicCode: Record<Lang, string> = {
     label: '设置',
     children: [{ key: 'profile', label: '个人资料' }],
   },
-];
-<Menu defaultSelectedKey="home" items={items} />`,
+];`,
   en: `const items: MenuItem[] = [
   { key: 'home', label: 'Home', icon: <Icon name="home" size={16} /> },
   {
@@ -66,21 +65,80 @@ const basicCode: Record<Lang, string> = {
     label: 'Settings',
     children: [{ key: 'profile', label: 'Profile' }],
   },
-];
+];`,
+};
+
+const plainItemsCode: Record<Lang, string> = {
+  zh: `const plainItems: MenuItem[] = [
+  { key: 'home', label: '首页' },
+  {
+    key: 'orders',
+    label: '订单管理',
+    children: [
+      { key: 'order-list', label: '订单列表' },
+      { key: 'order-refund', label: '退款管理' },
+    ],
+  },
+  { key: 'exit', label: '退出登录', danger: true },
+  {
+    key: 'settings-group',
+    type: 'group',
+    label: '设置',
+    children: [{ key: 'profile', label: '个人资料' }],
+  },
+];`,
+  en: `const plainItems: MenuItem[] = [
+  { key: 'home', label: 'Home' },
+  {
+    key: 'orders',
+    label: 'Orders',
+    children: [
+      { key: 'order-list', label: 'Order list' },
+      { key: 'order-refund', label: 'Refunds' },
+    ],
+  },
+  { key: 'exit', label: 'Sign out', danger: true },
+  {
+    key: 'settings-group',
+    type: 'group',
+    label: 'Settings',
+    children: [{ key: 'profile', label: 'Profile' }],
+  },
+];`,
+};
+
+const basicCode: Record<Lang, string> = {
+  zh: `${itemsCode.zh}
+<Menu defaultSelectedKey="home" items={items} />`,
+  en: `${itemsCode.en}
 <Menu defaultSelectedKey="home" items={items} />`,
 };
 
-const controlledCode = `<Menu items={items} selectedKey={current} onChange={setCurrent} />`;
+const controlledCode: Record<Lang, string> = {
+  zh: `const [current, setCurrent] = useState('home');
+${itemsCode.zh}
+<Menu items={items} selectedKey={current} onChange={setCurrent} />`,
+  en: `const [current, setCurrent] = useState('home');
+${itemsCode.en}
+<Menu items={items} selectedKey={current} onChange={setCurrent} />`,
+};
 
-const horizontalCode = `<Menu mode="horizontal" items={items} />`;
+const horizontalCode: Record<Lang, string> = {
+  zh: `${itemsCode.zh}
+<Menu mode="horizontal" items={items} />`,
+  en: `${itemsCode.en}
+<Menu mode="horizontal" items={items} />`,
+};
 
 const collapsedCode: Record<Lang, string> = {
   zh: `const [collapsed, setCollapsed] = useState(false);
+${plainItemsCode.zh}
 <Button onClick={() => setCollapsed(!collapsed)}>{collapsed ? '展开' : '收起'}</Button>
-<Menu items={items} collapsed={collapsed} />`,
+<Menu items={plainItems} collapsed={collapsed} />`,
   en: `const [collapsed, setCollapsed] = useState(false);
+${plainItemsCode.en}
 <Button onClick={() => setCollapsed(!collapsed)}>{collapsed ? 'Expand' : 'Collapse'}</Button>
-<Menu items={items} collapsed={collapsed} />`,
+<Menu items={plainItems} collapsed={collapsed} />`,
 };
 
 export function MenuPage() {
@@ -112,7 +170,7 @@ export function MenuPage() {
         <Menu defaultSelectedKey="home" items={items} />
       </Demo>
 
-      <Demo title={zh ? '受控用法' : 'Controlled'} code={controlledCode}>
+      <Demo title={zh ? '受控用法' : 'Controlled'} code={zh ? controlledCode.zh : controlledCode.en}>
         <Menu items={items} selectedKey={current} onChange={setCurrent} />
       </Demo>
 
@@ -127,7 +185,7 @@ export function MenuPage() {
         </div>
       </Demo>
 
-      <Demo title={zh ? '水平模式' : 'Horizontal mode'} code={horizontalCode}>
+      <Demo title={zh ? '水平模式' : 'Horizontal mode'} code={zh ? horizontalCode.zh : horizontalCode.en}>
         <Menu mode="horizontal" items={items} />
       </Demo>
 

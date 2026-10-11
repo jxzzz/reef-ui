@@ -17,11 +17,28 @@ const basicCode: Record<Lang, string> = {
 <Steps defaultCurrent={1} items={stepsItems} />`,
 };
 
-const clickableCode = `<Steps
+const clickableCode: Record<Lang, string> = {
+  zh: `const stepsItems: StepsItem[] = [
+  { key: 'info', title: '填写信息', description: '基本信息' },
+  { key: 'confirm', title: '确认订单' },
+  { key: 'pay', title: '支付' },
+];
+<Steps
   defaultCurrent={0}
   onChange={(index) => console.log(index)}
   items={stepsItems}
-/>`;
+/>`,
+  en: `const stepsItems: StepsItem[] = [
+  { key: 'info', title: 'Fill in information', description: 'Basic info' },
+  { key: 'confirm', title: 'Confirm order' },
+  { key: 'pay', title: 'Pay' },
+];
+<Steps
+  defaultCurrent={0}
+  onChange={(index) => console.log(index)}
+  items={stepsItems}
+/>`,
+};
 
 export function StepsPage() {
   const { lang } = useLang();
@@ -49,7 +66,7 @@ export function StepsPage() {
         <Steps defaultCurrent={1} items={stepsItems} />
       </Demo>
 
-      <Demo title={zh ? '可点击' : 'Clickable'} code={clickableCode}>
+      <Demo title={zh ? '可点击' : 'Clickable'} code={zh ? clickableCode.zh : clickableCode.en}>
         <Steps defaultCurrent={0} onChange={(index) => console.log(index)} items={stepsItems} />
       </Demo>
 

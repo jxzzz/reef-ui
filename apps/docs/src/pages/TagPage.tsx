@@ -16,8 +16,8 @@ const basicCode: Record<Lang, string> = {
 };
 
 const closableCode: Record<Lang, string> = {
-  zh: `<Tag closable onClose={handleClose}>可关闭</Tag>`,
-  en: `<Tag closable onClose={handleClose}>Closable</Tag>`,
+  zh: `<Tag closable>可关闭</Tag>`,
+  en: `<Tag closable>Closable</Tag>`,
 };
 
 export function TagPage() {

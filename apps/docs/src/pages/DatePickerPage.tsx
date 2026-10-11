@@ -21,7 +21,7 @@ export function DatePickerPage() {
       </ComponentHeader>
 
       <Demo title={zh ? '基础用法' : 'Basic usage'} code="<DatePicker onChange={(v) => console.log(v)} />">
-        <DatePicker onChange={() => {}} />
+        <DatePicker onChange={(v) => console.log(v)} />
       </Demo>
 
       <Demo title={zh ? '禁用周末' : 'Disable weekends'} code={disabledCode}>
@@ -29,7 +29,7 @@ export function DatePickerPage() {
       </Demo>
 
       <Demo title={zh ? '范围选择（两次点击，自动排序 start/end）' : 'Range selection (two clicks, start/end sorted automatically)'} code={rangeCode}>
-        <DateRangePicker defaultValue={['2026-10-05', '2026-10-20']} onChange={() => {}} />
+        <DateRangePicker defaultValue={['2026-10-05', '2026-10-20']} onChange={(range) => console.log(range)} />
       </Demo>
 
       <h3>API</h3>
@@ -38,7 +38,7 @@ export function DatePickerPage() {
           ['value / defaultValue', zh ? '日期，YYYY-MM-DD 字符串（范围组件为 [start, end]）' : 'Date as a YYYY-MM-DD string ([start, end] for the range component)', 'DateString | DateRange', '—'],
           ['onChange', zh ? '选中回调，回传 YYYY-MM-DD' : 'Selection callback; returns YYYY-MM-DD', '(value) => void', '—'],
           ['isDisabled', zh ? '禁用日期（对所有月份生效）' : 'Disable dates (applies to all months)', '(date) => boolean', '—'],
-          ['placeholder', zh ? '占位文字（Range 为 startPlaceholder / endPlaceholder）' : 'Placeholder text (startPlaceholder / endPlaceholder for Range)', 'string', '"请选择日期"'],
+          ['placeholder', zh ? '占位文字（Range 为 startPlaceholder / endPlaceholder）' : 'Placeholder text (startPlaceholder / endPlaceholder for Range)', 'string', zh ? '"请选择日期"（随语言包）' : '"Select date" (locale)'],
           ['invalid / disabled / block', zh ? '状态与布局' : 'State and layout', 'boolean', 'false'],
         ]}
       />
