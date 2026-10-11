@@ -7,9 +7,29 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
-    "version": "未发布",
-    "date": "开发中",
+    "version": "0.3.0",
+    "date": "2026-10-11",
     "items": [
+      {
+        "type": "修复",
+        "text": "[components] 修复 steps.css 注释前缺少空行的 stylelint 报错"
+      },
+      {
+        "type": "修复",
+        "text": "[docs] 移除未使用的 Lang 类型导入"
+      },
+      {
+        "type": "新增",
+        "text": "[components] Icon 新增 languages 图标"
+      },
+      {
+        "type": "修复",
+        "text": "[components] Steps 长英文标题不再换行"
+      },
+      {
+        "type": "新增",
+        "text": "[components] 新增 LocaleProvider 国际化"
+      },
       {
         "type": "修复",
         "text": "更新记录在浅克隆部署环境不再被空历史覆盖"
