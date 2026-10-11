@@ -65,8 +65,6 @@ import '@reef-ui/components/style.css';  // 组件样式(含 Design Token)
 | [`@reef-ui/components`](https://www.npmjs.com/package/@reef-ui/components) | 组件库主包 |
 | [`@reef-ui/theme`](https://www.npmjs.com/package/@reef-ui/theme) | Design Token(CSS Variables + 暗色主题) |
 | [`@reef-ui/utils`](https://www.npmjs.com/package/@reef-ui/utils) | 工具函数(`cn` 等) |
-| [`@reef-ui/core`](https://www.npmjs.com/package/@reef-ui/core) | 通用 hooks |
-| [`@reef-ui/icons`](https://www.npmjs.com/package/@reef-ui/icons) | 图标资产 |
 
 ## 本地开发
 
