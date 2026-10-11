@@ -1,6 +1,6 @@
 import { InputNumber } from '@reef-ui/components';
 import { useState } from 'react';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const clampCode = `<InputNumber defaultValue={5} min={0} max={10} step={2} />`;
 
@@ -8,8 +8,9 @@ export function InputNumberPage() {
   const [v, setV] = useState<number | null>(5);
   return (
     <>
-      <h2>InputNumber 数字输入框</h2>
-      <p>仅允许数字的输入框：±步进（按钮与上下方向键）、失焦钳到 min/max、空值回传 null。</p>
+      <ComponentHeader group="数据录入" title="InputNumber 数字输入框">
+        仅允许数字的输入框：±步进（按钮与上下方向键）、失焦钳到 min/max、空值回传 null。
+      </ComponentHeader>
 
       <Demo title="基础用法" code="<InputNumber onChange={(v) => console.log(v)} />">
         <InputNumber onChange={() => {}} />

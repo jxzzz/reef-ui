@@ -1,5 +1,5 @@
 import { Button, Tooltip } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Tooltip title="删除该条目">
   <Button>删除</Button>
@@ -11,8 +11,9 @@ const basicCode = `<Tooltip title="删除该条目">
 export function TooltipPage() {
   return (
     <>
-      <h2>Tooltip 文字提示</h2>
-      <p>鼠标悬停或键盘聚焦时显示的轻量气泡，纯 CSS 实现。</p>
+      <ComponentHeader group="数据展示" title="Tooltip 文字提示">
+        鼠标悬停或键盘聚焦时显示的轻量气泡，纯 CSS 实现。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Tooltip title="删除该条目">

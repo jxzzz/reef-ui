@@ -1,5 +1,5 @@
 import { Avatar } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Avatar>张</Avatar>
 <Avatar src="https://i.pravatar.cc/64?img=5" alt="头像" />
@@ -8,8 +8,9 @@ const basicCode = `<Avatar>张</Avatar>
 export function AvatarPage() {
   return (
     <>
-      <h2>Avatar 头像</h2>
-      <p>图片或字符头像，图片加载失败自动回退到字符内容。</p>
+      <ComponentHeader group="数据展示" title="Avatar 头像">
+        图片或字符头像，图片加载失败自动回退到字符内容。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Avatar>张</Avatar>

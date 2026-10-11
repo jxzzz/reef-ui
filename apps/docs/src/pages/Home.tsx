@@ -1,4 +1,5 @@
-import { Icon } from '@reef-ui/components';
+import { useState } from 'react';
+import { DatePicker, Icon, Progress, Segmented, Switch, Tag } from '@reef-ui/components';
 // 版本号直接取组件包 package.json，发版随 changeset 自动更新
 import componentsPkg from '../../../../packages/components/package.json';
 
@@ -82,6 +83,43 @@ function SeaScene() {
   );
 }
 
+/** hero 右侧的活体组件舞台：全部是真实可交互的库内组件（aria-hidden 由组件自身语义保证，不加） */
+function ComponentStage() {
+  const [notify, setNotify] = useState(true);
+  return (
+    <div className="landing__stage">
+      <div className="landing__stage-card landing__stage-card--a">
+        <Segmented
+          options={[
+            { label: '日', value: 'day' },
+            { label: '周', value: 'week' },
+            { label: '月', value: 'month' },
+          ]}
+          defaultValue="week"
+        />
+      </div>
+      <div className="landing__stage-card landing__stage-card--b">
+        <label className="landing__stage-row">
+          <Switch checked={notify} onChange={(checked) => setNotify(checked)} />
+          消息通知
+        </label>
+      </div>
+      <div className="landing__stage-card landing__stage-card--c">
+        <Tag color="brand">v{componentsPkg.version}</Tag>
+        <Tag color="success">稳定</Tag>
+        <Tag color="warning">Beta</Tag>
+      </div>
+      <div className="landing__stage-card landing__stage-card--d">
+        <Progress percent={72} />
+        <span className="landing__stage-note">存储用量 72%</span>
+      </div>
+      <div className="landing__stage-card landing__stage-card--e">
+        <DatePicker defaultValue="2026-10-11" />
+      </div>
+    </div>
+  );
+}
+
 export function HomePage({ dark, onToggleDark }: HomePageProps) {
   return (
     <div className="landing">
@@ -115,20 +153,24 @@ export function HomePage({ dark, onToggleDark }: HomePageProps) {
 
       <main className="landing__main">
         <section className="landing__hero">
-          <h1 className="landing__title">
-            一致的组件，
-            <br />
-            可切换的主题。
-          </h1>
-          <p className="landing__sub">
-            Reef UI 是为中后台场景打造的基础 React
-            组件库：TypeScript 编写，样式基于 CSS
-            Variables，开箱即用，覆盖变量即可换成你的品牌。
-          </p>
-          <div className="landing__cta">
-            <a className="landing__cta-primary" href="#button">
-              查看组件
-            </a>
+          <div className="landing__hero-inner">
+            <div className="landing__hero-copy">
+              <h1 className="landing__title">
+                一致的组件，
+                <br />
+                可切换的主题。
+              </h1>
+              <p className="landing__sub">
+                Reef UI 是为中后台场景打造的基础 React 组件库：TypeScript
+                编写，样式基于 CSS Variables，开箱即用，覆盖变量即可换成你的品牌。
+              </p>
+              <div className="landing__cta">
+                <a className="landing__cta-primary" href="#button">
+                  查看组件
+                </a>
+              </div>
+            </div>
+            <ComponentStage />
           </div>
           <SeaScene />
         </section>

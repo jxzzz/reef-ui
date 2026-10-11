@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Skeleton } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Skeleton rows={3} />`;
 
@@ -14,8 +14,9 @@ export function SkeletonPage() {
   const [loading, setLoading] = useState(true);
   return (
     <>
-      <h2>Skeleton 骨架屏</h2>
-      <p>内容加载前的占位示意，loading 为 false 时渲染真实内容。</p>
+      <ComponentHeader group="反馈" title="Skeleton 骨架屏">
+        内容加载前的占位示意，loading 为 false 时渲染真实内容。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Skeleton rows={3} />

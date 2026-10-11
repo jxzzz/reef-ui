@@ -1,5 +1,5 @@
 import { Alert } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const typesCode = `<Alert title="信息提示">这是一条信息提示。</Alert>
 <Alert type="success" title="操作成功">数据已保存。</Alert>
@@ -13,8 +13,9 @@ const closableCode = `<Alert type="success" title="操作成功" closable onClos
 export function AlertPage() {
   return (
     <>
-      <h2>Alert 警告提示</h2>
-      <p>展示需要用户关注的信息，四种语义类型，可关闭。</p>
+      <ComponentHeader group="反馈" title="Alert 警告提示">
+        展示需要用户关注的信息，四种语义类型，可关闭。
+      </ComponentHeader>
 
       <Demo title="四种类型" code={typesCode}>
         <Alert title="信息提示">这是一条信息提示。</Alert>

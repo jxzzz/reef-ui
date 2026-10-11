@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Message, type MessageItem } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const fullCode = `const [items, setItems] = useState<MessageItem[]>([
   { key: '1', type: 'success', content: '保存成功' },
@@ -18,8 +18,9 @@ export function MessagePage() {
   ]);
   return (
     <>
-      <h2>Message 全局提示</h2>
-      <p>页面顶部居中的轻量反馈。父级持有 items，关闭时按 key 移除。</p>
+      <ComponentHeader group="反馈" title="Message 全局提示">
+        页面顶部居中的轻量反馈。父级持有 items，关闭时按 key 移除。
+      </ComponentHeader>
 
       <Demo title="受控列表" code={fullCode}>
         <div>

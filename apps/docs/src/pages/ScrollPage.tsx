@@ -1,5 +1,5 @@
 import { Scroll } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const listCode = `<Scroll maxHeight={160}>
   {items.map((item) => (
@@ -18,11 +18,10 @@ const items = Array.from({ length: 20 }, (_, i) => `列表项 ${i + 1}`);
 export function ScrollPage() {
   return (
     <>
-      <h2>Scroll 滚动条</h2>
-      <p>
+      <ComponentHeader group="通用" title="Scroll 滚动条">
         覆盖式滚动容器：内容溢出时滚动条 hover 淡入、移开淡出，滑块可拖拽。
         原生滚动条被隐藏，样式完全由主题控制。
-      </p>
+      </ComponentHeader>
 
       <Demo title="限高列表" code={listCode}>
         <div style={{ width: 280 }}>

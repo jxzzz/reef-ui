@@ -1,5 +1,5 @@
 import { Timeline, type TimelineItem } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const timelineItems: TimelineItem[] = [
   { key: 'a', content: '创建订单' },
@@ -24,8 +24,9 @@ const dotCode = `<Timeline
 export function TimelinePage() {
   return (
     <>
-      <h2>Timeline 时间轴</h2>
-      <p>垂直时间轴，按序展示一系列节点。</p>
+      <ComponentHeader group="数据展示" title="Timeline 时间轴">
+        垂直时间轴，按序展示一系列节点。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Timeline items={timelineItems} />

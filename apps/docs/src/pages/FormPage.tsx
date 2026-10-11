@@ -1,5 +1,5 @@
 import { Button, Checkbox, Form, FormItem, Input, Switch } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const verticalCode = `<Form onSubmit={(e) => e.preventDefault()}>
   <FormItem
@@ -65,12 +65,11 @@ const inlineCode = `<Form layout="inline">
 export function FormPage() {
   return (
     <>
-      <h2>Form 表单</h2>
-      <p>
+      <ComponentHeader group="数据录入" title="Form 表单">
         用 <code>Form</code> 承载表单布局，<code>FormItem</code> 负责标签、必填标记和校验错误展示。
         给 FormItem 传 <code>name</code> 和 <code>validate</code>，提交时 Form 会一次性校验全部字段，
         所有错误同时显示；已报错的字段在输入时即时重校验。
-      </p>
+      </ComponentHeader>
 
       <Demo title="垂直布局 + 校验" code={verticalCode}>
         <Form style={{ maxWidth: 380 }} onSubmit={(e) => e.preventDefault()}>

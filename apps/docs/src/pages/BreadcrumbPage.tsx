@@ -1,5 +1,5 @@
 import { Breadcrumb, type BreadcrumbItem } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const breadcrumbItems: BreadcrumbItem[] = [
   { key: 'home', title: '首页', href: '#/' },
@@ -17,8 +17,9 @@ const basicCode = `const breadcrumbItems: BreadcrumbItem[] = [
 export function BreadcrumbPage() {
   return (
     <>
-      <h2>Breadcrumb 面包屑</h2>
-      <p>显示当前页面在层级结构中的位置，最后一项为当前页，分隔符由样式提供。</p>
+      <ComponentHeader group="导航" title="Breadcrumb 面包屑">
+        显示当前页面在层级结构中的位置，最后一项为当前页，分隔符由样式提供。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Breadcrumb items={breadcrumbItems} />

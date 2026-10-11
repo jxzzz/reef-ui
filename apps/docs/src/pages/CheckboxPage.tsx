@@ -1,5 +1,5 @@
 import { Checkbox } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Checkbox defaultChecked>选中</Checkbox>
 <Checkbox>未选中</Checkbox>
@@ -12,8 +12,9 @@ const indeterminateCode = `const [all, setAll] = useState(false);
 export function CheckboxPage() {
   return (
     <>
-      <h2>Checkbox 复选框</h2>
-      <p>在一组选项中选择一个或多个。支持半选态，常用于父级全选场景。</p>
+      <ComponentHeader group="数据录入" title="Checkbox 复选框">
+        在一组选项中选择一个或多个。支持半选态，常用于父级全选场景。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Checkbox defaultChecked>选中</Checkbox>

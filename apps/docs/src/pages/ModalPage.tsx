@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Modal } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `const [open, setOpen] = useState(false);
 
@@ -28,8 +28,9 @@ export function ModalPage() {
 
   return (
     <>
-      <h2>Modal 对话框</h2>
-      <p>模态对话框，通过 portal 渲染，支持 Esc、遮罩点击关闭与焦点圈定。</p>
+      <ComponentHeader group="反馈" title="Modal 对话框">
+        模态对话框，通过 portal 渲染，支持 Esc、遮罩点击关闭与焦点圈定。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Button onClick={() => setOpen(true)}>打开对话框</Button>

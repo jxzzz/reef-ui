@@ -1,5 +1,5 @@
 import { Tabs, type TabsItem } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const tabItems: TabsItem[] = [
   { key: 'order', label: '订单', children: <p>订单列表</p> },
@@ -17,8 +17,9 @@ const basicCode = `const tabItems: TabsItem[] = [
 export function TabsPage() {
   return (
     <>
-      <h2>Tabs 标签页</h2>
-      <p>内容分区切换，支持 ← → 键盘导航（ARIA tabs 模式）。</p>
+      <ComponentHeader group="导航" title="Tabs 标签页">
+        内容分区切换，支持 ← → 键盘导航（ARIA tabs 模式）。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Tabs defaultActiveKey="order" items={tabItems} />

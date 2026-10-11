@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Breadcrumb, Icon, Menu, Scroll, type MenuItem } from '@reef-ui/components';
 // 版本号直接取组件包 package.json，发版随 changeset 自动更新
 import componentsPkg from '../../../packages/components/package.json';
-import { SearchInput } from './docs-ui';
+import { SearchInput, Toc } from './docs-ui';
 import { AlertPage } from './pages/AlertPage';
 import { AvatarPage } from './pages/AvatarPage';
 import { BadgePage } from './pages/BadgePage';
@@ -119,6 +119,11 @@ export default function App() {
   const active = pages.find((p) => p.key === page)!;
   // 面包屑：当前页所属分组（首页/指南不显示）
   const activeGroup = groups.find((g) => (g.keys as readonly string[]).includes(page));
+  // 上一篇/下一篇：按注册顺序（排除首页）
+  const docPages = pages.filter((p) => p.group !== null);
+  const docIndex = docPages.findIndex((p) => p.key === page);
+  const prev = docIndex > 0 ? docPages[docIndex - 1] : null;
+  const next = docIndex >= 0 && docIndex < docPages.length - 1 ? docPages[docIndex + 1] : null;
   // 搜索过滤：按标题（含中文名）匹配，空结果组隐藏
   const q = query.trim().toLowerCase();
   const visibleGroups = groups
@@ -186,7 +191,31 @@ export default function App() {
             </button>
           </div>
         </header>
-        <main className="docs__content">{active.node}</main>
+        {/* key={page}：切页重挂载，触发内容淡入动画 */}
+        <div className="docs__body">
+          <main className="docs__content" key={page}>
+            {active.node}
+            {prev || next ? (
+              <nav className="docs__pager" aria-label="组件翻页">
+                {prev ? (
+                  <a className="docs__pager-link" href={`#${prev.key}`}>
+                    <span>← 上一个</span>
+                    <strong>{prev.title}</strong>
+                  </a>
+                ) : (
+                  <span />
+                )}
+                {next ? (
+                  <a className="docs__pager-link docs__pager-link--next" href={`#${next.key}`}>
+                    <span>下一个 →</span>
+                    <strong>{next.title}</strong>
+                  </a>
+                ) : null}
+              </nav>
+            ) : null}
+          </main>
+          <Toc pageKey={page} />
+        </div>
       </div>
     </div>
   );

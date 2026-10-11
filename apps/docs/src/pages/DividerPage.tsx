@@ -1,5 +1,5 @@
 import { Button, Divider } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `内容上方
 <Divider>中间文字</Divider>
@@ -14,8 +14,9 @@ const verticalCode = `<Button>左侧</Button>
 export function DividerPage() {
   return (
     <>
-      <h2>Divider 分割线</h2>
-      <p>水平或垂直分割线，水平线可带文字。</p>
+      <ComponentHeader group="通用" title="Divider 分割线">
+        水平或垂直分割线，水平线可带文字。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <div>内容上方</div>

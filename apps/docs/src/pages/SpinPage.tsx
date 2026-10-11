@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Spin } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Spin size="small" />
 <Spin />
@@ -14,8 +14,9 @@ export function SpinPage() {
   const [loading, setLoading] = useState(true);
   return (
     <>
-      <h2>Spin 加载中</h2>
-      <p>可独立使用，也可包裹内容显示加载遮罩；遵循 prefers-reduced-motion。</p>
+      <ComponentHeader group="反馈" title="Spin 加载中">
+        可独立使用，也可包裹内容显示加载遮罩；遵循 prefers-reduced-motion。
+      </ComponentHeader>
 
       <Demo title="三种尺寸" code={basicCode}>
         <Spin size="small" />

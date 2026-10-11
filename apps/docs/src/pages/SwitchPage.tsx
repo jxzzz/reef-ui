@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Switch } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `const [on, setOn] = useState(false);
 
@@ -12,8 +12,9 @@ export function SwitchPage() {
 
   return (
     <>
-      <h2>Switch 开关</h2>
-      <p>表示两种状态之间的切换，点击立即生效。基于 role="switch" 实现，键盘可访问。</p>
+      <ComponentHeader group="数据录入" title="Switch 开关">
+        表示两种状态之间的切换，点击立即生效。基于 role="switch" 实现，键盘可访问。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Switch checked={on} onChange={setOn} />

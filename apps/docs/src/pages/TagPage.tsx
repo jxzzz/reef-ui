@@ -1,5 +1,5 @@
 import { Tag } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Tag>默认</Tag>
 <Tag color="brand">进行中</Tag>
@@ -12,8 +12,9 @@ const closableCode = `<Tag closable onClose={handleClose}>可关闭</Tag>`;
 export function TagPage() {
   return (
     <>
-      <h2>Tag 标签</h2>
-      <p>标记状态与分类，支持五种预设色和关闭按钮。</p>
+      <ComponentHeader group="数据展示" title="Tag 标签">
+        标记状态与分类，支持五种预设色和关闭按钮。
+      </ComponentHeader>
 
       <Demo title="五种预设色" code={basicCode}>
         <Tag>默认</Tag>

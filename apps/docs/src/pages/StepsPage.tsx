@@ -1,5 +1,5 @@
 import { Steps, type StepsItem } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const basicCode = `const stepsItems: StepsItem[] = [
   { key: 'info', title: '填写信息', description: '基本信息' },
@@ -23,8 +23,9 @@ const stepsItems: StepsItem[] = [
 export function StepsPage() {
   return (
     <>
-      <h2>Steps 步骤条</h2>
-      <p>引导用户按流程完成任务的导航，提供 onChange 时可点击跳转。</p>
+      <ComponentHeader group="导航" title="Steps 步骤条">
+        引导用户按流程完成任务的导航，提供 onChange 时可点击跳转。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Steps defaultCurrent={1} items={stepsItems} />

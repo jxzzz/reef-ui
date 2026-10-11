@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Icon, Menu, type MenuItem } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const items: MenuItem[] = [
   { key: 'home', label: '首页', icon: <Icon name="home" size={16} /> },
@@ -75,12 +75,11 @@ export function MenuPage() {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <>
-      <h2>Menu 导航菜单</h2>
-      <p>
+      <ComponentHeader group="导航" title="Menu 导航菜单">
         侧边或顶部导航。vertical 模式子菜单内联展开；horizontal 模式子菜单弹出；
         collapsed 把垂直菜单收成图标窄条（分组降级为分隔线）。弹出面板为 CSS 定位，
         与 Select 同策略，溢出容器内会被裁剪。
-      </p>
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Menu defaultSelectedKey="home" items={items} />

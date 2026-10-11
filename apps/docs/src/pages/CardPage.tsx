@@ -1,5 +1,5 @@
 import { Card } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Card
   title="订单概览"
@@ -12,8 +12,9 @@ const basicCode = `<Card
 export function CardPage() {
   return (
     <>
-      <h2>Card 卡片</h2>
-      <p>承载标题、内容与操作的容器，常用于仪表盘信息分组。</p>
+      <ComponentHeader group="数据展示" title="Card 卡片">
+        承载标题、内容与操作的容器，常用于仪表盘信息分组。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Card title="订单概览" extra={<a href="#card">更多</a>} footer="共 128 条记录">

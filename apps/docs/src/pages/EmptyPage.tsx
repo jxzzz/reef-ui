@@ -1,5 +1,5 @@
 import { Button, Empty } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Empty />`;
 
@@ -10,8 +10,9 @@ const actionCode = `<Empty description="没有匹配的订单">
 export function EmptyPage() {
   return (
     <>
-      <h2>Empty 空状态</h2>
-      <p>列表或搜索结果为空时的占位提示，可附带操作入口。</p>
+      <ComponentHeader group="数据展示" title="Empty 空状态">
+        列表或搜索结果为空时的占位提示，可附带操作入口。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Empty />

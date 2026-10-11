@@ -1,5 +1,5 @@
 import { Badge, Button } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Badge count={5}>消息</Badge>
 <Badge count={100} />
@@ -12,8 +12,9 @@ const dotCode = `<Badge dot>
 export function BadgePage() {
   return (
     <>
-      <h2>Badge 徽标数</h2>
-      <p>出现在图标或文字右上角的数字或圆点，超过 max 折叠为 max+。</p>
+      <ComponentHeader group="数据展示" title="Badge 徽标数">
+        出现在图标或文字右上角的数字或圆点，超过 max 折叠为 max+。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Badge count={5}>消息</Badge>

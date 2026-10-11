@@ -1,5 +1,5 @@
 import { Progress } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Progress percent={60} />
 <Progress percent={80} status="success" />
@@ -14,8 +14,9 @@ const circleCode = `<Progress type="circle" percent={60} />
 export function ProgressPage() {
   return (
     <>
-      <h2>Progress 进度条</h2>
-      <p>展示任务或上传的处理进度，percent 自动钳制到 0-100。</p>
+      <ComponentHeader group="反馈" title="Progress 进度条">
+        展示任务或上传的处理进度，percent 自动钳制到 0-100。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Progress percent={60} />

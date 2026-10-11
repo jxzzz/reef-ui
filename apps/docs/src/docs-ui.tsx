@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Icon, Input } from '@reef-ui/components';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
@@ -54,6 +54,7 @@ export function CodeBlock({ code, defaultExpanded = false }: { code: string; def
         </div>
       </div>
       <div className="code-block__actions">
+        <span className="code-block__lang">TSX</span>
         <button className="code-block__btn" onClick={() => setExpanded(!expanded)}>
           {expanded ? '收起代码' : '展开代码'}
         </button>
@@ -113,5 +114,93 @@ export function TypeBlock({ code }: { code: string }) {
       <h3 className="demo__title">类型定义</h3>
       <CodeBlock code={code} defaultExpanded />
     </section>
+  );
+}
+
+/** 组件页头部：分组眉题 + 标题 + 导语（fragment 渲染，h2/p 仍是 content 直接子元素，复用既有样式） */
+export function ComponentHeader({ group, title, children }: { group: string; title: string; children?: ReactNode }) {
+  return (
+    <>
+      <p className="docs__eyebrow">{group}</p>
+      <h2>{title}</h2>
+      {children ? <p>{children}</p> : null}
+    </>
+  );
+}
+
+interface TocItem {
+  id: string;
+  text: string;
+  level: number;
+}
+
+/** 右侧「本页目录」：从当前页 DOM 提取 h2/h3，滚动高亮当前小节 */
+export function Toc({ pageKey }: { pageKey: string }) {
+  const [items, setItems] = useState<TocItem[]>([]);
+  const [active, setActive] = useState('');
+
+  useEffect(() => {
+    // 切页先清空上一页的目录，否则短页面会残留上一页的条目
+    setItems([]);
+    setActive('');
+    const content = document.querySelector('.docs__content');
+    if (!content) return;
+    // 内容不足一屏时没有滚动空间，目录没有意义（也点不动），直接不渲染
+    if (document.documentElement.scrollHeight <= window.innerHeight + 80) return;
+    const heads = Array.from(content.querySelectorAll('h2, h3')) as HTMLHeadingElement[];
+    // 首个 h2 是页面标题本身，不进目录
+    const outline = heads.filter((h, i) => !(i === 0 && h.tagName === 'H2'));
+    outline.forEach((h, i) => {
+      if (!h.id) h.id = `sec-${pageKey}-${i}`;
+    });
+    setItems(outline.map((h) => ({ id: h.id, text: h.textContent ?? '', level: h.tagName === 'H2' ? 2 : 3 })));
+
+    // 滚动高亮：取视口 96px 线以上最近的标题；页底时后面的标题到不了线，直接点亮最后一项
+    const onScroll = () => {
+      const doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 4) {
+        setActive(outline[outline.length - 1]?.id ?? '');
+        return;
+      }
+      let current = '';
+      for (const h of outline) {
+        if (h.getBoundingClientRect().top < 96) current = h.id;
+      }
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [pageKey]);
+
+  if (items.length === 0) return null;
+  return (
+    <nav className="docs__toc" aria-label="本页目录">
+      <div className="docs__toc-inner">
+        <p className="docs__toc-label">本页目录</p>
+        <ul>
+          {items.map((item) => (
+            <li key={item.id} className={item.level === 3 ? 'docs__toc-sub' : undefined}>
+              <a
+                href={`#${item.id}`}
+                className={item.id === active ? 'active' : undefined}
+                onClick={(e) => {
+                  // hash 被页面路由占用，目录跳转用滚动；先点亮目标，滚动动画中高亮不回跳
+                  e.preventDefault();
+                  setActive(item.id);
+                  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                  document.getElementById(item.id)?.scrollIntoView({
+                    behavior: reduce ? 'auto' : 'smooth',
+                    block: 'start',
+                  });
+                }}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   );
 }

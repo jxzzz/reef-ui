@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Select } from '@reef-ui/components';
 import type { SelectOption } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const cityOptions: SelectOption[] = [
   { label: '上海', value: 'shanghai' },
@@ -36,11 +36,10 @@ export function SelectPage() {
 
   return (
     <>
-      <h2>Select 选择器</h2>
-      <p>
+      <ComponentHeader group="数据录入" title="Select 选择器">
         从一组选项中选择一项。自绘弹层，暗色主题下样式一致；支持键盘操作
         （Enter / 空格打开，上下键移动，Enter 选中，Esc 关闭）。
-      </p>
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Select options={cityOptions} placeholder="请选择城市" />

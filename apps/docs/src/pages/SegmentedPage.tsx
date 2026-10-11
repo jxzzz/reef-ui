@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Segmented, type SegmentedOption } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const options: SegmentedOption[] = [
   { label: '日', value: 'day' },
@@ -22,8 +22,9 @@ export function SegmentedPage() {
   const [range, setRange] = useState('week');
   return (
     <>
-      <h2>Segmented 分段控制器</h2>
-      <p>在一组互斥选项中切换单个值。</p>
+      <ComponentHeader group="数据录入" title="Segmented 分段控制器">
+        在一组互斥选项中切换单个值。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Segmented options={options} />

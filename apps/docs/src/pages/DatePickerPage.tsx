@@ -1,5 +1,5 @@
 import { DatePicker, DateRangePicker } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const disabledCode = `<DatePicker
   isDisabled={(d) => d.getDay() === 0 || d.getDay() === 6}
@@ -13,8 +13,9 @@ const rangeCode = `<DateRangePicker
 export function DatePickerPage() {
   return (
     <>
-      <h2>DatePicker 日期选择</h2>
-      <p>日历面板选择日期，值统一为 YYYY-MM-DD 字符串，与 Form 的 FormData 读取天然兼容。单选与 Range 共用同一套日历面板。</p>
+      <ComponentHeader group="数据录入" title="DatePicker 日期选择">
+        日历面板选择日期，值统一为 YYYY-MM-DD 字符串，与 Form 的 FormData 读取天然兼容。单选与 Range 共用同一套日历面板。
+      </ComponentHeader>
 
       <Demo title="基础用法" code="<DatePicker onChange={(v) => console.log(v)} />">
         <DatePicker onChange={() => {}} />

@@ -1,5 +1,5 @@
 import { Text, Title } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const titleCode = `<Title level={1}>h1 一级标题</Title>
 <Title level={2}>h2 二级标题</Title>
@@ -15,8 +15,9 @@ const textCode = `<Text>Primary 文本</Text>
 export function TypographyPage() {
   return (
     <>
-      <h2>Typography 排版</h2>
-      <p>标题与文本组件，统一字号、行高和语义色。</p>
+      <ComponentHeader group="资源" title="Typography 排版">
+        标题与文本组件，统一字号、行高和语义色。
+      </ComponentHeader>
 
       <Demo title="标题" code={titleCode}>
         <div style={{ display: 'grid', gap: 8 }}>

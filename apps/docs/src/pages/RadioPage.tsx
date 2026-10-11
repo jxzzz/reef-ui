@@ -1,5 +1,5 @@
 import { Radio, RadioGroup } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<RadioGroup name="city" defaultValue="hz">
   <Radio value="hz">杭州</Radio>
@@ -10,8 +10,9 @@ const basicCode = `<RadioGroup name="city" defaultValue="hz">
 export function RadioPage() {
   return (
     <>
-      <h2>Radio 单选框</h2>
-      <p>在一组互斥选项中选择一个，配合 RadioGroup 使用。</p>
+      <ComponentHeader group="数据录入" title="Radio 单选框">
+        在一组互斥选项中选择一个，配合 RadioGroup 使用。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <RadioGroup name="city" defaultValue="hz">

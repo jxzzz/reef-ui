@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Drawer } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `const [open, setOpen] = useState(false);
 <>
@@ -14,8 +14,9 @@ export function DrawerPage() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <h2>Drawer 抽屉</h2>
-      <p>从屏幕边缘滑出的浮层面板，适合承载表单、详情等中等复杂度内容；点遮罩或按 Esc 关闭。</p>
+      <ComponentHeader group="反馈" title="Drawer 抽屉">
+        从屏幕边缘滑出的浮层面板，适合承载表单、详情等中等复杂度内容；点遮罩或按 Esc 关闭。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <>

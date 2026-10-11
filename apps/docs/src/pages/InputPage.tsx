@@ -1,5 +1,5 @@
 import { Icon, Input } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Input placeholder="请输入内容" />
 <Input defaultValue="默认值" />
@@ -24,8 +24,9 @@ const affixCode = `<Input clearable block placeholder="搜索" prefix={<Icon nam
 export function InputPage() {
   return (
     <>
-      <h2>Input 输入框</h2>
-      <p>通过键盘输入内容的基础表单控件。支持 3 种尺寸、校验失败态和全部原生 input 类型。</p>
+      <ComponentHeader group="数据录入" title="Input 输入框">
+        通过键盘输入内容的基础表单控件。支持 3 种尺寸、校验失败态和全部原生 input 类型。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Input placeholder="请输入内容" />

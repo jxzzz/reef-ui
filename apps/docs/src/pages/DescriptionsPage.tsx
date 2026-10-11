@@ -1,5 +1,5 @@
 import { Descriptions, type DescriptionsItem } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const items: DescriptionsItem[] = [
   { key: 'name', label: '用户名', children: '张三' },
@@ -21,8 +21,9 @@ const borderedCode = `<Descriptions bordered column={2} items={items} />`;
 export function DescriptionsPage() {
   return (
     <>
-      <h2>Descriptions 描述列表</h2>
-      <p>成组展示只读字段，常用于详情页。</p>
+      <ComponentHeader group="数据展示" title="Descriptions 描述列表">
+        成组展示只读字段，常用于详情页。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Descriptions title="用户详情" items={items} />

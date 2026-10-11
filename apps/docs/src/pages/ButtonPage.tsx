@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Icon } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
@@ -26,8 +26,9 @@ export function ButtonPage() {
 
   return (
     <>
-      <h2>Button 按钮</h2>
-      <p>用于触发即时操作。支持 5 种类型、3 种尺寸、加载状态和图标。</p>
+      <ComponentHeader group="通用" title="Button 按钮">
+        用于触发即时操作。支持 5 种类型、3 种尺寸、加载状态和图标。
+      </ComponentHeader>
 
       <Demo title="类型" code={basicCode}>
         <Button variant="primary">Primary</Button>

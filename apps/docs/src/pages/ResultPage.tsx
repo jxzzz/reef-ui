@@ -1,5 +1,5 @@
 import { Button, Result } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const successCode = `<Result
   status="success"
@@ -13,8 +13,9 @@ const errorCode = `<Result status="error" title="提交失败" subTitle="网络�
 export function ResultPage() {
   return (
     <>
-      <h2>Result 结果页</h2>
-      <p>操作结果的反馈页面，成功、失败、警告、提示四种状态。</p>
+      <ComponentHeader group="反馈" title="Result 结果页">
+        操作结果的反馈页面，成功、失败、警告、提示四种状态。
+      </ComponentHeader>
 
       <Demo title="成功" code={successCode}>
         <Result

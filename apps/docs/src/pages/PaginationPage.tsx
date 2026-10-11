@@ -1,5 +1,5 @@
 import { Pagination } from '@reef-ui/components';
-import { ApiTable, Demo } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
 
 const basicCode = `<Pagination total={100} defaultCurrent={1} onChange={(page) => console.log(page)} />`;
 
@@ -8,8 +8,9 @@ const moreCode = `<Pagination total={200} defaultCurrent={10} />`;
 export function PaginationPage() {
   return (
     <>
-      <h2>Pagination 分页</h2>
-      <p>长列表分页导航，页数多时自动折叠为省略号。</p>
+      <ComponentHeader group="导航" title="Pagination 分页">
+        长列表分页导航，页数多时自动折叠为省略号。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Pagination total={100} />

@@ -1,5 +1,5 @@
 import { Table, Tag, type TableColumn } from '@reef-ui/components';
-import { ApiTable, Demo, TypeBlock } from '../docs-ui';
+import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 
 const users = [
   { id: 1, name: '张三', age: 28, city: '杭州', role: '管理员' },
@@ -49,8 +49,9 @@ const renderCode = `<Table
 export function TablePage() {
   return (
     <>
-      <h2>Table 表格</h2>
-      <p>行列结构化数据展示。v1 覆盖列配置、单元格渲染与排序；虚拟滚动、固定列后续按需增加。</p>
+      <ComponentHeader group="数据展示" title="Table 表格">
+        行列结构化数据展示。v1 覆盖列配置、单元格渲染与排序；虚拟滚动、固定列后续按需增加。
+      </ComponentHeader>
 
       <Demo title="基础用法" code={basicCode}>
         <Table columns={columns} dataSource={users} rowKey="id" />
