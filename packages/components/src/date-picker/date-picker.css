@@ -8,8 +8,12 @@
 }
 
 .reef-datepicker > input {
-  width: 100%;
+  width: 140px;
   cursor: pointer;
+}
+
+.reef-datepicker--block > input {
+  width: 100%;
 }
 
 .reef-datepicker--invalid .reef-input,
@@ -148,7 +152,7 @@
 }
 
 .reef-datepicker__fields input {
-  width: 92px;
+  width: 112px;
   padding: 0;
   border: none;
   background: transparent;
