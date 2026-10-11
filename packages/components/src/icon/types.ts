@@ -31,6 +31,7 @@ export type IconName =
   | 'image'
   | 'info'
   | 'layers'
+  | 'languages'
   | 'link'
   | 'lock'
   | 'log-out'
