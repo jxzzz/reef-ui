@@ -1,7 +1,7 @@
 import { InputNumber } from '@reef-ui/components';
 import { useState } from 'react';
 import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
-import { useLang, type Lang } from '../i18n';
+import { useLang } from '../i18n';
 
 const clampCode = `<InputNumber defaultValue={5} min={0} max={10} step={2} />`;
 

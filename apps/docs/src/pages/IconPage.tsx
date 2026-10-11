@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ICON_NAMES, Icon, type IconName } from '@reef-ui/components';
 import { ApiTable, ComponentHeader, Demo, SearchInput } from '../docs-ui';
-import { useLang, type Lang } from '../i18n';
+import { useLang } from '../i18n';
 
 const sizeCode = `<Icon name="check" size={12} />
 <Icon name="check" size={16} />
