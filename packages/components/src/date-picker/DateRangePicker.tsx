@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { Icon } from '../icon';
 import { CalendarPanel } from './CalendarPanel';
 import { formatDate, parseDate } from './utils';
 import { useOpen } from './useOpen';
@@ -39,6 +40,7 @@ export function DateRangePicker({
   return (
     <div ref={rootRef} className={cn('reef-datepicker--range', { 'reef-datepicker--block': block }, className)}>
       <div className={cn('reef-datepicker__fields', invalid && 'reef-datepicker--invalid')} data-disabled={disabled || undefined}>
+        <Icon name="calendar" size={14} className="reef-datepicker__icon" />
         <input
           type="text"
           readOnly

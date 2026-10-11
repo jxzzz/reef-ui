@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { Icon } from '../icon';
 import { CalendarPanel } from './CalendarPanel';
 import { formatDate, parseDate } from './utils';
 import { useOpen } from './useOpen';
@@ -44,6 +45,7 @@ export function DatePicker({
         className={cn('reef-input', invalid && 'reef-input--invalid')}
         onClick={() => !disabled && setOpen(true)}
       />
+      <Icon name="calendar" size={14} className="reef-datepicker__icon" />
       {open && !disabled && (
         <div className="reef-datepicker__pop">
           <CalendarPanel value={[selected, selected]} onPick={pick} isDisabled={isDisabled} />

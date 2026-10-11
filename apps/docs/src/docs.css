@@ -151,8 +151,13 @@ body {
   margin: 32px 0;
   border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
   border-radius: var(--reef-radius-lg);
-  overflow: hidden;
+  /* 不设 overflow:hidden：会裁掉 DatePicker 日历、Select 下拉等弹出层，
+     圆角由最后一个子元素自行收口 */
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.demo > :last-child {
+  border-radius: 0 0 var(--reef-radius-lg) var(--reef-radius-lg);
 }
 
 .demo:hover {
