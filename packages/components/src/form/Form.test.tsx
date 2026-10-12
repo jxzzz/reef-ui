@@ -87,6 +87,79 @@ describe('Form', () => {
     expect(userError()).toBeNull();
   });
 
+  test('提交时 onSubmit 通过 FormData 拿到输入的值', async () => {
+    const values = vi.fn<(f: FormData, form: HTMLFormElement) => void>();
+    render(
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          values(new FormData(e.currentTarget), e.currentTarget);
+        }}
+      >
+        <FormItem name="user" label="用户名">
+          <input name="user" />
+        </FormItem>
+        <button type="submit">提交</button>
+      </Form>,
+    );
+
+    await userEvent.type(userBox(), 'imx');
+    await userEvent.click(screen.getByRole('button', { name: '提交' }));
+    expect(values).toHaveBeenCalledTimes(1);
+    const [data, form] = values.mock.calls[0];
+    expect(data.get('user')).toBe('imx');
+    expect(form.tagName).toBe('FORM');
+  });
+
+  test('help 显示在标签行；外部 error 直接展示且优先于表单校验错误', async () => {
+    const { container } = render(
+      <Form>
+        <FormItem
+          name="a"
+          label="字段A"
+          help="选填"
+          error="外部错误"
+          validate={() => '内部错误'}
+        >
+          <input name="a" />
+        </FormItem>
+        <button type="submit">提交</button>
+      </Form>,
+    );
+
+    expect(container.querySelector('.reef-formitem__help')!.textContent).toBe('选填');
+    await userEvent.click(screen.getByRole('button', { name: '提交' }));
+    expect(screen.getByRole('alert').textContent).toBe('外部错误');
+  });
+
+  test('validate 返回 undefined 视为通过', async () => {
+    const onValid = vi.fn();
+    render(
+      <Form onSubmit={(e) => { e.preventDefault(); onValid(); }}>
+        <FormItem name="a" label="A" validate={() => undefined}>
+          <input name="a" />
+        </FormItem>
+        <button type="submit">提交</button>
+      </Form>,
+    );
+
+    await userEvent.click(screen.getByRole('button', { name: '提交' }));
+    expect(onValid).toHaveBeenCalledTimes(1);
+  });
+
+  test('htmlFor 关联控件：点击 label 聚焦输入框', async () => {
+    render(
+      <Form>
+        <FormItem name="user" label="用户名" htmlFor="user-input">
+          <input id="user-input" name="user" />
+        </FormItem>
+      </Form>,
+    );
+
+    await userEvent.click(screen.getByText('用户名'));
+    expect(userBox()).toBe(document.activeElement);
+  });
+
   test('layout class 生效；label 显示必填星号', () => {
     const { container } = render(
       <Form layout="inline">

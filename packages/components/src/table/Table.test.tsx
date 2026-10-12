@@ -79,6 +79,55 @@ describe('Table', () => {
     expect(screen.getByText('自定义空态')).toBeTruthy();
   });
 
+  test('切换到另一排序列时重新从 asc 开始，原列 aria-sort 复位', async () => {
+    const cols = [
+      { key: 'name', title: '姓名' },
+      { key: 'age', title: '年龄', sorter: (a: Row, b: Row) => a.age - b.age },
+      { key: 'id', title: 'ID', sorter: (a: Row, b: Row) => a.id - b.id },
+    ];
+    render(<Table columns={cols} dataSource={users} />);
+    const names = () =>
+      [...screen.getAllByRole('row')].slice(1).map((r) => r.children[0].textContent);
+    const ageHead = screen.getByRole('columnheader', { name: /年龄/ });
+    const idHead = screen.getByRole('columnheader', { name: /ID/ });
+
+    await userEvent.click(ageHead);
+    expect(names()).toEqual(['王五', '张三', '李四']); // 按年龄 asc
+    expect(ageHead.querySelector('.reef-table__sorter')!.className).toContain('reef-table__sorter--active');
+
+    await userEvent.click(idHead);
+    expect(names()).toEqual(['李四', '王五', '张三']); // 按 id asc，重新从升序开始
+    expect(idHead.getAttribute('aria-sort')).toBe('ascending');
+    expect(ageHead.getAttribute('aria-sort')).toBe('none');
+    expect(ageHead.querySelector('.reef-table__sorter')!.className).not.toContain('reef-table__sorter--active');
+  });
+
+  test('render 收到正确的行下标', () => {
+    render(
+      <Table
+        columns={[{ key: 'idx', title: '序号', render: (_r: Row, i: number) => `第${i}行` }]}
+        dataSource={users}
+      />,
+    );
+    expect(screen.getAllByRole('row').slice(1).map((r) => r.textContent)).toEqual([
+      '第0行',
+      '第1行',
+      '第2行',
+    ]);
+  });
+
+  test('点击无 sorter 的表头不排序、无 aria-sort', async () => {
+    render(<Table columns={columns} dataSource={users} />);
+    const names = () =>
+      [...screen.getAllByRole('row')].slice(1).map((r) => r.children[0].textContent);
+    const nameHead = screen.getByRole('columnheader', { name: /姓名/ });
+
+    await userEvent.click(nameHead);
+    expect(names()).toEqual(['张三', '李四', '王五']);
+    expect(nameHead.getAttribute('aria-sort')).toBeNull();
+    expect(nameHead.className).not.toContain('reef-table__cell--sortable');
+  });
+
   test('align 与 ellipsis class 生效', () => {
     const { container } = render(
       <Table
