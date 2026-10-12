@@ -1,9 +1,13 @@
 name: Release
 
-# Trusted Publishing（OIDC）：npm 信任"本仓库本 workflow"发起的发布，
-# 不需要 npm token，也不需要 2FA OTP。需在 npmjs.com 上为每个包
-# 配置 Trusted Publisher（jxzzz/reef-ui + 本文件名 release.yml）。
+# 合并到 main 时若有待发 changeset：自动 version → commit → publish → 推 tag；
+# 无 changeset 时整条链路跳过（幂等，不会死循环）。也可手动 dispatch
+# 用于失败重试（version commit 已推上去、changeset 已消费时，直接走 Build+Publish）。
+# Trusted Publishing（OIDC）：npm 信任"本仓库本 workflow"发起的发布，不需要 npm token。
+# 需在 npmjs.com 上为每个包配置 Trusted Publisher（jxzzz/reef-ui + 本文件名 release.yml）。
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -13,8 +17,12 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.version.outputs.released }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0 # changelog 生成与 tag 推送需要完整历史
 
       - uses: pnpm/action-setup@v4 # 从 packageManager 字段读取 pnpm 版本
 
@@ -27,13 +35,33 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Version
+        id: version
+        run: |
+          if ls .changeset/*.md >/dev/null 2>&1; then
+            pnpm exec changeset version
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            VERSION=$(node -p "require('./packages/components/package.json').version")
+            git commit -m "chore: version packages (components ${VERSION})"
+            git push
+            echo "released=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "无待发 changeset，跳过 version"
+            echo "released=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build packages
+        if: steps.version.outputs.released == 'true' || github.event_name == 'workflow_dispatch'
         run: pnpm build
 
       - name: Publish
+        if: steps.version.outputs.released == 'true' || github.event_name == 'workflow_dispatch'
         run: pnpm exec changeset publish
 
       - name: Push tags # changeset publish 只在 runner 本地打 tag；
-        # `git push --tags` 在 shallow checkout 下连续三次静默失效（报 up-to-date 但远端无 tag），
+        # `git push --tags` 在 shallow checkout 下会静默失效（报 up-to-date 但远端无 tag），
         # 改为按名显式推送 HEAD 上的 tag，推不上去会直接报错
+        if: steps.version.outputs.released == 'true' || github.event_name == 'workflow_dispatch'
         run: git tag --points-at HEAD | xargs -r git push origin
