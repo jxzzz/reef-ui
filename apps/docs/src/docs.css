@@ -620,8 +620,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* landing 专属点缀色：珊瑚（品牌主题里的 coral 预设），install 卡片用它提亮 */
-  --landing-coral: #e5624b;
 }
 
 .landing__nav {
@@ -1171,16 +1169,12 @@ body {
   align-items: center;
   gap: 8px;
   padding: 8px 10px 8px 16px;
-  border: 1px solid color-mix(in srgb, var(--landing-coral) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
   border-radius: var(--reef-radius-md);
-  background: color-mix(in srgb, var(--landing-coral) 6%, var(--reef-color-surface));
+  background: color-mix(in srgb, var(--reef-color-text-primary) 4%, var(--reef-color-surface));
   font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
   font-size: 13px;
   color: var(--reef-color-text-primary);
-}
-
-.landing__install-cmd .icon-btn {
-  color: var(--landing-coral);
 }
 
 .landing__stats {
