@@ -7,6 +7,16 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    "version": "0.5.0",
+    "date": "2026-10-12",
+    "items": [
+      {
+        "type": "新增",
+        "text": "[components] 新增 Tree/Cascader/Upload/Dropdown 四个组件"
+      }
+    ]
+  },
+  {
     "version": "0.4.1",
     "date": "2026-10-12",
     "items": [
