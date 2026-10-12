@@ -1135,26 +1135,154 @@ body {
   color: var(--reef-color-brand);
 }
 
-/* 特性带 */
-.landing__values {
+/* 安装命令 + 真实数据带 */
+.landing__install {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px 36px;
-  margin: 8px 0 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 32px;
+  max-width: 1080px;
+  margin: 0 auto 72px;
+  padding: 0 24px;
 }
 
-.landing__value {
+.landing__install-cmd {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 10px 8px 16px;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 4%, var(--reef-color-surface));
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
   font-size: 13px;
+  color: var(--reef-color-text-primary);
+}
+
+.landing__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+}
+
+.landing__stat {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--reef-color-text-secondary);
 }
 
-.landing__value svg {
-  color: var(--reef-color-brand);
-  opacity: 0.8;
+/* 换肤演示：色板点击后品牌变量写进 :root，全站实时生效 */
+.landing__theme {
+  max-width: 1080px;
+  margin: 0 auto 72px;
+  padding: 0 24px;
+}
+
+.landing__theme h2 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  text-align: center;
+}
+
+.landing__theme-sub {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: var(--reef-font-size-md);
+  line-height: 1.7;
+  color: var(--reef-color-text-secondary);
+}
+
+.landing__theme-inner {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+@media (min-width: 900px) {
+  .landing__theme-inner {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 5fr);
+    gap: 40px;
+  }
+}
+
+.landing__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.landing__swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 8px;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 14%, transparent);
+  border-radius: var(--reef-radius-full);
+  background: transparent;
+  color: var(--reef-color-text-primary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.landing__swatch:hover {
+  border-color: color-mix(in srgb, var(--reef-color-brand) 45%, transparent);
+}
+
+.landing__swatch[aria-pressed='true'] {
+  border-color: color-mix(in srgb, var(--reef-color-brand) 60%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 16%, transparent);
+}
+
+.landing__swatch i {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--reef-radius-full);
+}
+
+.landing__theme-note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--reef-color-text-secondary);
+}
+
+.landing__theme-code {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+  overflow: hidden;
+}
+
+.landing__theme-code pre {
+  margin: 0;
+  padding: 16px 18px;
+  background: color-mix(in srgb, var(--reef-color-text-primary) 3%, var(--reef-color-surface));
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--reef-color-text-primary);
+  overflow-x: auto;
+}
+
+.landing__theme-copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 10px;
+  border: none;
+  border-radius: var(--reef-radius-sm);
+  background: transparent;
+  color: var(--reef-color-text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.landing__theme-copy:hover {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 6%, transparent);
+  color: var(--reef-color-text-primary);
 }
 
 .landing__footer {
@@ -1201,8 +1329,9 @@ body {
 }
 
 .landing__hero > *,
-.landing__entries,
-.landing__values {
+.landing__install,
+.landing__theme,
+.landing__entries {
   animation: landing-rise 0.5s ease both;
 }
 
@@ -1214,12 +1343,16 @@ body {
   animation-delay: 0.1s;
 }
 
-.landing__entries {
+.landing__install {
   animation-delay: 0.15s;
 }
 
-.landing__values {
+.landing__theme {
   animation-delay: 0.2s;
+}
+
+.landing__entries {
+  animation-delay: 0.25s;
 }
 @media (prefers-reduced-motion: reduce) {
   .docs__content {
@@ -1227,8 +1360,9 @@ body {
   }
 
   .landing__hero > *,
-  .landing__entries,
-  .landing__values {
+  .landing__install,
+  .landing__theme,
+  .landing__entries {
     animation: none;
   }
 
