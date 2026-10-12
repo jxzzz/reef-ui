@@ -97,6 +97,22 @@ body {
   position: relative;
 }
 
+/* 移动端抽屉导航的遮罩与汉堡开关：桌面端隐藏，≤768px 才启用（见底部媒体查询） */
+.docs__backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  border: none;
+  padding: 0;
+  background: color-mix(in srgb, #000 40%, transparent);
+  cursor: pointer;
+}
+
+.docs__nav-toggle {
+  display: none;
+}
+
 /* 右侧本页目录：宽屏与内容组成同一条内容带（grid），随滚动 sticky */
 .docs__toc {
   position: absolute;
@@ -1359,6 +1375,10 @@ body {
     animation: none;
   }
 
+  .docs__sidebar {
+    transition: none;
+  }
+
   .landing__hero > *,
   .landing__install,
   .landing__theme,
@@ -1486,16 +1506,35 @@ body {
     flex-direction: column;
   }
 
+  /* 侧栏退场为抽屉：默认移出屏幕，点汉堡按钮滑入 */
   .docs__sidebar {
-    position: static;
-    height: auto;
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 200;
+    width: min(320px, 84vw);
+    height: 100vh;
+    background: var(--reef-color-surface);
+    border-right: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
   }
 
-  .docs__sidebar nav {
-    grid-auto-flow: column;
+  .docs--nav-open .docs__sidebar {
+    transform: none;
+    box-shadow: 0 0 40px color-mix(in srgb, #000 24%, transparent);
+  }
+
+  .docs--nav-open .docs__backdrop {
+    display: block;
+  }
+
+  .docs__nav-toggle {
+    display: grid;
+  }
+
+  /* API 表在窄屏横向滚动，不撑破页面 */
+  .api {
+    display: block;
     overflow-x: auto;
   }
 

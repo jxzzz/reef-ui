@@ -132,6 +132,7 @@ function DocsApp() {
   const [page, setPage] = useState<PageKey>(currentPage);
   const [dark, setDark] = useState(false);
   const [query, setQuery] = useState('');
+  const [navOpen, setNavOpen] = useState(false);
   const { lang, setLang } = useLang();
   const t = useChrome();
 
@@ -140,6 +141,16 @@ function DocsApp() {
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
+
+  // 移动端抽屉导航：Escape 关闭
+  useEffect(() => {
+    if (!navOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setNavOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [navOpen]);
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : '';
@@ -185,7 +196,15 @@ function DocsApp() {
   if (page === 'home') return <HomePage dark={dark} onToggleDark={toggleDark} />;
 
   return (
-    <div className="docs">
+    <div className={'docs' + (navOpen ? ' docs--nav-open' : '')}>
+      {navOpen && (
+        <button
+          type="button"
+          className="docs__backdrop"
+          aria-label="关闭导航菜单"
+          onClick={() => setNavOpen(false)}
+        />
+      )}
       <aside className="docs__sidebar">
         <a className="docs__logo" href="#home">
           Reef UI <span className="docs__version">v{componentsPkg.version}</span>
@@ -199,6 +218,7 @@ function DocsApp() {
             selectedKey={page}
             onChange={(key) => {
               location.hash = key;
+              setNavOpen(false); // 移动端：选中页面后收起抽屉
             }}
           />
           {visibleGroups.length === 0 && <p className="docs__empty">{t.noMatch}</p>}
@@ -219,6 +239,14 @@ function DocsApp() {
             )}
           </h2>
           <div className="docs__topbar-actions">
+            <button
+              type="button"
+              className="icon-btn docs__nav-toggle"
+              aria-label="打开导航菜单"
+              onClick={() => setNavOpen(true)}
+            >
+              <Icon name="menu" size={18} />
+            </button>
             <a
               className="icon-btn"
               href="https://github.com/jxzzz/reef-ui"
