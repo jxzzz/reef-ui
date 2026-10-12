@@ -1,9 +1,13 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useId, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Button } from '../button';
 import { useLocale } from '../locale';
 import type { PopconfirmProps } from './types';
 import './popconfirm.css';
+
+// 触发器是 span 的直接子元素，卡片也在 span 内，加 :scope > 排除卡片里的按钮
+const TRIGGER_FOCUSABLE =
+  ':scope > button, :scope > [href], :scope > input, :scope > select, :scope > textarea, :scope > [tabindex]:not([tabindex="-1"])';
 
 export const Popconfirm = forwardRef<HTMLSpanElement, PopconfirmProps>(
   (
@@ -24,6 +28,7 @@ export const Popconfirm = forwardRef<HTMLSpanElement, PopconfirmProps>(
     ref,
   ) => {
     const t = useLocale();
+    const titleId = useId();
     const [inner, setInner] = useState(defaultOpen);
     const rootRef = useRef<HTMLSpanElement | null>(null);
 
@@ -46,12 +51,22 @@ export const Popconfirm = forwardRef<HTMLSpanElement, PopconfirmProps>(
       if (open === undefined) setInner(!isOpen);
     };
 
+    // 气泡关闭时焦点随卡片卸载会丢到 body；若焦点在气泡内，还给触发器（span 的直接子元素）。
+    // 点击外部关闭不在此路径（焦点不在卡片内），不抢用户的新焦点
+    const refocusTrigger = () => {
+      const card = rootRef.current?.querySelector('.reef-popconfirm__card');
+      if (!card?.contains(document.activeElement)) return;
+      rootRef.current?.querySelector<HTMLElement>(TRIGGER_FOCUSABLE)?.focus();
+    };
+
     const confirm = () => {
+      refocusTrigger();
       onConfirm?.();
       close();
     };
 
     const cancel = () => {
+      refocusTrigger();
       onCancel?.();
       close();
     };
@@ -63,7 +78,10 @@ export const Popconfirm = forwardRef<HTMLSpanElement, PopconfirmProps>(
         if (!rootRef.current?.contains(e.target as Node)) close();
       };
       const onKey = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') close();
+        if (e.key === 'Escape') {
+          refocusTrigger();
+          close();
+        }
       };
       document.addEventListener('mousedown', onDoc);
       document.addEventListener('keydown', onKey);
@@ -88,11 +106,12 @@ export const Popconfirm = forwardRef<HTMLSpanElement, PopconfirmProps>(
           // 贴边溢出时升级为 createPortal + flip（可复用 tooltip 的定位思路）
           <span
             role="dialog"
+            aria-labelledby={titleId}
             className={cn('reef-popconfirm__card', `reef-popconfirm__card--${placement}`)}
             onClick={(e) => e.stopPropagation()}
           >
             <span className="reef-popconfirm__body">
-              <span className="reef-popconfirm__title">{title}</span>
+              <span id={titleId} className="reef-popconfirm__title">{title}</span>
               {description != null && (
                 <span className="reef-popconfirm__description">{description}</span>
               )}

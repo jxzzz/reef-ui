@@ -69,8 +69,7 @@
 }
 
 .reef-checkbox__native:focus-visible + .reef-checkbox__box {
-  outline: 2px solid var(--reef-color-brand);
-  outline-offset: 2px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
 }
 
 .reef-checkbox:hover:not(:has(.reef-checkbox__native:disabled)) .reef-checkbox__box {

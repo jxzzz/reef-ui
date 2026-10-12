@@ -1,16 +1,29 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import { cn } from '@reef-ui/utils';
 import type { CheckboxProps } from './types';
 import './checkbox.css';
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ indeterminate = false, block = false, className, children, ...rest }, ref) => {
+    const innerRef = useRef<HTMLInputElement | null>(null);
+
+    // React 不支持 indeterminate 属性，需写原生 IDL 属性，屏幕阅读器才会朗读「混合」状态
+    useEffect(() => {
+      if (innerRef.current) innerRef.current.indeterminate = indeterminate;
+    }, [indeterminate]);
+
+    const setRef = (el: HTMLInputElement | null) => {
+      innerRef.current = el;
+      if (typeof ref === 'function') ref(el);
+      else if (ref) (ref as { current: HTMLInputElement | null }).current = el;
+    };
+
     return (
       <label
         className={cn('reef-checkbox', { 'reef-checkbox--block': block }, className)}
       >
         <input
-          ref={ref}
+          ref={setRef}
           type="checkbox"
           className="reef-checkbox__native"
           data-indeterminate={indeterminate || undefined}

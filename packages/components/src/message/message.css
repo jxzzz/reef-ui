@@ -54,6 +54,11 @@
   color: var(--reef-color-text-primary);
 }
 
+.reef-message__close:focus-visible {
+  outline: 2px solid var(--reef-color-brand);
+  outline-offset: 2px;
+}
+
 @keyframes reef-message-slide {
   from {
     transform: translateY(-8px);

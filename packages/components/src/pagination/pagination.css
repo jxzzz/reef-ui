@@ -23,6 +23,11 @@
   cursor: not-allowed;
 }
 
+.reef-pagination__btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
 .reef-pagination__btn:hover:not(:disabled) {
   border-color: var(--reef-color-brand);
   color: var(--reef-color-brand);

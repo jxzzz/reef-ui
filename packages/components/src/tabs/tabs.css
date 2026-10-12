@@ -27,9 +27,9 @@
 }
 
 .reef-tabs__tab:focus-visible {
-  outline: 2px solid var(--reef-color-brand);
-  outline-offset: -2px;
+  outline: none;
   border-radius: var(--reef-radius-sm);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
 }
 
 .reef-tabs__panel {

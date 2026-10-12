@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@reef-ui/utils';
 import type { DrawerProps } from './types';
@@ -21,6 +21,7 @@ export function Drawer({
   className,
 }: DrawerProps) {
   const panelRef = useRef<HTMLElement>(null);
+  const titleId = useId();
 
   useEffect(() => {
     if (!open) return;
@@ -60,6 +61,8 @@ export function Drawer({
 
   if (!open) return null;
 
+  // ponytail: 不给遮罩下的背景内容加 aria-hidden（需遍历应用根节点或用 inert），
+  // aria-modal + 焦点圈已保证键盘/读屏基本不会逃逸到背景
   return createPortal(
     <div className={cn('reef-drawer', className)}>
       <div className="reef-drawer__overlay" onClick={() => onClose?.()} />
@@ -69,11 +72,11 @@ export function Drawer({
         style={{ width, ...(placement === 'left' ? { left: 0 } : { right: 0 }) }}
         role="dialog"
         aria-modal="true"
-        aria-label={typeof title === 'string' ? title : undefined}
+        aria-labelledby={title != null ? titleId : undefined}
         tabIndex={-1}
         data-placement={placement}
       >
-        {title != null && <header className="reef-drawer__head">{title}</header>}
+        {title != null && <header id={titleId} className="reef-drawer__head">{title}</header>}
         <div className="reef-drawer__body">{children}</div>
         {footer != null && <footer className="reef-drawer__foot">{footer}</footer>}
       </aside>

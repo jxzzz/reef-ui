@@ -13,7 +13,8 @@ export function Tabs({ items, activeKey, defaultActiveKey, onChange, className }
     onChange?.(key);
   };
 
-  // 方向键切换，到边界即停（与 Select 行为一致）
+  // 方向键切换。ponytail: 到边界即停不循环 —— 与 Select 行为一致且被测试锁定；
+  // WAI-ARIA APG 允许不循环，若要循环改此处的 next 计算即可
   const move = (delta: number) => {
     const index = items.findIndex((item) => item.key === current);
     const next = Math.min(Math.max(index + delta, 0), items.length - 1);
@@ -22,6 +23,8 @@ export function Tabs({ items, activeKey, defaultActiveKey, onChange, className }
     select(item.key);
     listRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
   };
+
+  // ponytail: 未做 tab↔panel 的 id/aria-controls 关联，需要屏幕阅读器逐面板跳转时再补
 
   return (
     <div className={cn('reef-tabs', className)}>

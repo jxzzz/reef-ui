@@ -1,4 +1,4 @@
-import { useEffect, useRef, type KeyboardEvent as ReactKeyboardEvent } from 'react';
+import { useEffect, useId, useRef, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '@reef-ui/utils';
 import { useLocale } from '../locale';
@@ -9,6 +9,7 @@ const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabi
 
 export function Modal({ open, title, width = 480, footer, onClose, children, className }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
   const t = useLocale();
 
   useEffect(() => {
@@ -45,6 +46,8 @@ export function Modal({ open, title, width = 480, footer, onClose, children, cla
     }
   };
 
+  // ponytail: 不给遮罩下的背景内容加 aria-hidden（需遍历应用根节点或用 inert），
+  // aria-modal + 焦点圈已保证键盘/读屏基本不会逃逸到背景
   return createPortal(
     <div
       className="reef-modal"
@@ -56,7 +59,7 @@ export function Modal({ open, title, width = 480, footer, onClose, children, cla
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-label={typeof title === 'string' ? title : undefined}
+        aria-labelledby={title != null ? titleId : undefined}
         tabIndex={-1}
         style={{ width }}
         className={cn('reef-modal__dialog', className)}
@@ -64,7 +67,7 @@ export function Modal({ open, title, width = 480, footer, onClose, children, cla
       >
         {title != null && (
           <div className="reef-modal__header">
-            <h4 className="reef-modal__title">{title}</h4>
+            <h4 id={titleId} className="reef-modal__title">{title}</h4>
             <button type="button" className="reef-modal__close" aria-label={t.Modal.close} onClick={() => onClose?.()}>
               ×
             </button>

@@ -16,8 +16,8 @@
 }
 
 .reef-segmented__option:focus-visible {
-  outline: 2px solid var(--reef-color-brand);
-  outline-offset: 1px;
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
 }
 
 .reef-segmented__option[aria-checked='true'] {

@@ -61,6 +61,8 @@ export function CalendarPanel({
           <Icon name="chevron-right" size={12} />
         </button>
       </div>
+      {/* ponytail: 只保留 role="grid" + aria-label 的浅语义，未实现完整 WAI-ARIA grid
+          模式（row/gridcell 结构、方向键在日期间移动、Home/End 翻月）；需要纯键盘选日期时再补 */}
       <div className="reef-datepicker__grid" role="grid" aria-label={t.DatePicker.calendar}>
         {t.DatePicker.weekdays.map((w) => (
           <span key={w} className="reef-datepicker__weekday">

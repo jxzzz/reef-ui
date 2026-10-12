@@ -114,6 +114,7 @@ export function Menu({
             type="button"
             role="menuitem"
             aria-expanded={open}
+            aria-haspopup="true"
             className={cn('reef-menu__item', selected && 'reef-menu__item--selected', item.danger && 'reef-menu__item--danger')}
             onClick={() => toggle(item.key)}
           >
@@ -154,6 +155,8 @@ export function Menu({
   };
 
   return (
+    // ponytail: 不做方向键 roving tabindex——所有项均为原生 button，Tab/Enter/Space 已可全程键盘操作；
+    // 需要 ARIA Menu 模式的 ↑↓/Home/End 时再升级（需管理 tabindex 与焦点回收，跨三种布局模式）
     <nav className={cn('reef-menu', `reef-menu--${mode}`, collapsed && 'reef-menu--collapsed', className)}>
       <ul className="reef-menu__list" role="menu">
         {items.map((item) => renderItem(item, 0))}

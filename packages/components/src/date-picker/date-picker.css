@@ -114,6 +114,13 @@
   cursor: not-allowed;
 }
 
+/* 日历内按钮的聚焦外圈（导航与日期共用） */
+.reef-datepicker__nav:focus-visible,
+.reef-datepicker__day:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
 .reef-datepicker__day:hover:not(:disabled) {
   background: color-mix(in srgb, var(--reef-color-brand) 12%, transparent);
 }
