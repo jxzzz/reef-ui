@@ -1,5 +1,11 @@
 # @reef-ui/components
 
+## 0.5.0
+
+### Minor Changes
+
+- 52ef8de: 新增 4 个组件：Tree 树形控件、Cascader 级联选择、Upload 上传、Dropdown 下拉菜单
+
 ## 0.4.1
 
 ### Patch Changes
