@@ -36,6 +36,7 @@ import { PopconfirmPage } from './pages/PopconfirmPage';
 import { RatePage } from './pages/RatePage';
 import { SliderPage } from './pages/SliderPage';
 import { TimePickerPage } from './pages/TimePickerPage';
+import { PlaygroundPage } from './pages/PlaygroundPage';
 import { ScrollPage } from './pages/ScrollPage';
 import { ResultPage } from './pages/ResultPage';
 import { RadioPage } from './pages/RadioPage';
@@ -56,6 +57,7 @@ const pages = [
   { key: 'home', title: '首页', group: null, node: null, en: 'Home' },
   { key: 'guide', title: '使用指南', group: '指南', node: <GuidePage />, en: 'Guide' },
   { key: 'changelog', title: '更新记录', group: '指南', node: <ChangelogPage />, en: 'Changelog' },
+  { key: 'playground', title: 'Playground 实时演练', group: '指南', node: <PlaygroundPage />, en: 'Playground' },
   { key: 'icon', title: 'Icon 图标', group: '资源', node: <IconPage />, en: 'Icon' },
   { key: 'typography', title: 'Typography 排版', group: '资源', node: <TypographyPage />, en: 'Typography' },
   { key: 'button', title: 'Button 按钮', group: '通用', node: <ButtonPage />, en: 'Button' },
