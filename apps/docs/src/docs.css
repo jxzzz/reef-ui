@@ -1169,12 +1169,16 @@ body {
   align-items: center;
   gap: 8px;
   padding: 8px 10px 8px 16px;
-  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--reef-color-brand) 35%, transparent);
   border-radius: var(--reef-radius-md);
-  background: color-mix(in srgb, var(--reef-color-text-primary) 4%, var(--reef-color-surface));
+  background: color-mix(in srgb, var(--reef-color-brand) 6%, var(--reef-color-surface));
   font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
   font-size: 13px;
   color: var(--reef-color-text-primary);
+}
+
+.landing__install-cmd .icon-btn {
+  color: var(--reef-color-brand);
 }
 
 .landing__stats {
