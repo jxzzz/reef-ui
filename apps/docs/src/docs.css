@@ -1272,7 +1272,7 @@ body {
 
 .landing__theme-code {
   position: relative;
-  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--reef-color-brand) 35%, transparent);
   border-radius: var(--reef-radius-md);
   overflow: hidden;
 }
@@ -1280,7 +1280,8 @@ body {
 .landing__theme-code pre {
   margin: 0;
   padding: 16px 18px;
-  background: color-mix(in srgb, var(--reef-color-text-primary) 3%, var(--reef-color-surface));
+  /* 与 install 命令卡片同一套品牌底色：色板切主题时两块卡片一起跟着变 */
+  background: color-mix(in srgb, var(--reef-color-brand) 6%, var(--reef-color-surface));
   font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
   font-size: 13px;
   line-height: 1.7;
