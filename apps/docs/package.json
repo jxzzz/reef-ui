@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "node scripts/gen-changelog.mjs && vite build",
     "gen:changelog": "node scripts/gen-changelog.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "visual": "playwright test"
   },
   "dependencies": {
     "@reef-ui/components": "workspace:*",
@@ -17,6 +18,7 @@
     "sucrase": "^3.35.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.0",
     "@types/node": "^22.7.4",
     "@types/prismjs": "^1.26.6",
     "@types/react": "^18.3.8",

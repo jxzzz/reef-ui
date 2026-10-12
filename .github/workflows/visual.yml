@@ -1,0 +1,68 @@
+# 视觉回归：截图对比检查 + 基准图更新任务。
+# 只在样式/文档源码变化时触发；基准图必须由本工作流（update-baselines）生成，
+# 保证截图环境与检查环境一致。
+name: Visual
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/components/src/**/*.css'
+      - 'packages/components/src/**/*.tsx'
+      - 'packages/theme/src/**'
+      - 'apps/docs/src/**'
+      - 'apps/docs/e2e/**'
+      - '.github/workflows/visual.yml'
+  pull_request:
+    paths:
+      - 'packages/components/src/**/*.css'
+      - 'packages/components/src/**/*.tsx'
+      - 'packages/theme/src/**'
+      - 'apps/docs/src/**'
+      - 'apps/docs/e2e/**'
+      - '.github/workflows/visual.yml'
+  workflow_dispatch:
+    inputs:
+      update-baselines:
+        description: '重新生成基准截图并提交'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  visual:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # changelog 生成需要完整 git 历史
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+        working-directory: apps/docs
+      - run: pnpm --filter docs build
+      - name: Run visual tests
+        run: pnpm exec playwright test ${{ github.event.inputs.update-baselines == 'true' && '--update-snapshots' || '' }}
+        working-directory: apps/docs
+      - name: Upload diff artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diff
+          path: apps/docs/test-results/
+          if-no-files-found: ignore
+      - name: Commit updated baselines
+        if: github.event.inputs.update-baselines == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/docs/e2e
+          git diff --cached --quiet || git commit -m "chore: 更新视觉回归基准截图"
+          git push

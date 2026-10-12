@@ -6,3 +6,7 @@ coverage/
 storybook-static/
 .DS_Store
 .superpowers/
+
+# Playwright
+test-results/
+playwright-report/
