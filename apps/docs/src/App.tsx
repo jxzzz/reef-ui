@@ -137,6 +137,11 @@ function DocsApp() {
     document.documentElement.dataset.theme = dark ? 'dark' : '';
   }, [dark]);
 
+  // 浏览器标签页标题跟随当前页面；首页用站点主标题
+  useEffect(() => {
+    document.title = page === 'home' ? 'Reef UI — React 组件库' : `${pageTitle(pages.find((p) => p.key === page)!)} · Reef UI`;
+  }, [page, lang]);
+
   const toggleDark = () => setDark(!dark);
 
   const active = pages.find((p) => p.key === page)!;

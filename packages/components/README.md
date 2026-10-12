@@ -10,7 +10,7 @@
 
 </div>
 
-30+ enterprise components covering forms, feedback, navigation and data display. Design Token theme system built on CSS Variables, one-line dark mode, complete TypeScript types.
+40 components covering forms, feedback, navigation and data display. Design Token theme system built on CSS Variables, one-line dark mode, complete TypeScript types.
 
 ## Install
 
@@ -41,9 +41,9 @@ Localization: wrap your app with `<LocaleProvider locale={enUS}>` to switch buil
 | Category | Components |
 |---|---|
 | **General** | Button, Divider, Scroll, Typography (Title / Text) |
-| **Data Entry** | Checkbox, DatePicker / DateRangePicker, Form / FormItem, Input, InputNumber, Radio, Segmented, Select, Switch |
+| **Data Entry** | Checkbox, DatePicker / DateRangePicker, Form / FormItem, Input, InputNumber, Radio, Rate, Segmented, Select, Slider, Switch, TimePicker |
 | **Data Display** | Avatar, Badge, Card, Descriptions, Empty, Icon, Table, Tag, Timeline, Tooltip |
-| **Feedback** | Alert, Drawer, Message, Modal, Progress, Result, Skeleton, Spin |
+| **Feedback** | Alert, Drawer, Message, Modal, Popconfirm, Progress, Result, Skeleton, Spin |
 | **Navigation** | Breadcrumb, Menu, Pagination, Steps, Tabs |
 
 Live demos and the full API reference are on the [documentation site](https://reef-ui.imxuex.workers.dev).

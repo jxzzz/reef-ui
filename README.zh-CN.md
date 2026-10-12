@@ -19,7 +19,7 @@ Reef UI 是一套开源的 React 组件库,专注于中后台(admin / dashboard)
 
 ## 特性
 
-- 🧩 **30+ 企业级组件** — 表单、反馈、导航、数据展示全覆盖,持续扩充
+- 🧩 **40 个企业级组件** — 表单、反馈、导航、数据展示全覆盖,持续扩充
 - 🎨 **Design Token 主题系统** — 颜色/间距/圆角统一由 `--reef-*` CSS Variables 驱动,改一个变量全局生效
 - 🌓 **暗色模式** — 根元素加 `data-theme="dark"` 即可,所有组件和文档示例自动适配
 - 🌍 **国际化** — 内置 `zhCN` / `enUS` 语言包,`LocaleProvider` 一键切换占位符、空态与无障碍文案
@@ -56,9 +56,9 @@ import '@reef-ui/components/style.css';  // 组件样式(含 Design Token)
 | 分类 | 组件 |
 |---|---|
 | **通用** | Button、Divider、Scroll、Typography(Title / Text) |
-| **数据录入** | Checkbox、DatePicker / DateRangePicker、Form / FormItem、Input、InputNumber、Radio、Segmented、Select、Switch |
+| **数据录入** | Checkbox、DatePicker / DateRangePicker、Form / FormItem、Input、InputNumber、Radio、Rate、Segmented、Select、Slider、Switch、TimePicker |
 | **数据展示** | Avatar、Badge、Card、Descriptions、Empty、Icon、Table、Tag、Timeline、Tooltip |
-| **反馈** | Alert、Drawer、Message、Modal、Progress、Result、Skeleton、Spin |
+| **反馈** | Alert、Drawer、Message、Modal、Popconfirm、Progress、Result、Skeleton、Spin |
 | **导航** | Breadcrumb、Menu、Pagination、Steps、Tabs |
 
 每个组件的 live demo 与 API 文档见[在线文档](https://reef-ui.imxuex.workers.dev)(或本地运行 `pnpm docs` 启动)。
