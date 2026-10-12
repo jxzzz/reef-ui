@@ -33,5 +33,7 @@ jobs:
       - name: Publish
         run: pnpm exec changeset publish
 
-      - name: Push tags # changeset publish 只在 runner 本地打 tag，需手动推送
-        run: git push --tags
+      - name: Push tags # changeset publish 只在 runner 本地打 tag；
+        # `git push --tags` 在 shallow checkout 下连续三次静默失效（报 up-to-date 但远端无 tag），
+        # 改为按名显式推送 HEAD 上的 tag，推不上去会直接报错
+        run: git tag --points-at HEAD | xargs -r git push origin
