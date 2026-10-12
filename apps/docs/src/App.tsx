@@ -10,10 +10,12 @@ import { BadgePage } from './pages/BadgePage';
 import { BreadcrumbPage } from './pages/BreadcrumbPage';
 import { DatePickerPage } from './pages/DatePickerPage';
 import { ButtonPage } from './pages/ButtonPage';
+import { CascaderPage } from './pages/CascaderPage';
 import { CardPage } from './pages/CardPage';
 import { DescriptionsPage } from './pages/DescriptionsPage';
 import { DividerPage } from './pages/DividerPage';
 import { DrawerPage } from './pages/DrawerPage';
+import { DropdownPage } from './pages/DropdownPage';
 import { CheckboxPage } from './pages/CheckboxPage';
 import { EmptyPage } from './pages/EmptyPage';
 import { FormPage } from './pages/FormPage';
@@ -47,7 +49,9 @@ import { TimelinePage } from './pages/TimelinePage';
 import { TabsPage } from './pages/TabsPage';
 import { TagPage } from './pages/TagPage';
 import { TooltipPage } from './pages/TooltipPage';
+import { TreePage } from './pages/TreePage';
 import { TypographyPage } from './pages/TypographyPage';
+import { UploadPage } from './pages/UploadPage';
 
 // 页面注册单一来源：hash key、侧栏分组、页面渲染都从这里派生。
 // 新增页面只改这一处（import + 一行注册）。
@@ -61,6 +65,7 @@ const pages = [
   { key: 'icon', title: 'Icon 图标', group: '资源', node: <IconPage />, en: 'Icon' },
   { key: 'typography', title: 'Typography 排版', group: '资源', node: <TypographyPage />, en: 'Typography' },
   { key: 'button', title: 'Button 按钮', group: '通用', node: <ButtonPage />, en: 'Button' },
+  { key: 'cascader', title: 'Cascader 级联选择', group: '数据录入', node: <CascaderPage />, en: 'Cascader' },
   { key: 'divider', title: 'Divider 分割线', group: '通用', node: <DividerPage />, en: 'Divider' },
   { key: 'scroll', title: 'Scroll 滚动条', group: '通用', node: <ScrollPage />, en: 'Scroll' },
   { key: 'checkbox', title: 'Checkbox 复选框', group: '数据录入', node: <CheckboxPage />, en: 'Checkbox' },
@@ -75,6 +80,7 @@ const pages = [
   { key: 'slider', title: 'Slider 滑动输入条', group: '数据录入', node: <SliderPage />, en: 'Slider' },
   { key: 'switch', title: 'Switch 开关', group: '数据录入', node: <SwitchPage />, en: 'Switch' },
   { key: 'time-picker', title: 'TimePicker 时间选择器', group: '数据录入', node: <TimePickerPage />, en: 'TimePicker' },
+  { key: 'upload', title: 'Upload 上传', group: '数据录入', node: <UploadPage />, en: 'Upload' },
   { key: 'avatar', title: 'Avatar 头像', group: '数据展示', node: <AvatarPage />, en: 'Avatar' },
   { key: 'badge', title: 'Badge 徽标数', group: '数据展示', node: <BadgePage />, en: 'Badge' },
   { key: 'card', title: 'Card 卡片', group: '数据展示', node: <CardPage />, en: 'Card' },
@@ -84,6 +90,7 @@ const pages = [
   { key: 'tag', title: 'Tag 标签', group: '数据展示', node: <TagPage />, en: 'Tag' },
   { key: 'timeline', title: 'Timeline 时间轴', group: '数据展示', node: <TimelinePage />, en: 'Timeline' },
   { key: 'tooltip', title: 'Tooltip 文字提示', group: '数据展示', node: <TooltipPage />, en: 'Tooltip' },
+  { key: 'tree', title: 'Tree 树形控件', group: '数据展示', node: <TreePage />, en: 'Tree' },
   { key: 'alert', title: 'Alert 警告提示', group: '反馈', node: <AlertPage />, en: 'Alert' },
   { key: 'drawer', title: 'Drawer 抽屉', group: '反馈', node: <DrawerPage />, en: 'Drawer' },
   { key: 'message', title: 'Message 全局提示', group: '反馈', node: <MessagePage />, en: 'Message' },
@@ -95,6 +102,7 @@ const pages = [
   { key: 'skeleton', title: 'Skeleton 骨架屏', group: '反馈', node: <SkeletonPage />, en: 'Skeleton' },
   { key: 'spin', title: 'Spin 加载中', group: '反馈', node: <SpinPage />, en: 'Spin' },
   { key: 'breadcrumb', title: 'Breadcrumb 面包屑', group: '导航', node: <BreadcrumbPage />, en: 'Breadcrumb' },
+  { key: 'dropdown', title: 'Dropdown 下拉菜单', group: '导航', node: <DropdownPage />, en: 'Dropdown' },
   { key: 'pagination', title: 'Pagination 分页', group: '导航', node: <PaginationPage />, en: 'Pagination' },
   { key: 'steps', title: 'Steps 步骤条', group: '导航', node: <StepsPage />, en: 'Steps' },
   { key: 'tabs', title: 'Tabs 标签页', group: '导航', node: <TabsPage />, en: 'Tabs' },
