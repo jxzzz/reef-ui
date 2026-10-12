@@ -1,12 +1,15 @@
-// Playground：左侧可编辑代码，右侧实时预览渲染结果。
+// Playground：左侧可编辑代码（Prism 高亮夹层），右侧实时预览渲染结果。
 // 注册到 App.tsx（主会话统一处理，此处仅留备忘）：
 //   import { PlaygroundPage } from './pages/PlaygroundPage';
 //   { key: 'playground', title: 'Playground 实时演练', group: '指南', node: <PlaygroundPage />, en: 'Playground' },
-import { Component, useEffect, useRef, useState, type ReactNode } from 'react';
+import { Component, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 // React 整个命名空间注入给用户代码（hooks 都挂在上面）
 import * as React from 'react';
 import * as reef from '@reef-ui/components';
 import { Button, Icon } from '@reef-ui/components';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-tsx';
 import { transform } from 'sucrase';
 import { useChrome, useLang, type Lang } from '../i18n';
 import './playground.css';
@@ -95,6 +98,13 @@ export function PlaygroundPage() {
   const [Comp, setComp] = useState<React.ComponentType | null>(null);
   const [copied, setCopied] = useState(false);
   const gutterRef = useRef<HTMLDivElement>(null);
+  const highlightRef = useRef<HTMLPreElement>(null);
+
+  // 高亮层：与编辑夹层共用 Prism tsx 语法（与文档代码块同一套 token 配色）
+  const highlighted = useMemo(() => {
+    const grammar = Prism.languages.tsx ?? Prism.languages.jsx;
+    return Prism.highlight(code, grammar, 'tsx');
+  }, [code]);
 
   // 防抖 300ms：停止输入后再转换执行；失败时保留上一次成功渲染的 Comp
   useEffect(() => {
@@ -119,18 +129,29 @@ export function PlaygroundPage() {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  // textarea 是滚动源：行号列与高亮层跟随同一 scrollTop/scrollLeft
+  const syncScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    const { scrollTop, scrollLeft } = e.currentTarget;
+    if (gutterRef.current) gutterRef.current.scrollTop = scrollTop;
+    if (highlightRef.current) {
+      highlightRef.current.scrollTop = scrollTop;
+      highlightRef.current.scrollLeft = scrollLeft;
+    }
+  };
+
   const shownError = error ?? renderError;
   const lines = code.split('\n').length;
 
   return (
     <>
-      <p className="docs__eyebrow">{zh ? '指南' : 'Guide'}</p>
-      <h2>{zh ? 'Playground 实时演练' : 'Playground'}</h2>
-      <p>
-        {zh
-          ? '左侧编辑代码，右侧实时预览渲染结果。无需 import：React hooks 与全部 reef 组件已注入作用域，export default 一个组件即可。'
-          : 'Edit code on the left and see it rendered live on the right. No imports needed: React hooks and every reef component are in scope — just export default a component.'}
-      </p>
+      <div className="reef-pg__head">
+        <h2>{zh ? 'Playground 实时演练' : 'Playground'}</h2>
+        <p>
+          {zh
+            ? '无需 import：React hooks 与全部 reef 组件已注入作用域，export default 一个组件即可实时预览。'
+            : 'No imports needed: React hooks and every reef component are in scope — export default a component to preview it live.'}
+        </p>
+      </div>
 
       <div className="reef-pg">
         <section className="reef-pg__pane">
@@ -146,22 +167,27 @@ export function PlaygroundPage() {
             </Button>
           </div>
           <div className="reef-pg__editor">
-            {/* ponytail: textarea 等宽 + 行号足够用；需要语法高亮编辑器时换 CodeMirror */}
             <div className="reef-pg__gutter" ref={gutterRef} aria-hidden="true">
               {Array.from({ length: lines }, (_, i) => (
                 <span key={i}>{i + 1}</span>
               ))}
             </div>
-            <textarea
-              className="reef-pg__code"
-              value={code}
-              spellCheck={false}
-              aria-label={zh ? '示例代码编辑区' : 'Example code editor'}
-              onChange={(e) => setCode(e.target.value)}
-              onScroll={(e) => {
-                if (gutterRef.current) gutterRef.current.scrollTop = e.currentTarget.scrollTop;
-              }}
-            />
+            <div className="reef-pg__stack">
+              {/* 高亮层在下、textarea 在上：文字透明只留光标，透出下层的 Prism 着色 */}
+              <pre className="reef-pg__highlight" ref={highlightRef} aria-hidden="true">
+                <code dangerouslySetInnerHTML={{ __html: highlighted }} />
+              </pre>
+              <textarea
+                className="reef-pg__code"
+                value={code}
+                spellCheck={false}
+                autoCapitalize="off"
+                autoCorrect="off"
+                aria-label={zh ? '示例代码编辑区' : 'Example code editor'}
+                onChange={(e) => setCode(e.target.value)}
+                onScroll={syncScroll}
+              />
+            </div>
           </div>
         </section>
 

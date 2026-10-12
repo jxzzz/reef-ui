@@ -535,35 +535,49 @@ body {
   border-radius: 0 0 var(--reef-radius-lg) var(--reef-radius-lg);
 }
 
-/* Prism token 主题：全部取自主题色，暗色模式自动适配 */
+/* Prism token 主题：全部取自主题色，暗色模式自动适配。
+   作用域同时覆盖文档代码块与 Playground 编辑器高亮层 */
 .code-block__reveal .token.tag,
-.code-block__reveal .token.function {
+.code-block__reveal .token.function,
+.reef-pg__highlight .token.tag,
+.reef-pg__highlight .token.function {
   color: var(--reef-color-brand);
 }
 
 .code-block__reveal .token.attr-name,
 .code-block__reveal .token.number,
-.code-block__reveal .token.builtin {
+.code-block__reveal .token.builtin,
+.reef-pg__highlight .token.attr-name,
+.reef-pg__highlight .token.number,
+.reef-pg__highlight .token.builtin {
   color: var(--reef-color-warning);
 }
 
 .code-block__reveal .token.string,
 .code-block__reveal .token.attr-value,
-.code-block__reveal .token.char {
+.code-block__reveal .token.char,
+.reef-pg__highlight .token.string,
+.reef-pg__highlight .token.attr-value,
+.reef-pg__highlight .token.char {
   color: var(--reef-color-success);
 }
 
 .code-block__reveal .token.keyword,
-.code-block__reveal .token.boolean {
+.code-block__reveal .token.boolean,
+.reef-pg__highlight .token.keyword,
+.reef-pg__highlight .token.boolean {
   color: var(--reef-color-brand);
 }
 
 .code-block__reveal .token.punctuation,
-.code-block__reveal .token.operator {
+.code-block__reveal .token.operator,
+.reef-pg__highlight .token.punctuation,
+.reef-pg__highlight .token.operator {
   color: var(--reef-color-text-secondary);
 }
 
-.code-block__reveal .token.comment {
+.code-block__reveal .token.comment,
+.reef-pg__highlight .token.comment {
   color: var(--reef-color-text-disabled);
   font-style: italic;
 }

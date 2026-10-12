@@ -1,15 +1,30 @@
 /* Playground 页私有样式（类名 reef-pg BEM，颜色只用 --reef-* token） */
 
+/* 标题区压成一行紧凑头部，把纵向空间留给编辑器/预览 */
+.reef-pg__head h2 {
+  margin: 0 0 4px;
+}
+
+.reef-pg__head p {
+  margin: 0 0 16px;
+  color: var(--reef-color-text-secondary);
+}
+
+/* 双栏吃满视口剩余高度：topbar 56 + 页头 ~90 + 内容区上下留白 ~48 */
 .reef-pg {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   align-items: stretch;
+  height: calc(100vh - 210px);
+  min-height: 480px;
+  padding-bottom: 32px;
 }
 
 @media (width <= 960px) {
   .reef-pg {
     grid-template-columns: 1fr;
+    height: auto;
   }
 }
 
@@ -67,23 +82,55 @@
   text-align: right;
 }
 
-.reef-pg__code {
+/* 编辑夹层：高亮 pre 铺底，透明 textarea 叠在其上接收输入 */
+.reef-pg__stack {
+  position: relative;
   flex: 1;
   min-width: 0;
+}
+
+.reef-pg__highlight {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 12px 16px;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--reef-color-text-primary);
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.reef-pg__highlight code {
+  font: inherit;
+}
+
+.reef-pg__code {
+  position: relative;
+  width: 100%;
+  height: 100%;
   padding: 12px 16px;
   border: 0;
   outline: none;
   resize: none;
   background: transparent;
-  color: var(--reef-color-text-primary);
+  /* 文字透明透出高亮层，只保留光标与选区 */
+  color: transparent;
+  caret-color: var(--reef-color-text-primary);
   font-family: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
   font-size: 13px;
   line-height: 1.6;
 
-  /* 与行号列共用同一行距，滚动联动才不会错位 */
+  /* 与高亮层共用同一行距/留白，滚动联动才不会错位 */
   white-space: pre;
   overflow: auto;
   overscroll-behavior: contain;
+}
+
+.reef-pg__code::selection {
+  background: color-mix(in srgb, var(--reef-color-brand) 25%, transparent);
 }
 
 .reef-pg__error {
