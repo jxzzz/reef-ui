@@ -7,6 +7,16 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    "version": "未发布",
+    "date": "开发中",
+    "items": [
+      {
+        "type": "修复",
+        "text": "[ci] 视觉回归先全量构建 workspace 包再截图"
+      }
+    ]
+  },
+  {
     "version": "0.5.0",
     "date": "2026-10-12",
     "items": [
