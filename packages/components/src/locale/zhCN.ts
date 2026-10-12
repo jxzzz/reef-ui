@@ -29,4 +29,7 @@ export const zhCN: Locale = {
   Popconfirm: { confirm: '确定', cancel: '取消' },
   Rate: { description: '评分' },
   TimePicker: { placeholder: '请选择时间', hour: '时', minute: '分', second: '秒' },
+  Tree: { expand: '展开', collapse: '收起' },
+  Cascader: { placeholder: '请选择' },
+  Upload: { hint: '点击或拖拽文件到此处', remove: '移除' },
 };

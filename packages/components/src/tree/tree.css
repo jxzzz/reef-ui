@@ -1,0 +1,84 @@
+.reef-tree,
+.reef-tree__children {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reef-tree {
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+}
+
+.reef-tree__children {
+  padding-left: var(--reef-space-lg);
+}
+
+.reef-tree__node {
+  display: flex;
+  align-items: center;
+  gap: var(--reef-space-xs);
+  min-height: 32px;
+  padding-right: var(--reef-space-sm);
+  border-radius: var(--reef-radius-sm);
+  cursor: pointer;
+}
+
+.reef-tree__node:focus-visible {
+  outline: none;
+  background: color-mix(in srgb, var(--reef-color-brand) 10%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-tree__node[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+.reef-tree__arrow {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-sm);
+  background: none;
+  color: var(--reef-color-text-secondary);
+}
+
+/* 仅交互箭头（button）有手型与悬停反馈，叶子占位箭头（span）保持沉默 */
+
+button.reef-tree__arrow {
+  cursor: pointer;
+}
+
+button.reef-tree__arrow:disabled {
+  cursor: not-allowed;
+}
+
+button.reef-tree__arrow:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);
+}
+
+.reef-tree__arrow svg {
+  transition: transform 0.2s;
+}
+
+.reef-tree__arrow--open svg {
+  transform: rotate(90deg);
+}
+
+.reef-tree__label {
+  line-height: 32px;
+}
+
+.reef-tree__label--selected {
+  color: var(--reef-color-brand);
+  font-weight: 600;
+}
+
+.reef-tree__label--disabled {
+  color: var(--reef-color-text-disabled);
+}

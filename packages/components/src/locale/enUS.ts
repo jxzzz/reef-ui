@@ -29,4 +29,7 @@ export const enUS: Locale = {
   Popconfirm: { confirm: 'OK', cancel: 'Cancel' },
   Rate: { description: 'Rating' },
   TimePicker: { placeholder: 'Select time', hour: 'h', minute: 'm', second: 's' },
+  Tree: { expand: 'Expand', collapse: 'Collapse' },
+  Cascader: { placeholder: 'Select' },
+  Upload: { hint: 'Click or drag files here', remove: 'Remove' },
 };

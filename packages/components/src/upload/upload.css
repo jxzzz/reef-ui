@@ -1,0 +1,127 @@
+.reef-upload {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--reef-space-sm);
+}
+
+.reef-upload__dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-sizing: border-box;
+  min-width: 240px;
+  padding: var(--reef-space-xl) var(--reef-space-lg);
+  border: 1px dashed color-mix(in srgb, var(--reef-color-text-primary) 28%, transparent);
+  border-radius: var(--reef-radius-md);
+  color: var(--reef-color-text-secondary);
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.reef-upload__dropzone:hover {
+  border-color: color-mix(in srgb, var(--reef-color-brand) 55%, transparent);
+}
+
+/* 焦点环在拖拽区上（input 覆盖其中，focus-within 即 input 聚焦） */
+.reef-upload__dropzone:focus-within {
+  outline: none;
+  border-color: var(--reef-color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+/* 拖拽悬停：brand 色边框 + 浅底 */
+.reef-upload__dropzone--dragover,
+.reef-upload__dropzone--dragover:hover {
+  border-color: var(--reef-color-brand);
+  border-style: solid;
+  background: color-mix(in srgb, var(--reef-color-brand) 8%, transparent);
+}
+
+.reef-upload__dropzone--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  background: color-mix(in srgb, var(--reef-color-text-primary) 5%, var(--reef-color-surface));
+}
+
+.reef-upload__hint {
+  font-size: var(--reef-font-size-sm);
+}
+
+/* 隐藏的 file input：opacity 0 覆盖整个拖拽区，保留原生点击与键盘可访问性 */
+.reef-upload__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.reef-upload__dropzone--disabled .reef-upload__input {
+  cursor: not-allowed;
+}
+
+.reef-upload__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reef-upload__item {
+  display: flex;
+  align-items: center;
+  gap: var(--reef-space-sm);
+  box-sizing: border-box;
+  padding: 4px var(--reef-space-sm);
+  border-radius: var(--reef-radius-sm);
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-primary);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 5%, transparent);
+}
+
+.reef-upload__item > .reef-icon {
+  flex: none;
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-upload__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reef-upload__size {
+  flex: none;
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-upload__remove {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-full);
+  background: transparent;
+  color: var(--reef-color-text-secondary);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.reef-upload__remove:hover {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  color: var(--reef-color-text-primary);
+}

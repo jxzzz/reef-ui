@@ -6,11 +6,13 @@
 @import url('./badge/badge.css');
 @import url('./breadcrumb/breadcrumb.css');
 @import url('./button/button.css');
+@import url('./cascader/cascader.css');
 @import url('./card/card.css');
 @import url('./checkbox/checkbox.css');
 @import url('./descriptions/descriptions.css');
 @import url('./divider/divider.css');
 @import url('./drawer/drawer.css');
+@import url('./dropdown/dropdown.css');
 @import url('./empty/empty.css');
 @import url('./form/form.css');
 @import url('./icon/icon.css');
@@ -35,4 +37,6 @@
 @import url('./time-picker/time-picker.css');
 @import url('./timeline/timeline.css');
 @import url('./tooltip/tooltip.css');
+@import url('./tree/tree.css');
 @import url('./typography/typography.css');
+@import url('./upload/upload.css');

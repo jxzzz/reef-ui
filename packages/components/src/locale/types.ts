@@ -31,4 +31,7 @@ export interface Locale {
   Popconfirm: { confirm: string; cancel: string };
   Rate: { description: string };
   TimePicker: { placeholder: string; hour: string; minute: string; second: string };
+  Tree: { expand: string; collapse: string };
+  Cascader: { placeholder: string };
+  Upload: { hint: string; remove: string };
 }
