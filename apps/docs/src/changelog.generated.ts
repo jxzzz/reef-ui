@@ -7,8 +7,8 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
-    "version": "未发布",
-    "date": "开发中",
+    "version": "0.8.0",
+    "date": "2026-10-13",
     "items": [
       {
         "type": "新增",
