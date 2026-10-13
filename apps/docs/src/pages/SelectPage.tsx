@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Select } from '@reef-ui/components';
+import { Select, Tag } from '@reef-ui/components';
 import type { SelectOption } from '@reef-ui/components';
 import { ApiTable, ComponentHeader, Demo, TypeBlock } from '../docs-ui';
 import { useLang, type Lang } from '../i18n';
@@ -67,18 +67,49 @@ ${cityOptionsCode.en}
 const controlledCode: Record<Lang, string> = {
   zh: `const [city, setCity] = useState('');
 ${cityOptionsCode.zh}
-<Select options={cityOptions} value={city} onChange={setCity} placeholder="受控选择" />
+<Select options={cityOptions} value={city} onChange={(v) => setCity(v as string)} placeholder="受控选择" />
 <span>当前值：{city || '-'}</span>`,
   en: `const [city, setCity] = useState('');
 ${cityOptionsCode.en}
-<Select options={cityOptions} value={city} onChange={setCity} placeholder="Controlled select" />
+<Select options={cityOptions} value={city} onChange={(v) => setCity(v as string)} placeholder="Controlled select" />
 <span>Current value: {city || '-'}</span>`,
+};
+
+const multipleCode: Record<Lang, string> = {
+  zh: `${cityOptionsCode.zh}
+const [cities, setCities] = useState<string[]>([]);
+<Select
+  options={cityOptions}
+  multiple
+  value={cities}
+  onChange={(v) => setCities(v as string[])}
+  placeholder="多选城市"
+/>
+<Tag color="brand">{cities.length} 项</Tag>`,
+  en: `${cityOptionsCode.en}
+const [cities, setCities] = useState<string[]>([]);
+<Select
+  options={cityOptions}
+  multiple
+  value={cities}
+  onChange={(v) => setCities(v as string[])}
+  placeholder="Multi select"
+/>
+<Tag color="brand">{cities.length} selected</Tag>`,
+};
+
+const searchableCode: Record<Lang, string> = {
+  zh: `${cityOptionsCode.zh}
+<Select options={cityOptions} searchable placeholder="搜索并选择" />`,
+  en: `${cityOptionsCode.en}
+<Select options={cityOptions} searchable placeholder="Search and select" />`,
 };
 
 export function SelectPage() {
   const { lang } = useLang();
   const zh = lang === 'zh';
   const [city, setCity] = useState('');
+  const [cities, setCities] = useState<string[]>([]);
 
   const cityOptions: SelectOption[] = zh
     ? [
@@ -176,24 +207,56 @@ export function SelectPage() {
       <Demo title={zh ? '受控' : 'Controlled'} code={zh ? controlledCode.zh : controlledCode.en}>
         {zh ? (
           <>
-            <Select options={cityOptions} value={city} onChange={setCity} placeholder="受控选择" />
+            <Select options={cityOptions} value={city} onChange={(v) => setCity(v as string)} placeholder="受控选择" />
             <span>当前值：{city || '-'}</span>
           </>
         ) : (
           <>
-            <Select options={cityOptions} value={city} onChange={setCity} placeholder="Controlled select" />
+            <Select options={cityOptions} value={city} onChange={(v) => setCity(v as string)} placeholder="Controlled select" />
             <span>Current value: {city || '-'}</span>
           </>
         )}
+      </Demo>
+
+      <Demo title={zh ? '多选' : 'Multiple'} code={zh ? multipleCode.zh : multipleCode.en}>
+        {zh ? (
+          <>
+            <Select
+              options={cityOptions}
+              multiple
+              value={cities}
+              onChange={(v) => setCities(v as string[])}
+              placeholder="多选城市"
+            />
+            <Tag color="brand">{cities.length} 项</Tag>
+          </>
+        ) : (
+          <>
+            <Select
+              options={cityOptions}
+              multiple
+              value={cities}
+              onChange={(v) => setCities(v as string[])}
+              placeholder="Multi select"
+            />
+            <Tag color="brand">{cities.length} selected</Tag>
+          </>
+        )}
+      </Demo>
+
+      <Demo title={zh ? '可搜索' : 'Searchable'} code={zh ? searchableCode.zh : searchableCode.en}>
+        <Select options={cityOptions} searchable placeholder={zh ? '搜索并选择' : 'Search and select'} />
       </Demo>
 
       <h3>API</h3>
       <ApiTable
         rows={[
           ['options', zh ? '选项数组 { label, value, disabled? }' : 'Array of options { label, value, disabled? }', 'SelectOption[]', '-'],
-          ['value', zh ? '当前值（受控）' : 'Current value (controlled)', 'string', '-'],
-          ['defaultValue', zh ? '默认值（非受控）' : 'Default value (uncontrolled)', 'string', '-'],
-          ['onChange', zh ? '选中回调 (value)' : 'Called when an option is selected (value)', '(value: string) => void', '-'],
+          ['value', zh ? '当前值（受控）；多选时为 string[]' : 'Current value (controlled); string[] when multiple', 'string | string[]', '-'],
+          ['defaultValue', zh ? '默认值（非受控）；多选时为 string[]' : 'Default value (uncontrolled); string[] when multiple', 'string | string[]', '-'],
+          ['onChange', zh ? '选中回调 (value)；多选时参数为 string[]' : 'Called when an option is selected (value); string[] when multiple', '(value: string | string[]) => void', '-'],
+          ['multiple', zh ? '多选模式：面板点选不关闭，触发器内以可关闭标签渲染已选项' : 'Multiple mode: panel stays open, selected items render as closable tags', 'boolean', 'false'],
+          ['searchable', zh ? '可搜索：面板顶部渲染搜索框，按 label 大小写不敏感过滤' : 'Searchable: renders a search input atop the panel, filters options case-insensitively by label', 'boolean', 'false'],
           ['placeholder', zh ? '占位文字' : 'Placeholder text', 'string', zh ? '"请选择"（随语言包）' : '"Select" (locale)'],
           ['size', zh ? '尺寸' : 'Size', "'small' | 'medium' | 'large'", "'medium'"],
           ['invalid', zh ? '校验失败态' : 'Validation-failed state', 'boolean', 'false'],

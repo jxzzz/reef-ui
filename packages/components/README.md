@@ -10,7 +10,7 @@
 
 </div>
 
-44 components covering forms, feedback, navigation and data display. Design Token theme system built on CSS Variables, one-line dark mode, complete TypeScript types.
+46 components covering forms, feedback, navigation and data display. Design Token theme system built on CSS Variables, one-line dark mode, complete TypeScript types.
 
 ## Install
 
@@ -40,9 +40,9 @@ Localization: wrap your app with `<LocaleProvider locale={enUS}>` to switch buil
 
 | Category | Components |
 |---|---|
-| **General** | Button, Divider, Scroll, Typography (Title / Text) |
+| **General** | Button, Divider, Scroll, Space, Typography (Title / Text) |
 | **Data Entry** | Cascader, Checkbox, DatePicker / DateRangePicker, Form / FormItem, Input, InputNumber, Radio, Rate, Segmented, Select, Slider, Switch, TimePicker, Upload |
-| **Data Display** | Avatar, Badge, Card, Descriptions, Empty, Icon, Table, Tag, Timeline, Tooltip, Tree |
+| **Data Display** | Avatar, Badge, Card, Collapse, Descriptions, Empty, Icon, Table, Tag, Timeline, Tooltip, Tree |
 | **Feedback** | Alert, Drawer, Message, Modal, Popconfirm, Progress, Result, Skeleton, Spin |
 | **Navigation** | Breadcrumb, Dropdown, Menu, Pagination, Steps, Tabs |
 

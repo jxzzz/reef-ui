@@ -12,6 +12,7 @@ import { DatePickerPage } from './pages/DatePickerPage';
 import { ButtonPage } from './pages/ButtonPage';
 import { CascaderPage } from './pages/CascaderPage';
 import { CardPage } from './pages/CardPage';
+import { CollapsePage } from './pages/CollapsePage';
 import { DescriptionsPage } from './pages/DescriptionsPage';
 import { DividerPage } from './pages/DividerPage';
 import { DrawerPage } from './pages/DrawerPage';
@@ -40,6 +41,7 @@ import { SliderPage } from './pages/SliderPage';
 import { TimePickerPage } from './pages/TimePickerPage';
 import { PlaygroundPage } from './pages/PlaygroundPage';
 import { ScrollPage } from './pages/ScrollPage';
+import { SpacePage } from './pages/SpacePage';
 import { ResultPage } from './pages/ResultPage';
 import { RadioPage } from './pages/RadioPage';
 import { StepsPage } from './pages/StepsPage';
@@ -68,6 +70,7 @@ const pages = [
   { key: 'cascader', title: 'Cascader 级联选择', group: '数据录入', node: <CascaderPage />, en: 'Cascader' },
   { key: 'divider', title: 'Divider 分割线', group: '通用', node: <DividerPage />, en: 'Divider' },
   { key: 'scroll', title: 'Scroll 滚动条', group: '通用', node: <ScrollPage />, en: 'Scroll' },
+  { key: 'space', title: 'Space 间距', group: '通用', node: <SpacePage />, en: 'Space' },
   { key: 'checkbox', title: 'Checkbox 复选框', group: '数据录入', node: <CheckboxPage />, en: 'Checkbox' },
   { key: 'date-picker', title: 'DatePicker 日期选择', group: '数据录入', node: <DatePickerPage />, en: 'DatePicker' },
   { key: 'input-number', title: 'InputNumber 数字输入框', group: '数据录入', node: <InputNumberPage />, en: 'InputNumber' },
@@ -84,6 +87,7 @@ const pages = [
   { key: 'avatar', title: 'Avatar 头像', group: '数据展示', node: <AvatarPage />, en: 'Avatar' },
   { key: 'badge', title: 'Badge 徽标数', group: '数据展示', node: <BadgePage />, en: 'Badge' },
   { key: 'card', title: 'Card 卡片', group: '数据展示', node: <CardPage />, en: 'Card' },
+  { key: 'collapse', title: 'Collapse 折叠面板', group: '数据展示', node: <CollapsePage />, en: 'Collapse' },
   { key: 'descriptions', title: 'Descriptions 描述列表', group: '数据展示', node: <DescriptionsPage />, en: 'Descriptions' },
   { key: 'empty', title: 'Empty 空状态', group: '数据展示', node: <EmptyPage />, en: 'Empty' },
   { key: 'table', title: 'Table 表格', group: '数据展示', node: <TablePage />, en: 'Table' },

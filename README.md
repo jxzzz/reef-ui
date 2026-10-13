@@ -19,7 +19,7 @@ Reef UI is an open-source React component library focused on admin / dashboard s
 
 ## Features
 
-- 🧩 **44 components** — forms, feedback, navigation and data display, keep growing
+- 🧩 **46 components** — forms, feedback, navigation and data display, keep growing
 - 🎨 **Design Token theming** — colors / spacing / radii all driven by `--reef-*` CSS Variables; change one variable, everything follows
 - 🌓 **Dark mode** — set `data-theme="dark"` on the root element, components and docs adapt automatically
 - 🌍 **Localization** — built-in `zhCN` / `enUS` locales via `LocaleProvider`, covering placeholders, empty states and aria-labels
@@ -55,9 +55,9 @@ Localization: wrap your app with `<LocaleProvider locale={enUS}>` to switch buil
 
 | Category | Components |
 |---|---|
-| **General** | Button, Divider, Scroll, Typography (Title / Text) |
+| **General** | Button, Divider, Scroll, Space, Typography (Title / Text) |
 | **Data Entry** | Cascader, Checkbox, DatePicker / DateRangePicker, Form / FormItem, Input, InputNumber, Radio, Rate, Segmented, Select, Slider, Switch, TimePicker, Upload |
-| **Data Display** | Avatar, Badge, Card, Descriptions, Empty, Icon, Table, Tag, Timeline, Tooltip, Tree |
+| **Data Display** | Avatar, Badge, Card, Collapse, Descriptions, Empty, Icon, Table, Tag, Timeline, Tooltip, Tree |
 | **Feedback** | Alert, Drawer, Message, Modal, Popconfirm, Progress, Result, Skeleton, Spin |
 | **Navigation** | Breadcrumb, Dropdown, Menu, Pagination, Steps, Tabs |
 
