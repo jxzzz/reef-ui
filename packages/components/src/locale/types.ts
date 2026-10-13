@@ -1,7 +1,7 @@
 /** 语言包结构：按组件分组；函数字段处理语序差异（如年月标题） */
 export interface Locale {
   Breadcrumb: { nav: string };
-  Select: { placeholder: string };
+  Select: { placeholder: string; searchPlaceholder: string };
   DatePicker: {
     placeholder: string;
     startPlaceholder: string;

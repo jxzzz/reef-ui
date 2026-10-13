@@ -2,7 +2,7 @@ import type { Locale } from './types';
 
 export const enUS: Locale = {
   Breadcrumb: { nav: 'Breadcrumb' },
-  Select: { placeholder: 'Select' },
+  Select: { placeholder: 'Select', searchPlaceholder: 'Search' },
   DatePicker: {
     placeholder: 'Select date',
     startPlaceholder: 'Start date',

@@ -2,7 +2,7 @@ import type { Locale } from './types';
 
 export const zhCN: Locale = {
   Breadcrumb: { nav: '面包屑' },
-  Select: { placeholder: '请选择' },
+  Select: { placeholder: '请选择', searchPlaceholder: '搜索' },
   DatePicker: {
     placeholder: '请选择日期',
     startPlaceholder: '开始日期',

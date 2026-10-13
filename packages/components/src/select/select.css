@@ -37,13 +37,14 @@
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
 }
 
-.reef-select__trigger:disabled {
+.reef-select__trigger:disabled,
+.reef-select__trigger--disabled {
   opacity: 0.55;
   cursor: not-allowed;
 }
 
 /* 聚焦时不套用悬停色，避免盖掉品牌色聚焦边框 */
-.reef-select__trigger:hover:not(:disabled, :focus) {
+.reef-select__trigger:hover:not(:disabled, :focus, .reef-select__trigger--disabled) {
   border-color: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
 }
 
@@ -79,6 +80,43 @@
 
 .reef-select__value--placeholder {
   color: var(--reef-color-text-disabled);
+}
+
+/* 多选：标签换行撑高触发器 */
+.reef-select__trigger--multiple {
+  height: auto;
+  min-height: 36px;
+  padding-block: 4px;
+}
+
+.reef-select__tags {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.reef-select__tag {
+  line-height: 1.4;
+}
+
+.reef-select__search {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 2px 8px;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 22%, transparent);
+  border-radius: var(--reef-radius-sm);
+  font-family: inherit;
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+  background: var(--reef-color-surface);
+}
+
+.reef-select__search:focus {
+  outline: none;
+  border-color: var(--reef-color-brand);
 }
 
 .reef-select__arrow {

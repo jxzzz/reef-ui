@@ -1,0 +1,29 @@
+.reef-space {
+  display: flex;
+  gap: var(--reef-space-lg);
+}
+
+.reef-space--vertical {
+  flex-direction: column;
+}
+
+.reef-space--wrap {
+  flex-wrap: wrap;
+}
+
+/* align 不设置时走 flex 默认 stretch */
+.reef-space--align-start {
+  align-items: flex-start;
+}
+
+.reef-space--align-center {
+  align-items: center;
+}
+
+.reef-space--align-end {
+  align-items: flex-end;
+}
+
+.reef-space--align-baseline {
+  align-items: baseline;
+}

@@ -9,6 +9,7 @@
 @import url('./cascader/cascader.css');
 @import url('./card/card.css');
 @import url('./checkbox/checkbox.css');
+@import url('./collapse/collapse.css');
 @import url('./descriptions/descriptions.css');
 @import url('./divider/divider.css');
 @import url('./drawer/drawer.css');
@@ -29,6 +30,7 @@
 @import url('./select/select.css');
 @import url('./skeleton/skeleton.css');
 @import url('./slider/slider.css');
+@import url('./space/space.css');
 @import url('./spin/spin.css');
 @import url('./steps/steps.css');
 @import url('./switch/switch.css');

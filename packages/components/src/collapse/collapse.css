@@ -1,0 +1,78 @@
+.reef-collapse {
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+}
+
+.reef-collapse__item + .reef-collapse__item {
+  border-top: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);
+}
+
+.reef-collapse__header {
+  display: flex;
+  align-items: center;
+  gap: var(--reef-space-xs);
+  width: 100%;
+  padding: var(--reef-space-sm) var(--reef-space-md);
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.reef-collapse__header:focus-visible {
+  outline: none;
+  border-radius: var(--reef-radius-sm);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-collapse__item--disabled .reef-collapse__header {
+  color: var(--reef-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.reef-collapse__arrow {
+  flex-shrink: 0;
+  color: var(--reef-color-text-secondary);
+  transition: transform 0.2s;
+}
+
+.reef-collapse__arrow--open {
+  transform: rotate(90deg);
+}
+
+/* 展示在右侧时反转主轴，箭头靠右、标签靠左 */
+.reef-collapse--icon-end .reef-collapse__header {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+/* hover 放在其它 header 规则之后：:not(:disabled) 特异性更高，避免 stylelint 乱序告警 */
+.reef-collapse__header:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--reef-color-text-primary) 5%, transparent);
+}
+
+/* 高度展开/收起动画：grid 轨道 0fr→1fr 过渡 */
+.reef-collapse__content-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.reef-collapse__content-wrap--open {
+  grid-template-rows: 1fr;
+}
+
+/* padding 放在最内层，由本层 overflow 裁剪，收起时才能完全归零 */
+.reef-collapse__clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.reef-collapse__content {
+  padding: 0 var(--reef-space-md) var(--reef-space-md);
+  color: var(--reef-color-text-secondary);
+  line-height: 1.6;
+}

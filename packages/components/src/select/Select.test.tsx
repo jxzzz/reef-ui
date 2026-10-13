@@ -90,4 +90,94 @@ describe('Select', () => {
     await userEvent.click(trigger());
     expect(trigger().getAttribute('aria-expanded')).toBe('true');
   });
+
+  test('multiple：选中两项后触发器显示两个标签，面板不关闭', async () => {
+    const onChange = vi.fn();
+    render(<Select options={options} multiple onChange={onChange} />);
+
+    await userEvent.click(trigger());
+    expect(listbox()?.getAttribute('aria-multiselectable')).toBe('true');
+
+    await userEvent.click(screen.getByRole('option', { name: '苹果' }));
+    await userEvent.click(screen.getByRole('option', { name: '香蕉' }));
+    expect(onChange).toHaveBeenLastCalledWith(['apple', 'banana']);
+    expect(trigger().textContent).toContain('苹果');
+    expect(trigger().textContent).toContain('香蕉');
+    expect(listbox()).toBeTruthy();
+  });
+
+  test('multiple：点标签 × 移除该项并抛出剩余数组', async () => {
+    const onChange = vi.fn();
+    render(<Select options={options} multiple defaultValue={['apple', 'banana']} onChange={onChange} />);
+
+    await userEvent.click(screen.getAllByLabelText('关闭')[0]);
+    expect(onChange).toHaveBeenCalledWith(['banana']);
+    expect(trigger().textContent).toContain('香蕉');
+    expect(trigger().textContent).not.toContain('苹果');
+  });
+
+  test('multiple：面板重复点选同一项切换选中态', async () => {
+    const onChange = vi.fn();
+    render(<Select options={options} multiple onChange={onChange} />);
+
+    await userEvent.click(trigger());
+    const opt = screen.getByRole('option', { name: '苹果' });
+    await userEvent.click(opt);
+    expect(onChange).toHaveBeenLastCalledWith(['apple']);
+    expect(opt.getAttribute('aria-selected')).toBe('true');
+
+    await userEvent.click(opt);
+    expect(onChange).toHaveBeenLastCalledWith([]);
+    expect(opt.getAttribute('aria-selected')).toBe('false');
+  });
+
+  test('multiple：div 触发器可聚焦，Enter/Space 打开面板，Enter 切换选中而非关闭', async () => {
+    const onChange = vi.fn();
+    render(<Select options={options} multiple onChange={onChange} />);
+
+    // multiple 触发器是 div[role=combobox]，避免 Tag 的关闭按钮嵌套在 button 里
+    expect(trigger().tagName).toBe('DIV');
+    expect(trigger().getAttribute('tabindex')).toBe('0');
+
+    trigger().focus();
+    await userEvent.keyboard('{Enter}');
+    expect(listbox()).toBeTruthy();
+
+    await userEvent.keyboard('{Escape}');
+    expect(listbox()).toBeNull();
+
+    await userEvent.keyboard('{ }');
+    expect(listbox()).toBeTruthy();
+
+    await userEvent.keyboard('{ArrowDown}{Enter}');
+    expect(onChange).toHaveBeenLastCalledWith(['banana']);
+    expect(listbox()).toBeTruthy();
+  });
+
+  test('searchable：输入关键词过滤选项列表', async () => {
+    render(<Select options={options} searchable />);
+
+    await userEvent.click(trigger());
+    const input = screen.getByPlaceholderText('搜索');
+    await userEvent.type(input, '香');
+    expect(screen.getAllByRole('option')).toHaveLength(1);
+    expect(screen.getByRole('option', { name: '香蕉' })).toBeTruthy();
+  });
+
+  test('searchable：单选选中后面板关闭且搜索词清空', async () => {
+    const onChange = vi.fn();
+    render(<Select options={options} searchable onChange={onChange} />);
+
+    await userEvent.click(trigger());
+    await userEvent.type(screen.getByPlaceholderText('搜索'), '香');
+    await userEvent.click(screen.getByRole('option', { name: '香蕉' }));
+    expect(onChange).toHaveBeenCalledWith('banana');
+    expect(listbox()).toBeNull();
+
+    // 重新打开，搜索词已清空，选项恢复全量
+    await userEvent.click(trigger());
+    const input = screen.getByPlaceholderText('搜索') as HTMLInputElement;
+    expect(input.value).toBe('');
+    expect(screen.getAllByRole('option')).toHaveLength(3);
+  });
 });
