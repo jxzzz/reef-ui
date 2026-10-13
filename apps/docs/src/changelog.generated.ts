@@ -7,6 +7,16 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    "version": "未发布",
+    "date": "开发中",
+    "items": [
+      {
+        "type": "修复",
+        "text": "[docs] 汉堡菜单开关在桌面端误显示"
+      }
+    ]
+  },
+  {
     "version": "0.6.0",
     "date": "2026-10-13",
     "items": [

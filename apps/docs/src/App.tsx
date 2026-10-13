@@ -5,6 +5,8 @@ import componentsPkg from '../../../packages/components/package.json';
 import { groupLabel, LangProvider, useChrome, useLang } from './i18n';
 import { SearchInput, Toc } from './docs-ui';
 import { AlertPage } from './pages/AlertPage';
+import { AnchorPage } from './pages/AnchorPage';
+import { AutoCompletePage } from './pages/AutoCompletePage';
 import { AvatarPage } from './pages/AvatarPage';
 import { BadgePage } from './pages/BadgePage';
 import { BreadcrumbPage } from './pages/BreadcrumbPage';
@@ -12,6 +14,7 @@ import { DatePickerPage } from './pages/DatePickerPage';
 import { ButtonPage } from './pages/ButtonPage';
 import { CascaderPage } from './pages/CascaderPage';
 import { CardPage } from './pages/CardPage';
+import { CarouselPage } from './pages/CarouselPage';
 import { CollapsePage } from './pages/CollapsePage';
 import { DescriptionsPage } from './pages/DescriptionsPage';
 import { DividerPage } from './pages/DividerPage';
@@ -29,16 +32,20 @@ import { InputNumberPage } from './pages/InputNumberPage';
 import { MessagePage } from './pages/MessagePage';
 import { MenuPage } from './pages/MenuPage';
 import { ModalPage } from './pages/ModalPage';
+import { NotificationPage } from './pages/NotificationPage';
 import { PaginationPage } from './pages/PaginationPage';
 import { SegmentedPage } from './pages/SegmentedPage';
 import { SelectPage } from './pages/SelectPage';
 import { SkeletonPage } from './pages/SkeletonPage';
+import { StatisticPage } from './pages/StatisticPage';
 import { SpinPage } from './pages/SpinPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { PopconfirmPage } from './pages/PopconfirmPage';
+import { PopoverPage } from './pages/PopoverPage';
 import { RatePage } from './pages/RatePage';
 import { SliderPage } from './pages/SliderPage';
 import { TimePickerPage } from './pages/TimePickerPage';
+import { TransferPage } from './pages/TransferPage';
 import { PlaygroundPage } from './pages/PlaygroundPage';
 import { ScrollPage } from './pages/ScrollPage';
 import { SpacePage } from './pages/SpacePage';
@@ -52,6 +59,7 @@ import { TabsPage } from './pages/TabsPage';
 import { TagPage } from './pages/TagPage';
 import { TooltipPage } from './pages/TooltipPage';
 import { TreePage } from './pages/TreePage';
+import { TreeSelectPage } from './pages/TreeSelectPage';
 import { TypographyPage } from './pages/TypographyPage';
 import { UploadPage } from './pages/UploadPage';
 
@@ -68,6 +76,7 @@ const pages = [
   { key: 'typography', title: 'Typography 排版', group: '资源', node: <TypographyPage />, en: 'Typography' },
   { key: 'button', title: 'Button 按钮', group: '通用', node: <ButtonPage />, en: 'Button' },
   { key: 'cascader', title: 'Cascader 级联选择', group: '数据录入', node: <CascaderPage />, en: 'Cascader' },
+  { key: 'auto-complete', title: 'AutoComplete 自动完成', group: '数据录入', node: <AutoCompletePage />, en: 'AutoComplete' },
   { key: 'divider', title: 'Divider 分割线', group: '通用', node: <DividerPage />, en: 'Divider' },
   { key: 'scroll', title: 'Scroll 滚动条', group: '通用', node: <ScrollPage />, en: 'Scroll' },
   { key: 'space', title: 'Space 间距', group: '通用', node: <SpacePage />, en: 'Space' },
@@ -83,14 +92,19 @@ const pages = [
   { key: 'slider', title: 'Slider 滑动输入条', group: '数据录入', node: <SliderPage />, en: 'Slider' },
   { key: 'switch', title: 'Switch 开关', group: '数据录入', node: <SwitchPage />, en: 'Switch' },
   { key: 'time-picker', title: 'TimePicker 时间选择器', group: '数据录入', node: <TimePickerPage />, en: 'TimePicker' },
+  { key: 'transfer', title: 'Transfer 穿梭框', group: '数据录入', node: <TransferPage />, en: 'Transfer' },
+  { key: 'tree-select', title: 'TreeSelect 树选择', group: '数据录入', node: <TreeSelectPage />, en: 'TreeSelect' },
   { key: 'upload', title: 'Upload 上传', group: '数据录入', node: <UploadPage />, en: 'Upload' },
   { key: 'avatar', title: 'Avatar 头像', group: '数据展示', node: <AvatarPage />, en: 'Avatar' },
   { key: 'badge', title: 'Badge 徽标数', group: '数据展示', node: <BadgePage />, en: 'Badge' },
   { key: 'card', title: 'Card 卡片', group: '数据展示', node: <CardPage />, en: 'Card' },
+  { key: 'carousel', title: 'Carousel 走马灯', group: '数据展示', node: <CarouselPage />, en: 'Carousel' },
   { key: 'collapse', title: 'Collapse 折叠面板', group: '数据展示', node: <CollapsePage />, en: 'Collapse' },
   { key: 'descriptions', title: 'Descriptions 描述列表', group: '数据展示', node: <DescriptionsPage />, en: 'Descriptions' },
   { key: 'empty', title: 'Empty 空状态', group: '数据展示', node: <EmptyPage />, en: 'Empty' },
+  { key: 'popover', title: 'Popover 弹出卡片', group: '数据展示', node: <PopoverPage />, en: 'Popover' },
   { key: 'table', title: 'Table 表格', group: '数据展示', node: <TablePage />, en: 'Table' },
+  { key: 'statistic', title: 'Statistic 数值统计', group: '数据展示', node: <StatisticPage />, en: 'Statistic' },
   { key: 'tag', title: 'Tag 标签', group: '数据展示', node: <TagPage />, en: 'Tag' },
   { key: 'timeline', title: 'Timeline 时间轴', group: '数据展示', node: <TimelinePage />, en: 'Timeline' },
   { key: 'tooltip', title: 'Tooltip 文字提示', group: '数据展示', node: <TooltipPage />, en: 'Tooltip' },
@@ -100,12 +114,14 @@ const pages = [
   { key: 'message', title: 'Message 全局提示', group: '反馈', node: <MessagePage />, en: 'Message' },
   { key: 'menu', title: 'Menu 导航菜单', group: '导航', node: <MenuPage />, en: 'Menu' },
   { key: 'modal', title: 'Modal 对话框', group: '反馈', node: <ModalPage />, en: 'Modal' },
+  { key: 'notification', title: 'Notification 通知提醒', group: '反馈', node: <NotificationPage />, en: 'Notification' },
   { key: 'popconfirm', title: 'Popconfirm 气泡确认框', group: '反馈', node: <PopconfirmPage />, en: 'Popconfirm' },
   { key: 'progress', title: 'Progress 进度条', group: '反馈', node: <ProgressPage />, en: 'Progress' },
   { key: 'result', title: 'Result 结果页', group: '反馈', node: <ResultPage />, en: 'Result' },
   { key: 'skeleton', title: 'Skeleton 骨架屏', group: '反馈', node: <SkeletonPage />, en: 'Skeleton' },
   { key: 'spin', title: 'Spin 加载中', group: '反馈', node: <SpinPage />, en: 'Spin' },
   { key: 'breadcrumb', title: 'Breadcrumb 面包屑', group: '导航', node: <BreadcrumbPage />, en: 'Breadcrumb' },
+  { key: 'anchor', title: 'Anchor 锚点', group: '导航', node: <AnchorPage />, en: 'Anchor' },
   { key: 'dropdown', title: 'Dropdown 下拉菜单', group: '导航', node: <DropdownPage />, en: 'Dropdown' },
   { key: 'pagination', title: 'Pagination 分页', group: '导航', node: <PaginationPage />, en: 'Pagination' },
   { key: 'steps', title: 'Steps 步骤条', group: '导航', node: <StepsPage />, en: 'Steps' },

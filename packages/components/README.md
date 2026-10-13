@@ -10,7 +10,7 @@
 
 </div>
 
-46 components covering forms, feedback, navigation and data display. Design Token theme system built on CSS Variables, one-line dark mode, complete TypeScript types.
+54 components covering forms, feedback, navigation and data display. Design Token theme system built on CSS Variables, one-line dark mode, complete TypeScript types.
 
 ## Install
 
@@ -41,10 +41,10 @@ Localization: wrap your app with `<LocaleProvider locale={enUS}>` to switch buil
 | Category | Components |
 |---|---|
 | **General** | Button, Divider, Scroll, Space, Typography (Title / Text) |
-| **Data Entry** | Cascader, Checkbox, DatePicker / DateRangePicker, Form / FormItem, Input, InputNumber, Radio, Rate, Segmented, Select, Slider, Switch, TimePicker, Upload |
-| **Data Display** | Avatar, Badge, Card, Collapse, Descriptions, Empty, Icon, Table, Tag, Timeline, Tooltip, Tree |
-| **Feedback** | Alert, Drawer, Message, Modal, Popconfirm, Progress, Result, Skeleton, Spin |
-| **Navigation** | Breadcrumb, Dropdown, Menu, Pagination, Steps, Tabs |
+| **Data Entry** | AutoComplete, Cascader, Checkbox, DatePicker / DateRangePicker, Form / FormItem, Input, InputNumber, Radio, Rate, Segmented, Select, Slider, Switch, TimePicker, Transfer, TreeSelect, Upload |
+| **Data Display** | Avatar, Badge, Card, Carousel, Collapse, Descriptions, Empty, Icon, Popover, Statistic, Table, Tag, Timeline, Tooltip, Tree |
+| **Feedback** | Alert, Drawer, Message, Modal, Notification, Popconfirm, Progress, Result, Skeleton, Spin |
+| **Navigation** | Anchor, Breadcrumb, Dropdown, Menu, Pagination, Steps, Tabs |
 
 Live demos and the full API reference are on the [documentation site](https://reef-ui.imxuex.workers.dev).
 
