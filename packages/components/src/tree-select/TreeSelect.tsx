@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { useLocale } from '../locale';
+import { HiddenField } from '../internal/hidden-field';
 import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import { Tag } from '../tag';
 import { Tree } from '../tree';
@@ -34,6 +35,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
       searchable = false,
       disabled = false,
       allowClear = false,
+      name,
       className,
       ...rest
     },
@@ -177,6 +179,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
 
     return (
       <div ref={rootRef} className={cn('reef-treeselect', className)} {...rest}>
+        <HiddenField name={name} value={multiple ? arr! : ((current as string) ?? '')} />
         {asDiv ? (
           <div
             ref={ref}

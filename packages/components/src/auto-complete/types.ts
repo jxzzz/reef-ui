@@ -12,4 +12,6 @@ export interface AutoCompleteProps
   disabled?: boolean;
   /** 输入时按 label 大小写不敏感过滤；false 时输入即展示全部选项 */
   filter?: boolean;
+  /** 表单字段名：渲染隐藏 input，使值进入 FormData、参与 Form 校验 */
+  name?: string;
 }

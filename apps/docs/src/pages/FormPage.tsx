@@ -1,5 +1,6 @@
-import { Button, Checkbox, Form, FormItem, Input, Switch } from '@reef-ui/components';
+import { Button, Checkbox, DatePicker, Form, FormItem, Input, Select, Switch } from '@reef-ui/components';
 import { ApiTable, ComponentHeader, Demo } from '../docs-ui';
+import { useState } from 'react';
 import { useLang, type Lang } from '../i18n';
 
 const verticalCode: Record<Lang, string> = {
@@ -123,6 +124,41 @@ const errorCode: Record<Lang, string> = {
 </Form>`,
 };
 
+const controlsCode: Record<Lang, string> = {
+  zh: `// Select / DatePicker / Cascader 这类组件没有原生表单元素，
+// 给它们传 name，值才会进入 FormData，才能被 FormItem 的 rules 校验到。
+<Form onFinish={(values) => console.log(values)}>
+  <FormItem name="city" label="城市" required rules={[{ required: true, message: '请选择城市' }]}>
+    <Select name="city" options={cities} placeholder="请选择" />
+  </FormItem>
+  <FormItem name="date" label="日期" required rules={[{ required: true, message: '请选择日期' }]}>
+    <DatePicker name="date" />
+  </FormItem>
+  <FormItem label="通知">
+    <Switch name="notify" checked={notify} onChange={setNotify} />
+  </FormItem>
+  <FormItem>
+    <Button type="submit">提交</Button>
+  </FormItem>
+</Form>`,
+  en: `// Select / DatePicker / Cascader have no native form element.
+// Pass them a name so their value reaches FormData and FormItem rules can see it.
+<Form onFinish={(values) => console.log(values)}>
+  <FormItem name="city" label="City" required rules={[{ required: true, message: 'Please pick a city' }]}>
+    <Select name="city" options={cities} placeholder="Select" />
+  </FormItem>
+  <FormItem name="date" label="Date" required rules={[{ required: true, message: 'Please pick a date' }]}>
+    <DatePicker name="date" />
+  </FormItem>
+  <FormItem label="Notifications">
+    <Switch name="notify" checked={notify} onChange={setNotify} />
+  </FormItem>
+  <FormItem>
+    <Button type="submit">Submit</Button>
+  </FormItem>
+</Form>`,
+};
+
 const inlineCode: Record<Lang, string> = {
   zh: `<Form layout="inline">
   <FormItem label="关键词">
@@ -141,6 +177,17 @@ const inlineCode: Record<Lang, string> = {
 export function FormPage() {
   const { lang } = useLang();
   const zh = lang === 'zh';
+  const [notify, setNotify] = useState(false);
+  const [submitted, setSubmitted] = useState<string>();
+  const cities = zh
+    ? [
+        { label: '北京', value: 'bj' },
+        { label: '上海', value: 'sh' },
+      ]
+    : [
+        { label: 'Beijing', value: 'bj' },
+        { label: 'Shanghai', value: 'sh' },
+      ];
   return (
     <>
       <ComponentHeader group="数据录入" title={zh ? 'Form 表单' : 'Form'}>
@@ -238,6 +285,37 @@ export function FormPage() {
         </Form>
       </Demo>
 
+      <Demo
+        title={zh ? '接入 Select / DatePicker 等控件' : 'Using Select / DatePicker and friends'}
+        code={zh ? controlsCode.zh : controlsCode.en}
+      >
+        <Form style={{ maxWidth: 380 }} onFinish={(values) => setSubmitted(JSON.stringify(values))}>
+          <FormItem
+            name="city"
+            label={zh ? '城市' : 'City'}
+            required
+            rules={[{ required: true, message: zh ? '请选择城市' : 'Please pick a city' }]}
+          >
+            <Select name="city" options={cities} placeholder={zh ? '请选择' : 'Select'} />
+          </FormItem>
+          <FormItem
+            name="date"
+            label={zh ? '日期' : 'Date'}
+            required
+            rules={[{ required: true, message: zh ? '请选择日期' : 'Please pick a date' }]}
+          >
+            <DatePicker name="date" />
+          </FormItem>
+          <FormItem label={zh ? '通知' : 'Notifications'}>
+            <Switch name="notify" checked={notify} onChange={setNotify} />
+          </FormItem>
+          <FormItem>
+            <Button type="submit">{zh ? '提交' : 'Submit'}</Button>
+          </FormItem>
+        </Form>
+        {submitted && <pre className="reef-form__submitted">{submitted}</pre>}
+      </Demo>
+
       <Demo title={zh ? '行内布局' : 'Inline layout'} code={zh ? inlineCode.zh : inlineCode.en}>
         <Form layout="inline">
           <FormItem label={zh ? '关键词' : 'Keyword'}>
@@ -268,11 +346,23 @@ export function FormPage() {
           <>
             表单值从 DOM 读取（FormData），控件保持非受控即可。校验完全自定义，Form 内部已设
             <code> noValidate</code>，不会弹浏览器原生气泡。
+            <br />
+            <code>Select</code>、<code>DatePicker</code>、<code>Cascader</code>、<code>TreeSelect</code>、
+            <code>TimePicker</code>、<code>Transfer</code>、<code>Rate</code>、<code>Segmented</code>、
+            <code>Switch</code>、<code>AutoComplete</code> 没有原生表单元素，
+            需要给控件本身也传 <code>name</code>，值才会进入 FormData；多值字段（多选、日期区间、
+            级联路径）在 <code>onFinish</code> 里是数组。
           </>
         ) : (
           <>
             Form values are read from the DOM (FormData), so controls can stay uncontrolled. Validation is fully custom; Form
             sets <code> noValidate</code> internally, so the browser's native bubbles never appear.
+            <br />
+            <code>Select</code>, <code>DatePicker</code>, <code>Cascader</code>, <code>TreeSelect</code>,{' '}
+            <code>TimePicker</code>, <code>Transfer</code>, <code>Rate</code>, <code>Segmented</code>,{' '}
+            <code>Switch</code> and <code>AutoComplete</code> have no native form element, so pass{' '}
+            <code>name</code> to the control itself for its value to reach FormData. Multi-value fields
+            (multiple select, date range, cascader path) arrive as arrays in <code>onFinish</code>.
           </>
         )}
       </p>

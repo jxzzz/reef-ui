@@ -1619,3 +1619,13 @@ body {
     padding: 72px 0 104px;
   }
 }
+
+/* Form 文档页：提交结果回显 */
+.reef-form__submitted {
+  margin: 12px 0 0;
+  padding: 8px 10px;
+  font-size: 12px;
+  overflow-x: auto;
+  border-radius: var(--reef-radius-sm);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 6%, transparent);
+}

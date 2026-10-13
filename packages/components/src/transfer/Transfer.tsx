@@ -1,5 +1,6 @@
 import { forwardRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { HiddenField } from '../internal/hidden-field';
 import { Button } from '../button';
 import { Checkbox } from '../checkbox';
 import type { TransferItem, TransferProps } from './types';
@@ -15,6 +16,7 @@ export const Transfer = forwardRef<HTMLDivElement, TransferProps>(
       titles,
       searchable = false,
       disabled = false,
+      name,
       className,
       ...rest
     },
@@ -114,6 +116,7 @@ export const Transfer = forwardRef<HTMLDivElement, TransferProps>(
 
     return (
       <div ref={ref} className={cn('reef-transfer', className)} {...rest}>
+        <HiddenField name={name} value={current} />
         {panel('left')}
         <div className="reef-transfer__operations">
           <Button

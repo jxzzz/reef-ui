@@ -11,6 +11,8 @@ export interface TimePickerProps extends Omit<
   onChange?: (value: string | null) => void;
   placeholder?: string;
   disabled?: boolean;
+  /** 表单字段名：渲染隐藏 input，使值进入 FormData、参与 Form 校验 */
+  name?: string;
   /** 分钟列步进 */
   minuteStep?: number;
 }

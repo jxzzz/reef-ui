@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
 import { useLocale } from '../locale';
+import { HiddenField } from '../internal/hidden-field';
 import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import type { TimePickerProps } from './types';
 import './time-picker.css';
@@ -32,6 +33,7 @@ export const TimePicker = forwardRef<HTMLButtonElement, TimePickerProps>(
       placeholder,
       disabled = false,
       minuteStep = 1,
+      name,
       className,
       ...rest
     },
@@ -112,6 +114,7 @@ export const TimePicker = forwardRef<HTMLButtonElement, TimePickerProps>(
 
     return (
       <div ref={rootRef} className={cn('reef-timepicker', className)} {...rest}>
+        <HiddenField name={name} value={current ?? ''} />
         <button
           ref={ref}
           type="button"

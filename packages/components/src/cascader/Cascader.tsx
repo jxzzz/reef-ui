@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { useLocale } from '../locale';
+import { HiddenField } from '../internal/hidden-field';
 import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import type { CascaderOption, CascaderProps } from './types';
 import './cascader.css';
@@ -29,6 +30,7 @@ export const Cascader = forwardRef<HTMLButtonElement, CascaderProps>(
       disabled = false,
       size = 'medium',
       block = false,
+      name,
       className,
       ...rest
     },
@@ -129,6 +131,7 @@ export const Cascader = forwardRef<HTMLButtonElement, CascaderProps>(
         className={cn('reef-cascader', { 'reef-cascader--block': block }, className)}
         {...rest}
       >
+        <HiddenField name={name} value={current} />
         <button
           ref={ref}
           type="button"

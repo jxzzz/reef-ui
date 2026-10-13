@@ -13,6 +13,8 @@ export interface DatePickerProps {
   block?: boolean;
   /** 禁用日期（禁选），返回 true 则不可点 */
   isDisabled?: (date: Date) => boolean;
+  /** 表单字段名：写到原生 input 上，使值进入 FormData、参与 Form 校验 */
+  name?: string;
   className?: string;
 }
 
@@ -26,5 +28,7 @@ export interface DateRangePickerProps {
   invalid?: boolean;
   block?: boolean;
   isDisabled?: (date: Date) => boolean;
+  /** 表单字段名：起止两个 input 共用，FormData.getAll(name) 得到 [起, 止] */
+  name?: string;
   className?: string;
 }

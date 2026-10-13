@@ -18,6 +18,7 @@ export function DatePicker({
   invalid = false,
   block = false,
   isDisabled,
+  name,
   className,
 }: DatePickerProps) {
   const t = useLocale();
@@ -44,6 +45,7 @@ export function DatePicker({
       <input
         type="text"
         readOnly
+        name={name}
         placeholder={placeholder ?? t.DatePicker.placeholder}
         disabled={disabled}
         aria-haspopup="grid"

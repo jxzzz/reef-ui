@@ -17,6 +17,7 @@ export const AutoComplete = forwardRef<HTMLDivElement, AutoCompleteProps>(
       placeholder,
       disabled = false,
       filter = true,
+      name,
       className,
       ...rest
     },
@@ -107,6 +108,7 @@ export const AutoComplete = forwardRef<HTMLDivElement, AutoCompleteProps>(
         <div className="reef-autocomplete__input">
           <Input
             ref={inputRef}
+            name={name}
             value={current}
             placeholder={placeholder}
             disabled={disabled}

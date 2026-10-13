@@ -19,4 +19,6 @@ export interface CascaderProps
   size?: 'small' | 'medium' | 'large';
   /** 占满整行宽度 */
   block?: boolean;
+  /** 表单字段名：渲染隐藏 input，使值进入 FormData、参与 Form 校验 */
+  name?: string;
 }

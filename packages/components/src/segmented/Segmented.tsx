@@ -1,9 +1,10 @@
 import { useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { cn } from '@reef-ui/utils';
+import { HiddenField } from '../internal/hidden-field';
 import type { SegmentedProps } from './types';
 import './segmented.css';
 
-export function Segmented({ options, value, defaultValue, onChange, className }: SegmentedProps) {
+export function Segmented({ options, value, defaultValue, onChange, name, className }: SegmentedProps) {
   const [inner, setInner] = useState(defaultValue ?? options[0]?.value);
   const current = value !== undefined ? value : inner;
 
@@ -26,6 +27,7 @@ export function Segmented({ options, value, defaultValue, onChange, className }:
 
   return (
     <div role="radiogroup" className={cn('reef-segmented', className)} onKeyDown={handleKeyDown}>
+      <HiddenField name={name} value={current ?? ''} />
       {options.map((opt) => (
         <button
           key={opt.value}

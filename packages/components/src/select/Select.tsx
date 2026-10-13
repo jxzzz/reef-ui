@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { useLocale } from '../locale';
+import { HiddenField } from '../internal/hidden-field';
 import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import { Tag } from '../tag';
 import type { SelectProps } from './types';
@@ -20,6 +21,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       block = false,
       multiple = false,
       searchable = false,
+      name,
       className,
       ...rest
     },
@@ -160,6 +162,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         className={cn('reef-select', { 'reef-select--block': block }, className)}
         {...rest}
       >
+        <HiddenField name={name} value={multiple ? arr! : ((current as string) ?? '')} />
         {multiple ? (
           <div
             ref={ref as unknown as React.Ref<HTMLDivElement>}

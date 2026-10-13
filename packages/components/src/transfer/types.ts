@@ -24,6 +24,8 @@ export interface TransferProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   titles?: [React.ReactNode, React.ReactNode];
   /** 是否显示搜索框，按 title 过滤（不区分大小写） */
   searchable?: boolean;
+  /** 表单字段名：渲染隐藏 input，使值进入 FormData、参与 Form 校验 */
+  name?: string;
   /** 整体禁用 */
   disabled?: boolean;
 }

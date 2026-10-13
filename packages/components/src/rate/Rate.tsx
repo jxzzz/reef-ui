@@ -2,6 +2,7 @@ import { forwardRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
 import { useLocale } from '../locale';
+import { HiddenField } from '../internal/hidden-field';
 import type { RateProps } from './types';
 import './rate.css';
 
@@ -15,6 +16,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>(
       disabled = false,
       readonly = false,
       allowClear = false,
+      name,
       className,
       ...rest
     },
@@ -45,6 +47,7 @@ export const Rate = forwardRef<HTMLDivElement, RateProps>(
         className={cn('reef-rate', { 'reef-rate--readonly': readonly }, className)}
         {...rest}
       >
+        <HiddenField name={name} value={current ? String(current) : ''} />
         {Array.from({ length: count }, (_, i) => (
           <button
             key={i}

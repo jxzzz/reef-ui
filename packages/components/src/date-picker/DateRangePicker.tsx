@@ -19,6 +19,7 @@ export function DateRangePicker({
   invalid = false,
   block = false,
   isDisabled,
+  name,
   className,
 }: DateRangePickerProps) {
   const t = useLocale();
@@ -51,6 +52,7 @@ export function DateRangePicker({
         <input
           type="text"
           readOnly
+          name={name}
           placeholder={startPlaceholder ?? t.DatePicker.startPlaceholder}
           disabled={disabled}
           aria-haspopup="grid"
@@ -62,6 +64,7 @@ export function DateRangePicker({
         <input
           type="text"
           readOnly
+          name={name}
           placeholder={endPlaceholder ?? t.DatePicker.endPlaceholder}
           disabled={disabled}
           aria-haspopup="grid"

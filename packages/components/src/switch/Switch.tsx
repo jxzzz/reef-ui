@@ -1,11 +1,13 @@
 import { forwardRef } from 'react';
 import { cn } from '@reef-ui/utils';
+import { HiddenField } from '../internal/hidden-field';
 import type { SwitchProps } from './types';
 import './switch.css';
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ checked = false, disabled = false, className, onChange, ...rest }, ref) => {
+  ({ checked = false, disabled = false, name, className, onChange, ...rest }, ref) => {
     return (
+      <>
       <button
         ref={ref}
         type="button"
@@ -17,7 +19,10 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         {...rest}
       >
         <span className="reef-switch__thumb" aria-hidden="true" />
-      </button>
+        </button>
+        {/* 未开启时提交空值，与原生 checkbox 的「未勾选不提交」语义对齐 */}
+        <HiddenField name={name} value={checked ? 'true' : ''} />
+      </>
     );
   },
 );

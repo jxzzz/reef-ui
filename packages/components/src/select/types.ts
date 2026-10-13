@@ -25,4 +25,6 @@ export interface SelectProps
   multiple?: boolean;
   /** 可搜索：面板顶部渲染搜索框，按 label 大小写不敏感过滤 */
   searchable?: boolean;
+  /** 表单字段名：渲染隐藏 input，使值进入 FormData、参与 Form 校验 */
+  name?: string;
 }
