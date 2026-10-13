@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
 import { useLocale } from '../locale';
 import { CalendarPanel } from './CalendarPanel';
 import { formatDate, parseDate } from './utils';
 import { useOpen } from './useOpen';
+import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import type { DatePickerProps } from './types';
 import './date-picker.css';
 
@@ -21,6 +22,10 @@ export function DatePicker({
 }: DatePickerProps) {
   const t = useLocale();
   const { open, setOpen, rootRef } = useOpen();
+  const popRef = useRef<HTMLDivElement>(null);
+
+  // 浮层进顶层，避开祖先 overflow 裁剪
+  useAnchoredPopup(open, rootRef, popRef);
   const [inner, setInner] = useState(defaultValue);
   const current = value !== undefined ? value : inner;
   const selected = parseDate(current ?? null);
@@ -49,7 +54,7 @@ export function DatePicker({
       />
       <Icon name="calendar" size={14} className="reef-datepicker__icon" />
       {open && !disabled && (
-        <div className="reef-datepicker__pop">
+        <div ref={popRef} className={cn('reef-popup', 'reef-datepicker__pop')}>
           <CalendarPanel value={[selected, selected]} onPick={pick} isDisabled={isDisabled} />
         </div>
       )}

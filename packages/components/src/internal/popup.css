@@ -1,0 +1,35 @@
+/* 顶层浮层：popover 的 UA 默认样式（居中 fixed、边框、padding、背景）全部重置掉，
+   定位交给 CSS anchor positioning，不支持的浏览器由 useAnchoredPopup 写 inset 兜底。 */
+.reef-popup {
+  position: fixed;
+  inset: auto;
+  z-index: var(--reef-z-popup, 100);
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+@supports selector(:popover-open) {
+  .reef-popup:not(:popover-open) {
+    display: none;
+  }
+}
+
+@supports (anchor-name: --a) {
+  .reef-popup {
+    position-area: block-end span-inline-end;
+    position-try-fallbacks: flip-block;
+    min-width: anchor-size(width);
+    margin-block: 4px;
+  }
+
+  /* 右对齐触发器（Dropdown placement 为 *-end） */
+  .reef-popup--end {
+    position-area: block-end span-inline-start;
+  }
+}

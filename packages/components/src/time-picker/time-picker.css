@@ -85,10 +85,6 @@
 
 /* ---- 三列面板 ---- */
 .reef-timepicker__panel {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  z-index: 100;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;

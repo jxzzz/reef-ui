@@ -4,9 +4,6 @@
 }
 
 .reef-dropdown__menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  z-index: 100;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -20,12 +17,11 @@
   box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
 }
 
-.reef-dropdown__menu--bottom-start {
-  left: 0;
-}
-
-.reef-dropdown__menu--bottom-end {
-  right: 0;
+/* 触发器与菜单的间距（兜底定位由 JS 直接算 top，不能叠 margin） */
+@supports (anchor-name: --a) {
+  .reef-dropdown__menu {
+    margin-block: 8px;
+  }
 }
 
 .reef-dropdown__item {

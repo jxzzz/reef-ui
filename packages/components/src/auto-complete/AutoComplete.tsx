@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import { Input } from '../input';
 import type { AutoCompleteOption, AutoCompleteProps } from './types';
 import './auto-complete.css';
@@ -27,6 +28,7 @@ export const AutoComplete = forwardRef<HTMLDivElement, AutoCompleteProps>(
     const rootRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
+    const panelRef = useRef<HTMLDivElement>(null);
 
     // 支持受控 / 非受控两种用法
     const current = value !== undefined ? value : inner;
@@ -36,6 +38,9 @@ export const AutoComplete = forwardRef<HTMLDivElement, AutoCompleteProps>(
         ? normalized.filter((o) => o.label.toLowerCase().includes(current.toLowerCase()))
         : normalized;
     const open = !disabled && !dismissed && current.length > 0 && visible.length > 0;
+
+    // 浮层进顶层，避开祖先 overflow 裁剪
+    useAnchoredPopup(open, rootRef, panelRef);
 
     const commit = (next: string) => {
       if (value === undefined) setInner(next);
@@ -114,7 +119,7 @@ export const AutoComplete = forwardRef<HTMLDivElement, AutoCompleteProps>(
           />
         </div>
         {open && (
-          <div className="reef-autocomplete__panel">
+          <div ref={panelRef} className={cn('reef-popup', 'reef-autocomplete__panel')}>
             <ul ref={listRef} className="reef-autocomplete__list" role="listbox" tabIndex={-1}>
               {visible.map((o, i) => (
                 <li

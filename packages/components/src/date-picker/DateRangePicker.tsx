@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
 import { useLocale } from '../locale';
 import { CalendarPanel } from './CalendarPanel';
 import { formatDate, parseDate } from './utils';
 import { useOpen } from './useOpen';
+import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import type { DateRange, DateRangePickerProps } from './types';
 import './date-picker.css';
 
@@ -22,6 +23,10 @@ export function DateRangePicker({
 }: DateRangePickerProps) {
   const t = useLocale();
   const { open, setOpen, rootRef } = useOpen();
+  const popRef = useRef<HTMLDivElement>(null);
+
+  // 浮层进顶层，避开祖先 overflow 裁剪
+  useAnchoredPopup(open, rootRef, popRef);
   const [inner, setInner] = useState<DateRange>(defaultValue ?? [null, null]);
   const current: DateRange = value !== undefined ? value : inner;
   // 选完起点、还没选终点时，先把起点显示出来
@@ -66,7 +71,7 @@ export function DateRangePicker({
         />
       </div>
       {open && !disabled && (
-        <div className="reef-datepicker__pop">
+        <div ref={popRef} className={cn('reef-popup', 'reef-datepicker__pop')}>
           <CalendarPanel
             value={[parseDate(shown[0]), parseDate(shown[1])]}
             onPick={pick}

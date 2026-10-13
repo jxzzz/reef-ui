@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { Icon } from '../icon';
 import { useLocale } from '../locale';
+import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import type { TimePickerProps } from './types';
 import './time-picker.css';
 
@@ -41,6 +42,10 @@ export const TimePicker = forwardRef<HTMLButtonElement, TimePickerProps>(
     const [inner, setInner] = useState(defaultValue);
     const [fields, setFields] = useState<Fields>(() => parse(defaultValue));
     const rootRef = useRef<HTMLDivElement>(null);
+    const panelRef = useRef<HTMLDivElement>(null);
+
+    // 浮层进顶层，避开祖先 overflow 裁剪
+    useAnchoredPopup(open, rootRef, panelRef);
     const colRefs = useRef<(HTMLUListElement | null)[]>([]);
 
     // 支持受控 / 非受控两种用法
@@ -138,7 +143,7 @@ export const TimePicker = forwardRef<HTMLButtonElement, TimePickerProps>(
           </button>
         )}
         {open && (
-          <div className="reef-timepicker__panel">
+          <div ref={panelRef} className={cn('reef-popup', 'reef-timepicker__panel')}>
             {columns.map((c, i) => (
               <div className="reef-timepicker__col" key={c.index}>
                 <p className="reef-timepicker__col-head">{c.head}</p>

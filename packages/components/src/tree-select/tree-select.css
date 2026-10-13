@@ -125,12 +125,7 @@
 }
 
 .reef-treeselect__panel {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  z-index: 100;
   box-sizing: border-box;
-  width: 100%;
   max-height: 264px;
   margin: 0;
   padding: 4px;

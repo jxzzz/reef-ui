@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { useLocale } from '../locale';
+import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import { Tag } from '../tag';
 import { Tree } from '../tree';
 import type { TreeNode } from '../tree/types';
@@ -44,6 +45,10 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
     const [query, setQuery] = useState('');
     const [innerExpanded, setInnerExpanded] = useState<string[]>([]);
     const rootRef = useRef<HTMLDivElement>(null);
+    const panelRef = useRef<HTMLDivElement>(null);
+
+    // 浮层进顶层，避开祖先 overflow 裁剪
+    useAnchoredPopup(open, rootRef, panelRef);
 
     // 支持受控 / 非受控两种用法
     const current = value !== undefined ? value : inner;
@@ -223,7 +228,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(
           </button>
         )}
         {open && (
-          <div className="reef-treeselect__panel">
+          <div ref={panelRef} className={cn('reef-popup', 'reef-treeselect__panel')}>
             {searchable && (
               <input
                 className="reef-treeselect__search"

@@ -1,5 +1,6 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
+import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import type { DropdownItem, DropdownProps } from './types';
 import './dropdown.css';
 
@@ -24,6 +25,7 @@ export const Dropdown = forwardRef<HTMLSpanElement, DropdownProps>(
     const [active, setActive] = useState(-1);
     const rootRef = useRef<HTMLSpanElement | null>(null);
     const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const menuRef = useRef<HTMLSpanElement>(null);
 
     // 支持受控 / 非受控两种用法；受控时不自动关闭，由使用方在回调里关
     // ponytail: hover 模式不支持受控 open，mouseenter/mouseleave 只改非受控态
@@ -41,6 +43,9 @@ export const Dropdown = forwardRef<HTMLSpanElement, DropdownProps>(
       if (typeof ref === 'function') ref(node);
       else if (ref) (ref as React.MutableRefObject<HTMLSpanElement | null>).current = node;
     };
+
+    // 浮层进顶层，避开祖先 overflow 裁剪
+    useAnchoredPopup(isOpen, rootRef, menuRef, placement.endsWith('-end') ? 'end' : 'start');
 
     // 可交互项（跳过 divider），键盘导航用
     const actionable = items
@@ -137,8 +142,9 @@ export const Dropdown = forwardRef<HTMLSpanElement, DropdownProps>(
         {children}
         {isOpen && (
           <span
+            ref={menuRef}
             role="menu"
-            className={cn('reef-dropdown__menu', `reef-dropdown__menu--${placement}`)}
+            className={cn('reef-popup', { 'reef-popup--end': placement.endsWith('-end') }, 'reef-dropdown__menu')}
             onClick={(e) => e.stopPropagation()}
           >
             {items.map((item, i) =>

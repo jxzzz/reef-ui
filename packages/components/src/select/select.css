@@ -129,22 +129,23 @@
   transform: rotate(180deg);
 }
 
-.reef-select__list {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  z-index: 100;
+/* 外框挂在面板上，搜索框和列表一起进顶层；定位见 internal/popup.css */
+.reef-select__panel {
   box-sizing: border-box;
-  width: 100%;
-  max-height: 264px;
-  margin: 0;
   padding: 4px;
-  overflow-y: auto;
-  list-style: none;
   border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
   border-radius: var(--reef-radius-md);
   background: var(--reef-color-surface);
   box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+
+.reef-select__list {
+  box-sizing: border-box;
+  max-height: 264px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
 }
 
 .reef-select__option {

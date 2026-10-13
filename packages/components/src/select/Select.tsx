@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { useLocale } from '../locale';
+import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import { Tag } from '../tag';
 import type { SelectProps } from './types';
 import './select.css';
@@ -31,6 +32,10 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
     const [query, setQuery] = useState('');
     const rootRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
+    const panelRef = useRef<HTMLDivElement>(null);
+
+    // 浮层进顶层，避开祖先 overflow 裁剪
+    useAnchoredPopup(open, rootRef, panelRef);
 
     // 支持受控 / 非受控两种用法
     const current = value !== undefined ? value : inner;
@@ -191,7 +196,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           </button>
         )}
         {open && (
-          <div className="reef-select__panel">
+          <div ref={panelRef} className={cn('reef-popup', 'reef-select__panel')}>
             {searchable && (
               <input
                 className="reef-select__search"

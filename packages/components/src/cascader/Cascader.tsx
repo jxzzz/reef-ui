@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { cn } from '@reef-ui/utils';
 import { useLocale } from '../locale';
+import { useAnchoredPopup } from '../internal/use-anchored-popup';
 import type { CascaderOption, CascaderProps } from './types';
 import './cascader.css';
 
@@ -41,6 +42,10 @@ export const Cascader = forwardRef<HTMLButtonElement, CascaderProps>(
     const [active, setActive] = useState(0);
     const rootRef = useRef<HTMLDivElement>(null);
     const lastColRef = useRef<HTMLUListElement>(null);
+    const panelRef = useRef<HTMLDivElement>(null);
+
+    // 浮层进顶层，避开祖先 overflow 裁剪
+    useAnchoredPopup(open, rootRef, panelRef);
 
     // 支持受控 / 非受控两种用法
     const current = value !== undefined ? value : (inner ?? []);
@@ -155,7 +160,7 @@ export const Cascader = forwardRef<HTMLButtonElement, CascaderProps>(
           </svg>
         </button>
         {open && (
-          <div className="reef-cascader__panel">
+          <div ref={panelRef} className={cn('reef-popup', 'reef-cascader__panel')}>
             {columns.map((col, depth) => (
               <ul
                 key={depth}

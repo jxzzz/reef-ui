@@ -8,12 +8,7 @@
 }
 
 .reef-autocomplete__panel {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  z-index: 100;
   box-sizing: border-box;
-  width: 100%;
   max-height: 264px;
   overflow-y: auto;
   border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);

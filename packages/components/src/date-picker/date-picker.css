@@ -33,10 +33,6 @@
 }
 
 .reef-datepicker__pop {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  z-index: 100;
   padding: var(--reef-space-sm);
   border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
   border-radius: var(--reef-radius-md);

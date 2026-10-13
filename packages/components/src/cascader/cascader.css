@@ -77,10 +77,6 @@
 
 /* ---- 多列面板：已展开的列横向并排 ---- */
 .reef-cascader__panel {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  z-index: 100;
   display: flex;
   gap: 4px;
   box-sizing: border-box;
