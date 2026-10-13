@@ -82,3 +82,16 @@ button.reef-tree__arrow:hover:not(:disabled) {
 .reef-tree__label--disabled {
   color: var(--reef-color-text-disabled);
 }
+
+.reef-tree__checkbox {
+  flex-shrink: 0;
+}
+
+.reef-tree__spinner {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
