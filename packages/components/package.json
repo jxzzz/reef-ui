@@ -22,7 +22,8 @@
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
   },
   "dependencies": {
     "@reef-ui/theme": "workspace:*",
@@ -33,6 +34,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^14.2.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.3.8",
@@ -40,6 +42,7 @@
     "jsdom": "^25.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "size-limit": "^14.2.0",
     "tsup": "^8.3.0",
     "vitest": "^2.1.1"
   },
@@ -62,5 +65,13 @@
     "dashboard",
     "typescript",
     "react-components"
+  ],
+  "size-limit": [
+    {
+      "name": "JS (gzip)",
+      "path": "dist/index.js",
+      "gzip": true,
+      "limit": "40 kB"
+    }
   ]
 }

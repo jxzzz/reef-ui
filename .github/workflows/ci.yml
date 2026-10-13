@@ -20,3 +20,9 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      - name: Size check # JS 限额由 size-limit 管；CSS size-limit v14 已不支持 bundling，用 gzip 计数兜底
+        run: |
+          pnpm --filter @reef-ui/components size
+          CSS_GZ=$(gzip -c packages/components/dist/index.css | wc -c)
+          echo "CSS gzip: ${CSS_GZ} bytes"
+          [ "$CSS_GZ" -lt 20480 ]
