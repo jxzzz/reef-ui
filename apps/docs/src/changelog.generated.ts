@@ -7,9 +7,13 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
-    "version": "未发布",
-    "date": "开发中",
+    "version": "0.7.0",
+    "date": "2026-10-13",
     "items": [
+      {
+        "type": "新增",
+        "text": "[components] 新增 Statistic、Popover、Notification、Carousel、Transfer、AutoComplete、TreeSelect、Anchor 组件"
+      },
       {
         "type": "修复",
         "text": "[docs] 汉堡菜单开关在桌面端误显示"
