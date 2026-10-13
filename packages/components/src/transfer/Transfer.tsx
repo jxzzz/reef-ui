@@ -39,7 +39,10 @@ export const Transfer = forwardRef<HTMLDivElement, TransferProps>(
       const moved = checked.filter((k) => from.some((i) => i.key === k && !i.disabled));
       if (!moved.length) return;
       const set = new Set(current);
-      for (const k of moved) direction === 'right' ? set.add(k) : set.delete(k);
+      for (const k of moved) {
+        if (direction === 'right') set.add(k);
+        else set.delete(k);
+      }
       // 保持 dataSource 顺序，回调的 targetKeys 顺序可预测
       const next = dataSource.filter((i) => set.has(i.key)).map((i) => i.key);
       if (targetKeys === undefined) setInner(next);

@@ -7,7 +7,7 @@ import './anchor.css';
 const SPY_THRESHOLD = 80;
 
 export const Anchor = forwardRef<HTMLElement, AnchorProps>(
-  ({ items, activeKey, defaultActiveKey, onChange, onClick, className }, ref) => {
+  ({ items, activeKey, defaultActiveKey, onChange, onClick, className }, _ref) => {
     const [inner, setInner] = useState(defaultActiveKey);
     const current = activeKey ?? inner;
 
