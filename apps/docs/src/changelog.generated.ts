@@ -7,9 +7,13 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
-    "version": "未发布",
-    "date": "开发中",
+    "version": "0.6.0",
+    "date": "2026-10-13",
     "items": [
+      {
+        "type": "新增",
+        "text": "[components] Select 支持多选与搜索，新增 Space、Collapse 组件"
+      },
       {
         "type": "修复",
         "text": "[ci] 视觉回归先全量构建 workspace 包再截图"
