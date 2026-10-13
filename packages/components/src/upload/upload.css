@@ -125,3 +125,32 @@
   background: color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
   color: var(--reef-color-text-primary);
 }
+
+/* 上传中：进度条（上传完成后由状态图标取代） */
+.reef-upload__progress {
+  display: block;
+  flex: none;
+  width: 64px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+}
+
+.reef-upload__bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: var(--reef-radius-full);
+  background: var(--reef-color-brand);
+  transition: width 0.15s;
+}
+
+/* 上传完成后整行图标着色（放在 __item > .reef-icon 之后以覆盖其颜色） */
+.reef-upload__item--success > .reef-icon {
+  color: var(--reef-color-success);
+}
+
+.reef-upload__item--error > .reef-icon {
+  color: var(--reef-color-danger);
+}

@@ -1,2 +1,2 @@
 export { Upload } from './Upload';
-export type { UploadProps } from './types';
+export type { UploadProps, UploadStatus } from './types';
