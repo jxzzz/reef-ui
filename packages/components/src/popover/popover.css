@@ -1,0 +1,40 @@
+.reef-popover {
+  position: relative;
+  display: inline-flex;
+}
+
+.reef-popover__card {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: var(--reef-space-xs);
+  box-sizing: border-box;
+  width: max-content;
+  max-width: 320px;
+  padding: var(--reef-space-md);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+
+.reef-popover--bottom .reef-popover__card {
+  bottom: auto;
+  top: calc(100% + 8px);
+}
+
+.reef-popover__title {
+  color: var(--reef-color-text-primary);
+  font-size: var(--reef-font-size-md);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.reef-popover__content {
+  color: var(--reef-color-text-secondary);
+  font-size: var(--reef-font-size-sm);
+  line-height: 1.5;
+}

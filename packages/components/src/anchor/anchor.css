@@ -1,0 +1,57 @@
+.reef-anchor {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--reef-space-xs);
+  padding-left: var(--reef-space-md);
+}
+
+/* 左侧导轨，激活段的品牌色由激活链接的 ::before 叠在导轨上 */
+.reef-anchor__indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--reef-color-text-disabled);
+  border-radius: var(--reef-radius-full);
+}
+
+.reef-anchor__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--reef-space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reef-anchor__link {
+  position: relative;
+  display: block;
+  padding: var(--reef-space-xs) var(--reef-space-sm);
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--reef-radius-md);
+}
+
+.reef-anchor__link:hover {
+  color: var(--reef-color-brand-hover);
+}
+
+.reef-anchor__link--active {
+  color: var(--reef-color-brand);
+}
+
+/* 激活段：与导轨同宽的品牌色标记，向左抵消掉父级的 padding-left */
+.reef-anchor__link--active::before {
+  position: absolute;
+  top: var(--reef-space-xs);
+  bottom: var(--reef-space-xs);
+  left: calc(-1 * var(--reef-space-md) - var(--reef-space-sm));
+  width: 2px;
+  content: '';
+  background: var(--reef-color-brand);
+  border-radius: var(--reef-radius-full);
+}

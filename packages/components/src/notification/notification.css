@@ -1,0 +1,125 @@
+.reef-notification {
+  position: fixed;
+  top: var(--reef-space-lg);
+  right: var(--reef-space-lg);
+  z-index: 1011;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--reef-space-sm);
+  max-width: calc(100vw - var(--reef-space-xl) * 2);
+
+  /* 容器不挡点击，仅通知卡片本身可交互 */
+  pointer-events: none;
+}
+
+.reef-notification__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--reef-space-sm);
+  padding: var(--reef-space-md) var(--reef-space-lg);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 10%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  color: var(--reef-color-text-primary);
+  pointer-events: auto;
+  animation: reef-notification-enter 0.2s ease;
+}
+
+.reef-notification__icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--reef-color-brand);
+}
+
+.reef-notification__item--info .reef-notification__icon {
+  color: var(--reef-color-brand);
+}
+
+.reef-notification__item--success .reef-notification__icon {
+  color: var(--reef-color-success);
+}
+
+.reef-notification__item--warning .reef-notification__icon {
+  color: var(--reef-color-warning);
+}
+
+.reef-notification__item--error .reef-notification__icon {
+  color: var(--reef-color-danger);
+}
+
+.reef-notification__body {
+  min-width: 0;
+}
+
+.reef-notification__title {
+  font-size: var(--reef-font-size-md);
+  font-weight: 600;
+  color: var(--reef-color-text-primary);
+}
+
+.reef-notification__content {
+  margin-top: var(--reef-space-xs);
+  font-size: var(--reef-font-size-sm);
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-notification__close {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--reef-color-text-secondary);
+  cursor: pointer;
+}
+
+.reef-notification__close:hover {
+  color: var(--reef-color-text-primary);
+}
+
+.reef-notification__close:focus-visible {
+  outline: 2px solid var(--reef-color-brand);
+  outline-offset: 2px;
+}
+
+/* 同特异性后置，覆盖进入动画为退出动画；时长须与 Notification.tsx 的 EXIT_DURATION 一致 */
+.reef-notification__item--closing {
+  animation: reef-notification-exit 0.2s ease forwards;
+}
+
+@keyframes reef-notification-enter {
+  from {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes reef-notification-exit {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reef-notification__item {
+    animation: none;
+  }
+
+  .reef-notification__item--closing {
+    animation: none;
+  }
+}

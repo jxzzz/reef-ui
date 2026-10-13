@@ -2,12 +2,14 @@
    用相对路径（而非包名）是让 esbuild 在构建时把 token 内联进产物。 */
 @import url('../../theme/src/tokens.css');
 @import url('./alert/alert.css');
+@import url('./anchor/anchor.css');
 @import url('./avatar/avatar.css');
 @import url('./badge/badge.css');
 @import url('./breadcrumb/breadcrumb.css');
 @import url('./button/button.css');
 @import url('./cascader/cascader.css');
 @import url('./card/card.css');
+@import url('./carousel/carousel.css');
 @import url('./checkbox/checkbox.css');
 @import url('./collapse/collapse.css');
 @import url('./descriptions/descriptions.css');
@@ -20,8 +22,10 @@
 @import url('./input/input.css');
 @import url('./message/message.css');
 @import url('./modal/modal.css');
+@import url('./notification/notification.css');
 @import url('./pagination/pagination.css');
 @import url('./popconfirm/popconfirm.css');
+@import url('./popover/popover.css');
 @import url('./progress/progress.css');
 @import url('./radio/radio.css');
 @import url('./rate/rate.css');
@@ -33,12 +37,15 @@
 @import url('./space/space.css');
 @import url('./spin/spin.css');
 @import url('./steps/steps.css');
+@import url('./statistic/statistic.css');
 @import url('./switch/switch.css');
 @import url('./tabs/tabs.css');
 @import url('./tag/tag.css');
 @import url('./time-picker/time-picker.css');
 @import url('./timeline/timeline.css');
+@import url('./transfer/transfer.css');
 @import url('./tooltip/tooltip.css');
 @import url('./tree/tree.css');
+@import url('./tree-select/tree-select.css');
 @import url('./typography/typography.css');
 @import url('./upload/upload.css');

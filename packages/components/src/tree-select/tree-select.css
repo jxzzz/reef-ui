@@ -1,0 +1,142 @@
+.reef-treeselect {
+  position: relative;
+  display: inline-block;
+}
+
+.reef-treeselect__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 200px;
+  padding: 0 10px 0 var(--reef-space-md);
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 22%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  color: var(--reef-color-text-primary);
+  font-family: inherit;
+  font-size: var(--reef-font-size-md);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.reef-treeselect__trigger:focus-visible {
+  outline: none;
+  border-color: var(--reef-color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-treeselect__trigger:disabled,
+.reef-treeselect__trigger--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* 聚焦时不套用悬停色，避免盖掉品牌色聚焦边框 */
+.reef-treeselect__trigger:hover:not(:disabled, :focus, .reef-treeselect__trigger--disabled) {
+  border-color: color-mix(in srgb, var(--reef-color-text-primary) 38%, transparent);
+}
+
+.reef-treeselect__trigger--open,
+.reef-treeselect__trigger--open:focus-visible {
+  border-color: var(--reef-color-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-treeselect__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reef-treeselect__value--placeholder {
+  color: var(--reef-color-text-disabled);
+}
+
+/* 多选：标签换行撑高触发器 */
+.reef-treeselect__trigger--multiple {
+  height: auto;
+  min-height: 36px;
+  padding-block: 4px;
+}
+
+.reef-treeselect__tags {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.reef-treeselect__tag {
+  line-height: 1.4;
+}
+
+.reef-treeselect__clear {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: var(--reef-radius-full);
+  background: none;
+  color: var(--reef-color-text-secondary);
+  font-size: var(--reef-font-size-md);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.reef-treeselect__clear:hover {
+  color: var(--reef-color-text-primary);
+}
+
+.reef-treeselect__arrow {
+  flex-shrink: 0;
+  color: var(--reef-color-text-secondary);
+  transition: transform 0.2s;
+}
+
+.reef-treeselect__arrow--open {
+  transform: rotate(180deg);
+}
+
+.reef-treeselect__search {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 2px 8px;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 22%, transparent);
+  border-radius: var(--reef-radius-sm);
+  font-family: inherit;
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-primary);
+  background: var(--reef-color-surface);
+}
+
+.reef-treeselect__search:focus {
+  outline: none;
+  border-color: var(--reef-color-brand);
+}
+
+.reef-treeselect__panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 264px;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}

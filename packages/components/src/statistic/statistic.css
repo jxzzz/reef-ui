@@ -1,0 +1,30 @@
+.reef-statistic {
+  display: inline-block;
+  color: var(--reef-color-text-primary);
+}
+
+.reef-statistic__title {
+  margin-bottom: var(--reef-space-xs);
+  font-size: var(--reef-font-size-md);
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-statistic__content {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--reef-space-xs);
+  font-size: var(--reef-font-size-lg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.reef-statistic__prefix,
+.reef-statistic__suffix {
+  font-size: var(--reef-font-size-sm);
+  font-weight: 400;
+  color: var(--reef-color-text-secondary);
+}
+
+.reef-statistic--loading .reef-statistic__value {
+  color: var(--reef-color-text-disabled);
+}

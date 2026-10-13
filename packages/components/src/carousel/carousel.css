@@ -1,0 +1,74 @@
+.reef-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.reef-carousel__track {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.reef-carousel__item {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.reef-carousel__dots {
+  position: absolute;
+  bottom: var(--reef-space-md);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--reef-space-xs);
+}
+
+.reef-carousel__dot {
+  padding: 0;
+  width: 8px;
+  height: 8px;
+  border: none;
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-text-primary) 30%, transparent);
+  cursor: pointer;
+  transition: width 0.2s, background 0.2s;
+}
+
+.reef-carousel__dot--active {
+  width: 20px;
+  background: var(--reef-color-brand);
+}
+
+.reef-carousel__dot:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-brand) 18%, transparent);
+}
+
+.reef-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--reef-radius-full);
+  background: color-mix(in srgb, var(--reef-color-surface) 60%, transparent);
+  color: var(--reef-color-text-primary);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.reef-carousel__arrow--prev {
+  left: var(--reef-space-sm);
+}
+
+.reef-carousel__arrow--next {
+  right: var(--reef-space-sm);
+}
+
+.reef-carousel__arrow:hover {
+  background: color-mix(in srgb, var(--reef-color-surface) 90%, transparent);
+}

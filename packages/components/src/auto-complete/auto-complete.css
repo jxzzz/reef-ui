@@ -1,0 +1,42 @@
+.reef-autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+.reef-autocomplete__input .reef-input {
+  width: 200px;
+}
+
+.reef-autocomplete__panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 264px;
+  overflow-y: auto;
+  border: 1px solid color-mix(in srgb, var(--reef-color-text-primary) 12%, transparent);
+  border-radius: var(--reef-radius-md);
+  background: var(--reef-color-surface);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+
+.reef-autocomplete__list {
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+}
+
+.reef-autocomplete__option {
+  padding: 0 10px;
+  border-radius: var(--reef-radius-sm);
+  color: var(--reef-color-text-primary);
+  font-size: var(--reef-font-size-md);
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.reef-autocomplete__option--active {
+  background: color-mix(in srgb, var(--reef-color-brand) 10%, transparent);
+}
