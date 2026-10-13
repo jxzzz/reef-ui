@@ -257,6 +257,9 @@ export function FormPage() {
           ['FormItem.htmlFor', zh ? '关联控件 id，点击标签聚焦' : 'Associated control id; clicking the label focuses it', 'string', '-'],
           ['FormItem.required', zh ? '标签前显示红色星号' : 'Show a red asterisk before the label', 'boolean', 'false'],
           ['FormItem.error', zh ? '手动指定错误信息，红色，优先于 help' : 'Manually set error message, shown in red, takes priority over help', 'ReactNode', '-'],
+          ['FormItem.rules', zh ? '校验规则列表，按顺序执行，支持 required / min / max / pattern / validator / trigger' : 'Rule list, run in order; supports required / min / max / pattern / validator / trigger', 'FormRule[]', '-'],
+          ['Form.onFinish', zh ? '校验全部通过时回调，参数为表单值' : 'Called when all fields pass, with the form values', '(values) => void', '-'],
+          ['Form.onFinishFailed', zh ? '存在校验错误时回调，参数为 name → 错误信息' : 'Called when validation fails, with name → error message', '(errors) => void', '-'],
           ['FormItem.help', zh ? '辅助说明文字' : 'Helper text', 'ReactNode', '-'],
         ]}
       />

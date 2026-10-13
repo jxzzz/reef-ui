@@ -95,3 +95,19 @@
   white-space: nowrap;
   min-height: 0;
 }
+
+/* 校验失败：控件描红 */
+.reef-formitem__control--error input,
+.reef-formitem__control--error textarea,
+.reef-formitem__control--error select {
+  border-color: var(--reef-color-danger);
+}
+
+/* 聚焦时保持红色边框与红色聚焦光圈（否则会被控件自身的品牌色聚焦样式盖掉） */
+.reef-formitem__control--error input:focus-visible,
+.reef-formitem__control--error textarea:focus-visible,
+.reef-formitem__control--error select:focus-visible {
+  border-color: var(--reef-color-danger);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--reef-color-danger) 18%, transparent);
+}
+
