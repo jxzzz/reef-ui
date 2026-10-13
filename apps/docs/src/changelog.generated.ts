@@ -7,6 +7,36 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    "version": "未发布",
+    "date": "开发中",
+    "items": [
+      {
+        "type": "新增",
+        "text": "[components] 受控组件新增 name，值进入 FormData 并参与 FormItem 校验"
+      },
+      {
+        "type": "新增",
+        "text": "[components] 浮层改走浏览器顶层，避免被祖先 overflow 裁剪"
+      },
+      {
+        "type": "新增",
+        "text": "[upload] 新增 action，支持 HTTP 上传与进度回调"
+      },
+      {
+        "type": "新增",
+        "text": "[tree] 支持 checkable 勾选与 loadData 异步加载"
+      },
+      {
+        "type": "新增",
+        "text": "[form] FormItem 支持 rules 校验，Form 新增 onFinish / onFinishFailed"
+      },
+      {
+        "type": "修复",
+        "text": "[components] 修复 Anchor/Transfer 的 eslint 错误"
+      }
+    ]
+  },
+  {
     "version": "0.7.0",
     "date": "2026-10-13",
     "items": [
