@@ -109,7 +109,8 @@ body {
   cursor: pointer;
 }
 
-.docs__nav-toggle {
+/* 特异性压过 .icon-btn 的 display（它在文件更后面），保证桌面端隐藏 */
+.docs__topbar .docs__nav-toggle {
   display: none;
 }
 
@@ -1548,7 +1549,7 @@ body {
     display: block;
   }
 
-  .docs__nav-toggle {
+  .docs__topbar .docs__nav-toggle {
     display: grid;
   }
 
