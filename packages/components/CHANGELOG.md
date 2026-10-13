@@ -1,5 +1,21 @@
 # @reef-ui/components
 
+## 0.8.0
+
+### Minor Changes
+
+- 4bfdadf: 受控组件接入 Form：Select、DatePicker、DateRangePicker、TimePicker、Cascader、TreeSelect、Transfer、Rate、Segmented、Switch、AutoComplete 新增 `name`，内部渲染隐藏 input，使值进入 FormData 并参与 FormItem 的 `rules` 校验。
+
+  此前这些组件没有原生表单元素，包在 `<FormItem rules>` 里校验的是面板中的搜索框（或读不到值而恒判未填）。多值字段（多选 Select、日期区间、Cascader 路径、Transfer）在 `Form.onFinish` 中为数组。
+
+- 8f02b32: Form 新增校验规则与提交回调：`FormItem` 的 `rules` 支持 `required` / `min` / `max` / `pattern` / `validator`（可异步）/ `trigger`，change、blur 即时校验，提交时统一校验，失败的控件描红；`Form` 新增 `onFinish`（校验通过，参数为表单值）和 `onFinishFailed`（参数为 name 到错误信息的映射）。导出 `FormRule` 类型。
+- 767797f: 浮层改走浏览器顶层：Select、Dropdown、Cascader、TreeSelect、TimePicker、DatePicker、DateRangePicker、AutoComplete 的面板加 `popover` 属性进入 top layer，定位用 CSS anchor positioning（Chrome / Safari，含放不下自动上翻），Firefox 退回 JS 读 rect 写 inset 并跟随滚动更新。
+
+  此前这些面板是 `position: absolute`，放进 `overflow: hidden/auto` 的容器（Table、Card、Drawer、Scroll）会被裁掉，靠近视口底部会溢出屏幕；散落的 `z-index: 100` 也不再需要。顺带修掉一处：`searchable` 的 Select 搜索框此前落在文档流里撑高组件（`.reef-select__panel` 没有任何样式，浮起来的是里面的 `__list`），现在搜索框和列表一起进浮层。
+
+- 8f02b32: Tree 新增勾选与异步加载：`checkable` / `checkedKeys` / `defaultCheckedKeys` / `onCheck` / `checkStrictly` 支持父子级联与半选；`loadData` 在展开无 `children` 的节点时异步加载子节点（每个节点只触发一次），`TreeNode.isLeaf` 可显式声明叶子。
+- 8f02b32: Upload 新增 HTTP 上传：传 `action` 后经 XMLHttpRequest 上传，配套 `beforeUpload` / `onProgress` / `onSuccess` / `onError` / `headers` / `name` / `withCredentials`，导出 `UploadStatus` 类型。不传 `action` 时行为不变，仍只收集文件列表。
+
 ## 0.7.0
 
 ### Minor Changes
