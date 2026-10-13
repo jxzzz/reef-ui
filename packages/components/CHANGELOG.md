@@ -1,5 +1,11 @@
 # @reef-ui/components
 
+## 0.6.0
+
+### Minor Changes
+
+- 7c18acc: 新增 Space 间距、Collapse 折叠面板组件；Select 支持多选（multiple）与搜索（searchable）
+
 ## 0.5.0
 
 ### Minor Changes
